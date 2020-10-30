@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h3 class="">DB Test</h3>
+
+    <p>START LOOP</p>
+
+    {% for activity in activities %}
+        <p> {{ activity.title }}</p>
+    {% endfor %}
+
+    <p>END LOOP</p>
+
+{% endblock %}
