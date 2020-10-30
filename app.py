@@ -12,7 +12,7 @@ app = Flask(__name__)
 def index():
     return render_template("index.html",
                            page_title="Things to Do and Places to Go: Home page",
-                           page_description="From small adventures at home, to big adventures on days out! Find something to do...")
+                           page_description="From small adventures at home, to big adventures on days out! Find something to do...",nav_link="Home")
 
 
 if __name__ == "__main__":
