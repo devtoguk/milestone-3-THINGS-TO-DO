@@ -8,6 +8,6 @@ def register():
     return render_template("register.html")
 
 
-@app.route("/user/adduser/", methods=["GET"])
+@app.route("/user/adduser/", methods=["POST"])
 def add_user():
     return User().add_user()
