@@ -1,10 +1,21 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, session, redirect
 from werkzeug.security import generate_password_hash, check_password_hash
 from bson.objectid import ObjectId
 from bson.json_util import dumps, RELAXED_JSON_OPTIONS
+import json
 from app import mongo
 
+
 class User:
+
+    def start_session(self, user):
+        del user['password']
+        session['logged_in'] = True
+        user_json_str = dumps(user, json_options=RELAXED_JSON_OPTIONS)
+        user_json = json.loads(user_json_str)
+        session['user'] = user_json
+        # return user_json_str, 200
+        return user_json, 200
 
     def add_user(self):
         print(request.form)
@@ -25,7 +36,12 @@ class User:
 
         # Add user into the database and return the user object
         if mongo.db.users.insert_one(user):
-            json_str = dumps(user, json_options=RELAXED_JSON_OPTIONS)
-            return json_str, 200
+            return self.start_session(user)
+            # json_str = dumps(user, json_options=RELAXED_JSON_OPTIONS)
+            # return json_str, 200
 
         return jsonify({"error": "User registration failed"}), 400
+
+    def logout(self):
+        session.clear()
+        return redirect('/')

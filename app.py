@@ -4,12 +4,27 @@ from flask import (
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from functools import wraps
 
 if os.path.exists("env.py"):
     import env
 
 app = Flask(__name__)
 
+
+# Decorators
+def login_required(f):
+    @wraps(f)
+    def wrap(*arg, **kwargs):
+        if 'logged_in' in session:
+            return f(*arg, **kwargs)
+        else:
+            return redirect('/')
+
+    return wrap
+
+
+# Routes
 from user import routes
 
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
@@ -31,6 +46,12 @@ def dbtest():
     activities = list(mongo.db.activities.find())
     # print(activities)
     return render_template("dbtest.html", activities=activities)
+
+
+@app.route("/activity/")
+@login_required
+def activity():
+    return render_template("activity.html")
 
 
 if __name__ == "__main__":

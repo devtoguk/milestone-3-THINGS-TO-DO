@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+
+<p>Test session data:</p>
+{{ session['logged_in'] }} <br><br>
+
+    <div class="text-center">
+        <p>
+            Hi {{ session['user']['name'] }}. You want to add an activity?
+        </p>
+        <br>
+        <h2>Your User Details:</h2>
+
+        <p>
+            <strong>ID: </strong>{{ session['user']['_id']['$oid'] }}<br>
+            <strong>NAME: </strong>{{ session['user']['name'] }}<br>
+            <strong>EMAIL: </strong>{{ session['user']['email'] }}<br>
+        </p>
+
+    </div>
+
+
+{% endblock %}

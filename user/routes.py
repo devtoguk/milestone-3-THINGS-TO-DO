@@ -11,3 +11,8 @@ def register():
 @app.route("/user/adduser/", methods=["POST"])
 def add_user():
     return User().add_user()
+
+
+@app.route("/user/logout/")
+def logout():
+    return User().logout()
