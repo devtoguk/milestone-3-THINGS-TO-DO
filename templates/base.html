@@ -16,7 +16,7 @@
     <div class="hero__image"></div>
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark navbar__custom">
         <a class="navbar-brand" href="#">
-            <img src="../static/images/things_to_do_logo.png" height="60" alt="" loading="lazy">
+            <img src="{{ url_for('static',filename='images/things_to_do_logo.png') }}" height="60" alt="" loading="lazy">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -62,7 +62,7 @@
             </ul>
         </div>
     </nav>
-    <main class="container">
+    <main class="container mt-5">
         {% block content %}
         {% endblock %}
     </main>

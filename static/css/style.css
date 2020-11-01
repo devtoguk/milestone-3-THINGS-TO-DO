@@ -3,6 +3,7 @@
 :root {
     --themeGreen: rgb(119, 172, 3);
     --themeLightGreen: rgb(220, 240, 179);
+    --themeRed: rgb(240,10,10);
 }
 
 body {
@@ -56,4 +57,17 @@ body {
     background-size: cover;
     background-position: center;
     opacity: 0.8;
+}
+
+/* User Register form */
+.error {
+    margin: 0;
+    font-size: 16px;
+    line-height: 26px;
+    text-align: center;
+    color: var(--themeRed);
+}
+
+.error--hidden {
+    display: none;
 }

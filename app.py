@@ -10,6 +10,8 @@ if os.path.exists("env.py"):
 
 app = Flask(__name__)
 
+from user import routes
+
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
@@ -24,7 +26,7 @@ def index():
                            page_description="From small adventures at home, to big adventures on days out! Find something to do...",nav_link="Home")
 
 
-@app.route("/dbtest")
+@app.route("/dbtest/")
 def dbtest():
     activities = list(mongo.db.activities.find())
     # print(activities)
