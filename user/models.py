@@ -23,7 +23,12 @@ class User:
         # Create the user object
         user = {
             'name': request.form.get('name'),
+            'screenName': request.form.get('screen_name'),
             'email': request.form.get('email'),
+            'postcode': request.form.get('postcode').lower(),
+            'town': request.form.get('town').lower(),
+            'county': request.form.get('county').lower(),
+            'level': 0,
             'password': request.form.get('password')
         }
 
