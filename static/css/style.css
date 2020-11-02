@@ -91,7 +91,12 @@ body {
 
 /* Login form */
 .login__form-width {
-    width: 96%;
+    width: 94%;
+}
+
+/* Register form */
+.register__form-width {
+    width: 94%;
 }
 
 /* Small devices (landscape phones, 576px and up) */
@@ -107,7 +112,7 @@ body {
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) { 
 .login__form-width {
-    width: 50%;
+    width: 70%;
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
