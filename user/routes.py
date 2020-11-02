@@ -8,9 +8,19 @@ def register():
     return render_template("register.html")
 
 
-@app.route("/user/adduser/", methods=["POST"])
+@app.route("/user/login/")
+def login():
+    return render_template("login.html")
+
+
+@app.route("/user/add_user/", methods=["POST"])
 def add_user():
     return User().add_user()
+
+
+@app.route("/user/login_user/", methods=["POST"])
+def login_user():
+    return User().login_user()
 
 
 @app.route("/user/logout/")

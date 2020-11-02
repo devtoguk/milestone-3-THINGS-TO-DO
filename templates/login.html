@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card w-75 mx-auto">
+	<div class="card-header">
+		User Login
+	</div>
+	<div class="card-body">
+        <form name="login_form">
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input id="email" name="email" type="email" required class="form-control"  aria-describedby="emailHelp">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password" required class="form-control">
+            </div>
+            <p class="error error__hidden"></p>
+            <input type="submit" value="Login" class="btn btn-primary">
+        </form>
+	</div>
+</div>
+
+{% endblock %}

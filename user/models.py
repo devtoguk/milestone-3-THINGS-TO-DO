@@ -45,3 +45,11 @@ class User:
     def logout(self):
         session.clear()
         return redirect('/')
+
+    def login_user(self):
+        user = mongo.db.users.find_one({"email":  request.form.get("email")})
+
+        if user and check_password_hash(user['password'], request.form.get("password")):
+            return self.start_session(user)
+
+        return jsonify({"error": "Invalid user login credentials"}), 401
