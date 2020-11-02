@@ -1,7 +1,7 @@
 $('form[name=register_form').submit(function(e) {
 
   var $form = $(this);
-  var $error = $form.find('.error');
+  var $error = $form.find('.form__error');
   var data = $form.serialize();
 
   $.ajax({
@@ -14,7 +14,7 @@ $('form[name=register_form').submit(function(e) {
     },
     error: function(resp) {
         console.log(resp);
-        $error.text(resp.responseJSON.error).removeClass('error__hidden');
+        $error.text(resp.responseJSON.error).removeClass('form__error-hidden');
     }
   });
 
@@ -24,7 +24,7 @@ $('form[name=register_form').submit(function(e) {
 $('form[name=login_form').submit(function(e) {
 
   var $form = $(this);
-  var $error = $form.find('.error');
+  var $error = $form.find('.form__error');
   var data = $form.serialize();
 
   $.ajax({
@@ -37,7 +37,7 @@ $('form[name=login_form').submit(function(e) {
     },
     error: function(resp) {
         console.log(resp);
-        $error.text(resp.responseJSON.error).removeClass('error__hidden');
+        $error.text(resp.responseJSON.error).removeClass('form__error-hidden');
     }
   });
 

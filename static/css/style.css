@@ -2,12 +2,13 @@
 
 :root {
     --themeGreen: rgb(119, 172, 3);
-    --themeLightGreen: rgb(220, 240, 179);
+    --themeSuperLightGreen: rgb(220, 240, 179);
     --themeRed: rgb(240,10,10);
+    --themeSeaGreen: rgb(180, 201, 144);
 }
 
 body {
-  background: var(--themeLightGreen);
+  background: var(--themeSuperLightGreen);
 }
 
 /* Navigation bar  */
@@ -18,7 +19,7 @@ body {
 }
 
 .navbar__custom .navbar-nav .nav-link {
-    color: var(--themeLightGreen);
+    color: var(--themeSuperLightGreen);
 }
 
 .navbar__custom .nav-item.active .nav-link,
@@ -59,8 +60,8 @@ body {
     opacity: 0.8;
 }
 
-/* User Register form */
-.error {
+/* Form defaults */
+.form__error {
     margin: 0;
     font-size: 16px;
     line-height: 26px;
@@ -68,6 +69,22 @@ body {
     color: var(--themeRed);
 }
 
-.error--hidden {
+.form__error-hidden {
     display: none;
+}
+
+.form__info-text {
+    margin-top: 1rem;
+}
+
+.form__header-bg {
+    background: var(--themeSeaGreen);
+}
+
+.card {
+    border: 1px solid var(--themeSuperLightGreen)
+}
+
+.card-header {
+    background: var(--themeSeaGreen);
 }
