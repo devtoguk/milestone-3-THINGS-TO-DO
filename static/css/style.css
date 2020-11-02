@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500&family=Raleway:ital,wght@0,400;0,600;1,400;1,600&display=swap');
+@import url('https:fonts.googleapis.com/css2?family=Oswald:wght@400;500&family=Raleway:ital,wght@0,400;0,600;1,400;1,600&display=swap');
 
 :root {
     --themeGreen: rgb(119, 172, 3);
@@ -87,4 +87,30 @@ body {
 
 .card-header {
     background: var(--themeSeaGreen);
+}
+
+/* Login form */
+.login__form-width {
+    width: 96%;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) { 
+
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+.login__form-width {
+    width: 50%;
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+
 }
