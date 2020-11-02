@@ -22,17 +22,17 @@ class User:
 
         # Create the user object
         user = {
-            "name": request.form.get("name"),
-            "email": request.form.get("email"),
-            "password": request.form.get("password")
+            'name': request.form.get('name'),
+            'email': request.form.get('email'),
+            'password': request.form.get('password')
         }
 
         # Encrypt the password
         user['password'] = generate_password_hash(user['password'])
 
         # Check if user email address already exists
-        if mongo.db.users.find_one({"email": user['email']}):
-            return jsonify({"error": "Email address already in use"}), 400
+        if mongo.db.users.find_one({'email': user['email']}):
+            return jsonify({'error': 'Email address already in use'}), 400
 
         # Add user into the database and return the user object
         if mongo.db.users.insert_one(user):
@@ -40,16 +40,16 @@ class User:
             # json_str = dumps(user, json_options=RELAXED_JSON_OPTIONS)
             # return json_str, 200
 
-        return jsonify({"error": "User registration failed"}), 400
+        return jsonify({'error': 'User registration failed'}), 400
 
     def logout(self):
         session.clear()
         return redirect('/')
 
     def login_user(self):
-        user = mongo.db.users.find_one({"email":  request.form.get("email")})
+        user = mongo.db.users.find_one({'email':  request.form.get('email')})
 
-        if user and check_password_hash(user['password'], request.form.get("password")):
+        if user and check_password_hash(user['password'], request.form.get('password')):
             return self.start_session(user)
 
-        return jsonify({"error": "Invalid user login credentials"}), 401
+        return jsonify({'error': 'Invalid user login credentials'}), 401
