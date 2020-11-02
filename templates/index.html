@@ -1,8 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h3 class="">Test title: {{ page_title }}</h3>
-
-    <p>TEST text: {{ page_description }} </p>
+<div class="jumbotron search__bg border__highlight mx-auto">
+    <h1 class="">Something to do or a place to go!</h1>
+    <div class="input-group flex-nowrap">
+        <input type="text" class="form-control" placeholder="Enter your search here" aria-label="search_text" aria-describedby="addon-wrapping">
+        <div class="input-group-append">
+            <!-- <span class="input-group-text" id="addon-wrapping">SEARCH</span> -->
+            <button class="btn btn-success">SEARCH</button>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

@@ -5,6 +5,8 @@
     --themeSuperLightGreen: rgb(220, 240, 179);
     --themeRed: rgb(240,10,10);
     --themeSeaGreen: rgb(180, 201, 144);
+    --themeTranSeaGreen: rgb(180, 201, 144, 0.5);
+    --themeTreeBrown: rgb(71, 79, 67);
 }
 
 body {
@@ -45,6 +47,12 @@ body {
     background-color: rgba(255,255,255,.5);
 }
 
+/* Helpers */
+
+.border__highlight {
+    border: 1px solid var(--themeSuperLightGreen)
+}
+
 /* Hero image */
 .hero__image {
     position: fixed;
@@ -58,6 +66,23 @@ body {
     background-size: cover;
     background-position: center;
     opacity: 0.8;
+}
+
+/* Home page */
+/* Jumbotron */
+
+.jumbotron {
+    width: 94%;
+    margin-top: 8rem;
+    padding: 2rem;
+    background: var(--themeTranSeaGreen);
+}
+
+.jumbotron h1 {
+    margin-bottom: 1rem;
+    color: var(--themeTreeBrown);
+    font-family: 'Oswald', sans-serif;
+    font-size: 2.5rem;
 }
 
 /* Form defaults */
@@ -111,6 +136,10 @@ body {
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) { 
+.jumbotron {
+    width: 65%;
+}
+
 .login__form-width {
     width: 70%;
 }
