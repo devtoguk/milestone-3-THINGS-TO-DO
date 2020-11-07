@@ -55,6 +55,8 @@ body {
     border: 1px solid var(--themeSuperLightGreen)
 }
 
+
+
 /* Hero image */
 .hero__image {
     position: fixed;
@@ -75,16 +77,16 @@ body {
 
 .jumbotron {
     width: 94%;
-    margin-top: 4rem;
-    padding: 1rem;
+    margin-top: 4em;
+    padding: 1em;
     background: var(--themeTranSeaGreen);
 }
 
 .jumbotron h1 {
-    margin-bottom: 1rem;
+    margin-bottom: 1em;
     color: var(--themeTreeBrown);
     font-family: 'Raleway', sans-serif;
-    font-size: 2rem;
+    font-size: 2em;
     font-weight: 500;
 }
 
@@ -102,7 +104,7 @@ body {
 }
 
 .form__info-text {
-    margin-top: 1rem;
+    margin-top: 1em;
 }
 
 .form__header-bg {
@@ -127,6 +129,23 @@ body {
     width: 94%;
 }
 
+/* Results */
+
+.results__title {
+    margin: 2em 0;
+    padding: 0.5em;
+}
+
+.results__title span {
+    padding: 0.5em;
+    background: var(--themeTranSeaGreen);
+    color: var(--themeTreeBrown);
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.2em;
+    font-weight: 500;
+    border-radius: calc(.25em - 1px);
+}
+
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) { 
 
@@ -142,12 +161,16 @@ body {
 
     .jumbotron {
         width: 65%;
-        margin-top: 8rem;
-        padding: 2rem;
+        margin-top: 8em;
+        padding: 2em;
     }
 
     .login__form-width {
         width: 70%;
+    }
+
+    .results__title span {
+        font-size: 1.6em;
     }
 
 }
