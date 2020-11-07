@@ -3,7 +3,7 @@
 
 <div class="results__title text-center">
     <span class="search__bg mx-auto text-center">
-        Search results for&nbsp;&nbsp;
+        Search results for&nbsp;
         {% if results_type == "text" %}
             " <strong>{{ search_phrase }}</strong> "
         {% endif %}
@@ -21,7 +21,7 @@
                         {% set image_name = "no_image_yet" %}
                     {% endif %}
                     <a href="#">
-                        <img src="/static/images/activities/{{ image_name }}.jpg" class="card-img-top" alt="{{ activity.title }}" title="{{ activity.title }}">
+                        <img src="/static/images/activities/{{ image_name }}.jpg" class="card-img-top" alt="{{ activity.title|title }}" title="{{ activity.title|title }}">
                     </a>
                     <div class="card-body">
                         <h5 class="card-title">{{ activity.title|upper }}</h5>
