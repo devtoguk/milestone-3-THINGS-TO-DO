@@ -58,13 +58,28 @@ def activity():
 def search():
     if request.method == "POST":
         search_phrase = request.form.get('search_text')
-        activities = list(mongo.db.activities.find({"$text":
-                                                {"$search": search_phrase}}))
+        activities = list(mongo.db.activities.find({'$text':
+                                                {'$search': search_phrase}}))
         return render_template('results.html',
                             results_type="text",
                             search_phrase=search_phrase, 
                             activities=activities)
 
+    return render_template('index.html')
+    
+
+@app.route('/category/<string:category>/', methods=['POST', 'GET'])
+def category(category):
+    if request.method == "GET":
+        print(category)
+        cato = str(category)
+        activities = list(mongo.db.activities.find({ 'category': category }))
+
+        return render_template('results.html',
+                            results_type="category",
+                            search_category=category, 
+                            activities=activities)
+    
     return render_template('index.html')
     
 

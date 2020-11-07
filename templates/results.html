@@ -3,9 +3,11 @@
 
 <div class="results__title text-center">
     <span class="search__bg mx-auto text-center">
-        Search results for&nbsp;
+        Search results for 
         {% if results_type == "text" %}
-            " <strong>{{ search_phrase }}</strong> "
+            &nbsp;" <strong>{{ search_phrase }}</strong> "
+        {% elif results_type == "category" %}
+            category: <strong>{{ search_category|capitalize }}</strong>
         {% endif %}
     </span>
 </div>
