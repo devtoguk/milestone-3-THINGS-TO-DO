@@ -15,15 +15,22 @@
     <div class="row">
         {% for activity in activities %}
             <div class="col-md-6 col-lg-4 mb-5">
-                <div class="card mx-auto" style="width: 18rem;">
-                    <img src="/static/images/activities/{{ activity._id }}.jpg" class="card-img-top" alt="Sample farm image">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ activity.title }}</h5>
-                        <p class="card-text">{{ activity.shortDescr }}</p>
-                        <p class="card-text">{{ activity._id }}</p>
-                        <a href="#" class="btn btn-primary">Find out more</a>
+                    <div class="card mx-auto" style="width: 18rem;">
+                        {% if activity.hasImage %}
+                            {% set image_name = activity._id %}
+                        {% else %}
+                            {% set image_name = "no_image_yet" %}
+                        {% endif %}
+                        <a href="#">
+                            <img src="/static/images/activities/{{ image_name }}.jpg" class="card-img-top" alt="{{ activity.title }}" title="{{ activity.title }}">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ activity.title|upper }}</h5>
+                            <p class="card-text">{{ activity.shortDescr }}</p>
+                            <!-- <p class="card-text">{{ activity._id }}</p> -->
+                            <a href="#" class="btn btn-primary mt-4">Find out more</a>
+                        </div>
                     </div>
-                </div>
             </div>
         {% endfor %}
     </div>
