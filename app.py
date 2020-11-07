@@ -54,6 +54,16 @@ def activity():
     return render_template('activity.html')
 
 
+@app.route('/search/', methods=['POST'])
+def search():
+    search_phrase = request.form.get('search_text')
+    # testb = db.activities.find({ "$text": { "$search": "park" }})
+    activities = list(mongo.db.activities.find({"$text":
+                                               {"$search": search_phrase}}))
+    return render_template('search.html',
+                           search_phrase=search_phrase, activities=activities)
+
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),

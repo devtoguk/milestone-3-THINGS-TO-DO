@@ -3,12 +3,14 @@
 
 <div class="jumbotron search__bg border__highlight mx-auto text-center">
     <h1 class="">Find something to do or a place to go</h1>
-    <div class="input-group flex-nowrap">
-        <input type="text" class="form-control" placeholder="Enter your search here" aria-label="search_text" aria-describedby="addon-wrapping">
-        <div class="input-group-append">
-            <button class="btn btn-success">SEARCH</button>
+    <form name="search_form" class="" method="POST" action="{{ url_for('search') }}">
+        <div class="input-group flex-nowrap">
+            <input id="search_text" name="search_text" type="text" class="form-control" placeholder="Enter your search here" aria-label="search_text" aria-describedby="addon-wrapping">
+            <div class="input-group-append">
+                <button class="btn btn-success">SEARCH</button>
+            </div>
         </div>
-    </div>
+    </form>
 </div>
 
 {% endblock %}
