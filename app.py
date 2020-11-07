@@ -58,11 +58,12 @@ def activity():
 def search():
     if request.method == "POST":
         search_phrase = request.form.get('search_text')
-        # testb = db.activities.find({ "$text": { "$search": "park" }})
         activities = list(mongo.db.activities.find({"$text":
                                                 {"$search": search_phrase}}))
-        return render_template('search.html',
-                            search_phrase=search_phrase, activities=activities)
+        return render_template('results.html',
+                            results_type="text",
+                            search_phrase=search_phrase, 
+                            activities=activities)
 
     return render_template('index.html')
     
