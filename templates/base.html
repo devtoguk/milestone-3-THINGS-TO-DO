@@ -45,11 +45,11 @@
                         <a class="dropdown-item" href="/category/crafting/">Crafting</a>
                         <a class="dropdown-item" href="/category/food/">Food</a>
                         <a class="dropdown-item" href="/category/nature/">Nature</a>
-                        <a class="dropdown-item" href="/category/sports_leisure/">Sports & Leisure</a>
+                        <a class="dropdown-item" href="/category/sports_and_leisure/">Sports & Leisure</a>
                     </div>
                 </li>
                 <li class="nav-item pr-5">
-                    <a class="nav-link" href="#">Add an Activity</a>
+                    <a class="nav-link" href="/activity/add/">Add an Activity</a>
                 </li>
                 <li class="nav-item dropdown-divider">
                 </li>
@@ -60,7 +60,15 @@
                             Profile
                         </a>
                         <div class="dropdown-menu dropdown-menu-lg-right" aria-labelledby="profileDropdown">
-                            <a class="dropdown-item" href="#">View Profile</a>
+                            <a class="dropdown-item" href="/user/profile/">View Profile</a>
+                            <a class="dropdown-item" href="/user/favourites/">My Favourites</a>
+                            {% if session['user']['level'] == 1 or session['user']['level'] == 7 %}
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/admin/approve/">Approve Submissions</a>
+                            {% endif %}
+                            {% if session['user']['level'] == 7 %}
+                                <a class="dropdown-item" href="/admin/users/">User Admin</a>
+                            {% endif %}
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/user/logout/">Logout</a>
                         </div>
