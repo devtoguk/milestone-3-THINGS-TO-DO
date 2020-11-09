@@ -37,15 +37,15 @@
                         aria-haspopup="true" aria-expanded="false">
                         Activities
                     </a>
+
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">All</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/category/animals/">Animals</a>
-                        <a class="dropdown-item" href="/category/attraction/">Attraction</a>
-                        <a class="dropdown-item" href="/category/crafting/">Crafting</a>
-                        <a class="dropdown-item" href="/category/food/">Food</a>
-                        <a class="dropdown-item" href="/category/nature/">Nature</a>
-                        <a class="dropdown-item" href="/category/sports_and_leisure/">Sports & Leisure</a>
+
+                        {% for category in categories %}
+                            <a class="dropdown-item" href="/category/{{ category }}/">{{ category }}</a>
+                        {% endfor %}
+
                     </div>
                 </li>
                 <li class="nav-item pr-5">

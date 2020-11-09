@@ -33,25 +33,32 @@ app.secret_key = os.environ.get('SECRET_KEY')
 
 mongo = PyMongo(app)
 
+# Constants
+CATEGORIES = ('Animals', 'Attraction', 'Crafting',
+              'Food', 'Nature', 'Sport and Leisure')
+
 
 @app.route('/')
 def index():
     return render_template('index.html',
                            page_title='Things to Do and Places to Go: Home page',
-                           page_description='From small adventures at home, to big adventures on days out! Find something to do...',nav_link='Home')
+                           page_description='From small adventures at home, to big adventures on days out! Find something to do...',nav_link='Home',
+                           categories=CATEGORIES)
 
 
 @app.route('/dbtest/')
 def dbtest():
     activities = list(mongo.db.activities.find())
     # print(activities)
-    return render_template('dbtest.html', activities=activities)
+    return render_template('dbtest.html', activities=activities,
+                           categories=CATEGORIES)
 
 
 @app.route('/activity/')
 @login_required
 def activity():
-    return render_template('activity.html')
+    return render_template('activity.html',
+                           categories=CATEGORIES)
 
 
 @app.route('/search/', methods=['POST', 'GET'])
@@ -61,27 +68,27 @@ def search():
         activities = list(mongo.db.activities.find({'$text':
                                                 {'$search': search_phrase}}))
         return render_template('results.html',
-                            results_type="text",
-                            search_phrase=search_phrase, 
-                            activities=activities)
+                               results_type="text",
+                               search_phrase=search_phrase,
+                               activities=activities,
+                               categories=CATEGORIES)
 
     return render_template('index.html')
-    
+
 
 @app.route('/category/<string:category>/', methods=['POST', 'GET'])
 def category(category):
     if request.method == "GET":
-        print(category)
-        cato = str(category)
-        activities = list(mongo.db.activities.find({ 'category': category }))
+        activities = list(mongo.db.activities.find({'category': category.lower()}))
 
         return render_template('results.html',
-                            results_type="category",
-                            search_category=category, 
-                            activities=activities)
-    
+                               results_type="category",
+                               search_category=category,
+                               activities=activities,
+                               categories=CATEGORIES)
+
     return render_template('index.html')
-    
+
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
