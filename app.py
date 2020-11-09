@@ -2,9 +2,10 @@ import os
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
-from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from functools import wraps
+
+from models import mongo, User
 
 if os.path.exists('env.py'):
     import env
@@ -13,6 +14,7 @@ app = Flask(__name__)
 
 
 # Decorators
+#
 def login_required(f):
     @wraps(f)
     def wrap(*arg, **kwargs):
@@ -24,14 +26,12 @@ def login_required(f):
     return wrap
 
 
-# Routes
-from user import routes
-
 app.config['MONGO_DBNAME'] = os.environ.get('MONGO_DBNAME')
 app.config['MONGO_URI'] = os.environ.get('MONGO_URI')
 app.secret_key = os.environ.get('SECRET_KEY')
 
-mongo = PyMongo(app)
+mongo.init_app(app)
+
 
 # Constants
 CATEGORIES = ('Animals', 'Attraction', 'Crafting',
@@ -88,6 +88,31 @@ def category(category):
                                categories=CATEGORIES)
 
     return render_template('index.html')
+
+
+@app.route('/user/register/')
+def register():
+    return render_template('register.html')
+
+
+@app.route('/user/login/')
+def login():
+    return render_template('login.html')
+
+
+@app.route('/user/add_user/', methods=['POST'])
+def add_user():
+    return User().add_user()
+
+
+@app.route('/user/login_user/', methods=['POST'])
+def login_user():
+    return User().login_user()
+
+
+@app.route('/user/logout/')
+def logout():
+    return User().logout()
 
 
 if __name__ == '__main__':

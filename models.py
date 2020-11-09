@@ -3,7 +3,9 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from bson.objectid import ObjectId
 from bson.json_util import dumps, RELAXED_JSON_OPTIONS
 import json
-from app import mongo
+from flask_pymongo import PyMongo
+
+mongo = PyMongo()
 
 
 class User:
