@@ -37,6 +37,10 @@ mongo.init_app(app)
 CATEGORIES = ('Animals', 'Attraction', 'Crafting',
               'Food', 'Nature', 'Sport and Leisure')
 
+WHEN_TODO = ('Anytime', 'January', 'February', 'March', 'April', 'May',
+             'June', 'July', 'August', 'September', 'October',
+             'November', 'December')
+
 
 @app.route('/')
 def index():
@@ -113,6 +117,11 @@ def login_user():
 @app.route('/user/logout/')
 def logout():
     return User().logout()
+
+
+@app.route('/activity/submit/')
+def submit_activity():
+    return render_template('submit_activity.html', categories=CATEGORIES,when_todo=WHEN_TODO)
 
 
 if __name__ == '__main__':

@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card register__form-width mb-5 mx-auto">
+	<div class="card-header">
+		Submit an Activity
+	</div>
+    <!-- Activity submission form -->
+	<div class="card-body shadow">
+        <form name="submit_activity_form">
+            <div class="form-row">
+                <!-- Title -->
+                <div class="form-group col-md-6">
+                    <label for="title">Title</label>
+                    <input id="title" name="title" type="text" maxlength="40" required class="form-control"  aria-describedby="titleHelp">
+                    <small id="titleHelp" class="form-text text-muted">
+                    ie. Pumpkin carving, Yorkshire Wildlife Park
+                    </small>
+                </div>
+                <!-- Short description -->
+                <div class="form-group col-md-6">
+                    <label for="short_descr">Short Description</label>
+                    <textarea id="short_descr" name="short_descr" rows="2" required class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="form-row">
+                <!-- Long description -->
+                <div class="form-group col-12">
+                    <label for="long_descr">Long Description</label>
+                    <textarea id="long_descr" name="long_descr" rows="6" required class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="form-row">
+                <!-- Location -->
+                <div class="form-group col-md-6 col-lg-3">
+                    <label for="location">Location</label>
+                    <select id="location" name="location" class="custom-select">
+                        <option selected>--choose an option--</option>
+                        <option value="1">At Home</option>
+                        <option value="2">Out & About</option>
+                    </select>
+                </div>
+                <!-- Age Range -->
+                <div class="form-group col-md-6 col-lg-3">
+                    <label for="age_range">Age range</label>
+                    <input id="age_range" name="age_range" type="text" maxlength="6" class="form-control">
+                </div>
+                <!-- Online only -->
+                <div class="form-group col-md-6 col-lg-3">
+                    <label for="online">Online only</label>
+                    <select id="online" name="online" class="custom-select">
+                        <option selected>--choose an option--</option>
+                        <option value="True">Yes</option>
+                        <option value="False">No</option>
+                    </select>
+                </div>
+                <!-- Free todo -->
+                <div class="form-group col-md-6 col-lg-3">
+                    <label for="free">Free todo</label>
+                    <select id="free" name="free" class="custom-select">
+                        <option selected>--choose an option--</option>
+                        <option value="True">Yes</option>
+                        <option value="False">No</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Category -->
+                <div class="form-group col-md-6">
+                    <label for="location">Categories</label>
+                    <select multiple id="category" name="category" class="custom-select">
+                        {% for category in categories %}
+                        <option value="{{ category }}">{{ category }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <!-- When todo -->
+                <div class="form-group col-md-6">
+                    <label for="location">When To do</label>
+                    <select multiple  id="when_todo" name="when_todo" class="custom-select">
+                        {% for when in when_todo %}
+                        <option value="{{ loop.index }}">{{ when }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Additional URL -->
+                <div class="form-group col-md-6">
+                    <label for="additional_url">Additional URL</label>
+                    <input id="additional_url" name="additional_url" type="text" class="form-control">
+                </div>
+                <!-- Keywords -->
+                <div class="form-group col-md-6">
+                    <label for="keywords">Keywords</label>
+                    <input id="keywords" name="keywords" type="text" class="form-control">
+                </div>
+            </div>
+            <p class="form__error form__error-hidden"></p>
+            <input type="submit" value="Submit Activity" class="btn btn-primary">
+        </form>
+	</div>
+</div>
+
+{% endblock %}
