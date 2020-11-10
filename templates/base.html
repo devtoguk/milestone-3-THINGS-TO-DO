@@ -82,6 +82,11 @@
             </ul>
         </div>
     </nav>
+    <section class="flash__message text-center">
+        {% for category, message in get_flashed_messages(with_categories=True) %}
+        <div class="flash__message-{{category}}">Error: {{ message }}</div>
+        {% endfor %}
+    </section>
     <main class="container mt-5">
         {% block content %}
         {% endblock %}

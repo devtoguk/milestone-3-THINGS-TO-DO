@@ -44,6 +44,7 @@ WHEN_TODO = ('Anytime', 'January', 'February', 'March', 'April', 'May',
 
 @app.route('/')
 def index():
+    # flash('Test flash message', 'info')
     return render_template('index.html',
                            page_title='Things to Do and Places to Go: Home page',
                            page_description='From small adventures at home, to big adventures on days out! Find something to do...',nav_link='Home',
@@ -121,6 +122,10 @@ def logout():
 
 @app.route('/activity/submit/')
 def submit_activity():
+    if session.get('user') is None:
+        flash('You must be logged-in to submit an Activity', 'info')
+        return redirect('/user/login/')
+
     return render_template('submit_activity.html',
                            categories=CATEGORIES,
                            when_todo=WHEN_TODO)
