@@ -5,7 +5,7 @@ from flask import (
 from bson.objectid import ObjectId
 from functools import wraps
 
-from models import mongo, User
+from models import mongo, User, Activity
 
 if os.path.exists('env.py'):
     import env
@@ -121,7 +121,19 @@ def logout():
 
 @app.route('/activity/submit/')
 def submit_activity():
-    return render_template('submit_activity.html', categories=CATEGORIES,when_todo=WHEN_TODO)
+    return render_template('submit_activity.html',
+                           categories=CATEGORIES,
+                           when_todo=WHEN_TODO)
+
+
+@app.route('/activity/add/', methods=['POST'])
+def add_activity():
+    return Activity().add_activity()
+
+
+@app.route('/activity/thankyou/<string:title>/')
+def thankyou_activity(title):
+    return render_template('thank_you.html', categories=CATEGORIES, title=title)
 
 
 if __name__ == '__main__':

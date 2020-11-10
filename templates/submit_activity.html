@@ -50,8 +50,8 @@
                     <label for="online">Online only</label>
                     <select id="online" name="online" class="custom-select">
                         <option selected>--choose an option--</option>
-                        <option value="True">Yes</option>
-                        <option value="False">No</option>
+                        <option value="true">Yes</option>
+                        <option value="">No</option>
                     </select>
                 </div>
                 <!-- Free todo -->
@@ -59,8 +59,8 @@
                     <label for="free">Free todo</label>
                     <select id="free" name="free" class="custom-select">
                         <option selected>--choose an option--</option>
-                        <option value="True">Yes</option>
-                        <option value="False">No</option>
+                        <option value="true">Yes</option>
+                        <option value="">No</option>
                     </select>
                 </div>
             </div>
@@ -79,7 +79,9 @@
                     <label for="location">When To do</label>
                     <select multiple  id="when_todo" name="when_todo" class="custom-select">
                         {% for when in when_todo %}
-                        <option value="{{ loop.index }}">{{ when }}</option>
+                        <option value="{{ (loop.index - 1) }}">
+                        {{ when }}
+                        </option>
                         {% endfor %}
                     </select>
                 </div>

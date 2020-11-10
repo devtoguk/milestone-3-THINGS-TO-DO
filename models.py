@@ -3,6 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from bson.objectid import ObjectId
 from bson.json_util import dumps, RELAXED_JSON_OPTIONS
 import json
+import datetime
 from flask_pymongo import PyMongo
 
 mongo = PyMongo()
@@ -60,3 +61,45 @@ class User:
             return self.start_session(user)
 
         return jsonify({'error': 'Invalid user login credentials'}), 401
+
+
+class Activity:
+
+    def add_activity(self):
+        # print(request.form)
+        user_session = session.get("user")
+
+        # Create the activity object
+        #
+        activity = {
+            'title': request.form.get('title'),
+            'shortDescr': request.form.get('short_descr'),
+            'longDescr': request.form.get('long_descr'),
+            'location': int(request.form.get('location')),
+            'ageRange': request.form.get('age_range'),
+            'category': request.form.getlist('category'),
+            'online': bool(request.form.get('online')),
+            'whenTodo': request.form.getlist('when_todo'),
+            'keywords': request.form.get('keywords'),
+            'additionalURL': request.form.get('additional_url'),
+            'status': 0,
+            'featured': False,
+            'free': bool(request.form.get('free')),
+            'userid': ObjectId(user_session['_id']['$oid']),
+            'createdOn': datetime.datetime.now(),
+        }
+
+        # Check if activity with same title already exists
+        #
+        if mongo.db.activities.find_one({'title': activity['title']}):
+            return jsonify({'error': 'An activity already has that title'}), 400
+
+        # Add activity into the database and return the activity object
+        #
+        if mongo.db.activities.insert_one(activity):
+            activity_json_str = dumps(activity,
+                                      json_options=RELAXED_JSON_OPTIONS)
+            activity_json = json.loads(activity_json_str)
+            return activity_json, 200
+
+        return jsonify({'error': 'Activity submission failed'}), 400
