@@ -95,7 +95,16 @@ $('#location').change(function(e) {
     }
 });
 
+/* Allow the user to toggle the venue details section
+*/
 $('#venue--toggle').click(function(e) {
     $('#venue--details').collapse('toggle');
 });
+
+/* Activate tooltips
+*/
+$(function() {
+    $('[data-toggle="tooltip"]').tooltip()
+});
+
 

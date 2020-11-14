@@ -125,6 +125,31 @@ body {
     border: none;
 }
 
+/* Tool tips */
+
+.tooltip-inner {
+    background-color: var(--themeTreeBrown);
+    color: #fff;
+    text-align: left;
+}
+
+.tooltip.bs-tooltip-right .arrow:before {
+    border-right-color: var(--themeTreeBrown) !important;
+}
+
+.tooltip.bs-tooltip-bottom .arrow:before {
+    border-bottom-color: var(--themeTreeBrown) !important;
+}
+
+/* .tooltip.bs-tooltip-left .arrow:before {
+    border-left-color: #cc000a !important;
+} */
+
+/* .tooltip.bs-tooltip-top .arrow:before {
+    border-top-color: #0e0f0e !important;
+} */
+
+
 .card {
     border: 1px solid var(--themeSuperLightGreen)
 }
@@ -205,6 +230,16 @@ body {
 
     .results__title span {
         font-size: 1.6em;
+    }
+
+    /* Override bootstrap height to line-up textarea with other fields */
+    #address {
+        height: 7.7em;
+    }
+
+    /* Override bootstrap height to line-up selects with other fields */
+    .custom-select[multiple], .custom-select[size]:not([size="1"]) {
+        height: 7.7em;
     }
 
 }

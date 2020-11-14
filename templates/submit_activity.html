@@ -46,11 +46,13 @@
                 <!-- Age Range -->
                 <div class="form-group col-md-6 col-lg-3">
                     <label for="age_range">Age range</label>
+                    <span data-toggle="tooltip" data-placement="right" title="Suitable age-range for this activity ie 3-99, 4-6, 5-14, etc.">[?]</span>
                     <input id="age_range" name="age_range" type="text" maxlength="6" class="form-control" required>
                 </div>
                 <!-- Online only -->
                 <div class="form-group col-md-6 col-lg-3">
                     <label for="online">Online only</label>
+                    <span data-toggle="tooltip" data-placement="right" title="Is this activity just based online, such as an online course or club meetup.">[?]</span>
                     <select id="online" name="online" class="custom-select" required>
                         <option selected>--choose an option--</option>
                         <option value="true">Yes</option>
@@ -59,7 +61,9 @@
                 </div>
                 <!-- Free todo -->
                 <div class="form-group col-md-6 col-lg-3">
-                    <label for="free">Free todo</label>
+                    <label for="free">Free todo 
+                    <span data-toggle="tooltip" data-placement="right" title="Is this activity mostly free todo? e.g. a baking activity with just basic ingredients.">[?]</span>
+                    </label>
                     <select id="free" name="free" class="custom-select" required>
                         <option selected>--choose an option--</option>
                         <option value="true">Yes</option>
@@ -94,33 +98,43 @@
                     <!-- Venue address -->
                     <div class="form-group col-lg-6">
                         <label for="address">Address</label>
-                        <textarea id="address" name="address" rows="4" class="form-control"></textarea>
+                        <textarea id="address" name="address" rows="4" class="form-control form__height-textarea"></textarea>
                     </div>
                     <!-- Venue email and website -->
                     <div class="form-group col-lg-6">
-                        <label for="email">Email</label>
-                        <input id="email" name="email" type="text" class="form-control">
-                        <label for="website">Website</label>
-                        <input id="website" name="website" type="text" class="form-control">
+                        <div class="form-row">
+                            <div class="form-group col-12">
+                                <label for="email">Email</label>
+                                <input id="email" name="email" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-12">
+                                <label for="website">Website</label>
+                                <input id="website" name="website" type="text" class="form-control">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <hr class="form__divider">
             <!-- Form fields category and when todo -->
-            <div class="row">
+            <div class="form-row">
                 <!-- Category -->
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-3">
                     <label for="location">Categories</label>
-                    <select multiple id="category" name="category" class="custom-select" required>
+                    <span data-toggle="tooltip" data-placement="right" title="Select all the categories that apply to this activity.">[?]</span>
+                    <select multiple id="category" name="category" class="custom-select form__height-fix" required>
                         {% for category in categories %}
                         <option value="{{ category }}">{{ category }}</option>
                         {% endfor %}
                     </select>
                 </div>
                 <!-- When todo -->
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-3">
                     <label for="location">When To do</label>
-                    <select multiple  id="when_todo" name="when_todo" class="custom-select" required>
+                    <span data-toggle="tooltip" data-placement="right" title="When is the best time of year todo this activity, select all that apply.">[?]</span>
+                    <select multiple  id="when_todo" name="when_todo" class="custom-select form__height-fix" required>
                         {% for when in when_todo %}
                         <option value="{{ (loop.index - 1) }}">
                         {{ when }}
@@ -128,18 +142,22 @@
                         {% endfor %}
                     </select>
                 </div>
-            </div>
-            <!-- Form fields additional url and keywords -->
-            <div class="row">
-                <!-- Additional URL -->
+                <!-- Form fields additional url and keywords -->
                 <div class="form-group col-md-6">
-                    <label for="additional_url">Additional URL</label>
-                    <input id="additional_url" name="additional_url" type="text" class="form-control">
-                </div>
-                <!-- Keywords -->
-                <div class="form-group col-md-6">
-                    <label for="keywords">Keywords</label>
-                    <input id="keywords" name="keywords" type="text" class="form-control">
+                    <div class="form-row">
+                        <!-- Additional URL -->
+                        <div class="form-group col-12">
+                            <label for="additional_url">Additional URL</label>
+                            <input id="additional_url" name="additional_url" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <!-- Keywords -->
+                        <div class="form-group col-12">
+                            <label for="keywords">Keywords</label>
+                            <input id="keywords" name="keywords" type="text" class="form-control">
+                        </div>
+                    </div>
                 </div>
             </div>
             <p class="form__error form__error-hidden"></p>
