@@ -78,12 +78,24 @@ $('form[name=submit_activity_form').submit(function(e) {
 $('#location').change(function(e) {
 
     const activityLocation = $('#location' ).val();
-    console.log('Location: ', activityLocation);
+    const locationFields = ['name', 'postcode', 'address', 'email', 'website']
+
     if (activityLocation === '2') {
+        locationFields.forEach( field => {
+            $('#' + field).attr('required', '');
+        });
+        $('#venue--header').collapse('show');
         $('#venue--details').collapse('show');
     } else {
+        $('#venue--header').collapse('hide');
         $('#venue--details').collapse('hide');
+        locationFields.forEach( field => {
+            $('#' + field).removeAttr('required');
+        });
     }
+});
 
+$('#venue--toggle').click(function(e) {
+    $('#venue--details').collapse('toggle');
 });
 

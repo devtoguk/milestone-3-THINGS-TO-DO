@@ -94,9 +94,7 @@ class Activity:
         if int(request.form.get('location')) == 2:
             activity['venue'] = {
                 'name': request.form.get('name'),
-                'addressLines': request.form.get('address_lines'),
-                'town': request.form.get('town').lower(),
-                'county': request.form.get('county').lower(),
+                'address': request.form.get('address'),
                 'postcode': request.form.get('postcode'),
                 'website': request.form.get('website'),
                 'email': request.form.get('email'),

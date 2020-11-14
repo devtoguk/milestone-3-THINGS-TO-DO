@@ -8,6 +8,7 @@
     <!-- Activity submission form -->
 	<div class="card-body shadow">
         <form name="submit_activity_form">
+            <!-- Form fields title and short description -->
             <div class="form-row">
                 <!-- Title -->
                 <div class="form-group col-md-6">
@@ -23,6 +24,7 @@
                     <textarea id="short_descr" name="short_descr" rows="2" required class="form-control"></textarea>
                 </div>
             </div>
+            <!-- Form field long description -->
             <div class="form-row">
                 <!-- Long description -->
                 <div class="form-group col-12">
@@ -30,11 +32,12 @@
                     <textarea id="long_descr" name="long_descr" rows="5" required class="form-control"></textarea>
                 </div>
             </div>
+            <!-- Form fields location, age range, online, free -->
             <div class="form-row">
                 <!-- Location -->
                 <div class="form-group col-md-6 col-lg-3">
                     <label for="location">Location</label>
-                    <select id="location" name="location" class="custom-select">
+                    <select id="location" name="location" class="custom-select" required>
                         <option selected>--choose an option--</option>
                         <option value="1">At Home</option>
                         <option value="2">Out & About</option>
@@ -43,12 +46,12 @@
                 <!-- Age Range -->
                 <div class="form-group col-md-6 col-lg-3">
                     <label for="age_range">Age range</label>
-                    <input id="age_range" name="age_range" type="text" maxlength="6" class="form-control">
+                    <input id="age_range" name="age_range" type="text" maxlength="6" class="form-control" required>
                 </div>
                 <!-- Online only -->
                 <div class="form-group col-md-6 col-lg-3">
                     <label for="online">Online only</label>
-                    <select id="online" name="online" class="custom-select">
+                    <select id="online" name="online" class="custom-select" required>
                         <option selected>--choose an option--</option>
                         <option value="true">Yes</option>
                         <option value="">No</option>
@@ -57,7 +60,7 @@
                 <!-- Free todo -->
                 <div class="form-group col-md-6 col-lg-3">
                     <label for="free">Free todo</label>
-                    <select id="free" name="free" class="custom-select">
+                    <select id="free" name="free" class="custom-select" required>
                         <option selected>--choose an option--</option>
                         <option value="true">Yes</option>
                         <option value="">No</option>
@@ -65,59 +68,50 @@
                 </div>
             </div>
 
-            <hr class="form__divider">
-
+            <!-- Additional venue fields if the activity is out and about -->
+            <div id="venue--header" class="collapse hide">
+                <hr class="form__divider">
+                <p>Venue details for an 'Out & About' activity
+                <span id="venue--toggle" class="toggle__arrow">&#x25BC;</span>
+                </p>
+            </div>
             <div id="venue--details" class="collapse hide">
-                <p>Venue details for an 'Out & About' activity</p>
-                <div class="row">
+                <!-- Venue form fields name and postcode -->
+                <div class="form-row">
                     <!-- Venue name -->
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-8 col-lg-6">
                         <label for="name">Name</label>
                         <input id="name" name="name" type="text" class="form-control">
                     </div>
                     <!-- Venue postcode -->
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4 col-lg-6">
                         <label for="postcode">Postcode</label>
                         <input id="postcode" name="postcode" type="text" class="form-control">
                     </div>
                 </div>
-                <div class="row">
-                    <!-- Venue address lines -->
-                    <div class="form-group col-md-4">
-                        <label for="address_lines">Address Line</label>
-                        <textarea id="address_lines" name="address_lines" rows="2" class="form-control"></textarea>
+                <!-- Venue form fields address, email and website -->
+                <div class="form-row">
+                    <!-- Venue address -->
+                    <div class="form-group col-lg-6">
+                        <label for="address">Address</label>
+                        <textarea id="address" name="address" rows="4" class="form-control"></textarea>
                     </div>
-                    <!-- Venue town -->
-                    <div class="form-group col-md-4">
-                        <label for="town">Town</label>
-                        <input id="town" name="town" type="text" class="form-control">
-                    </div>
-                    <!-- Venue county -->
-                    <div class="form-group col-md-4">
-                        <label for="county">County</label>
-                        <input id="county" name="county" type="text" class="form-control">
-                    </div>
-                </div>
-                <div class="row">
-                    <!-- Venue email -->
-                    <div class="form-group col-md-6">
+                    <!-- Venue email and website -->
+                    <div class="form-group col-lg-6">
                         <label for="email">Email</label>
                         <input id="email" name="email" type="text" class="form-control">
-                    </div>
-                    <!-- Venue website -->
-                    <div class="form-group col-md-6">
                         <label for="website">Website</label>
                         <input id="website" name="website" type="text" class="form-control">
                     </div>
                 </div>
-                <hr class="form__divider">
             </div>
-
+            <hr class="form__divider">
+            <!-- Form fields category and when todo -->
             <div class="row">
                 <!-- Category -->
                 <div class="form-group col-md-6">
                     <label for="location">Categories</label>
-                    <select multiple id="category" name="category" class="custom-select">
+                    <select multiple id="category" name="category" class="custom-select" required>
                         {% for category in categories %}
                         <option value="{{ category }}">{{ category }}</option>
                         {% endfor %}
@@ -126,7 +120,7 @@
                 <!-- When todo -->
                 <div class="form-group col-md-6">
                     <label for="location">When To do</label>
-                    <select multiple  id="when_todo" name="when_todo" class="custom-select">
+                    <select multiple  id="when_todo" name="when_todo" class="custom-select" required>
                         {% for when in when_todo %}
                         <option value="{{ (loop.index - 1) }}">
                         {{ when }}
@@ -135,6 +129,7 @@
                     </select>
                 </div>
             </div>
+            <!-- Form fields additional url and keywords -->
             <div class="row">
                 <!-- Additional URL -->
                 <div class="form-group col-md-6">

@@ -57,6 +57,12 @@ body {
     border: 1px solid var(--themeSuperLightGreen)
 }
 
+.toggle__arrow {
+    color: var(--themeSeaGreen);
+    font-size: 0.8em;
+    cursor: pointer;
+}
+
 
 
 /* Hero image */
