@@ -28,8 +28,16 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ activity.title|upper }}</h5>
                         <p class="card-text">{{ activity.shortDescr }}</p>
-                        <!-- <p class="card-text">{{ activity._id }}</p> -->
-                        <a href="#" class="btn btn-primary mt-3">Find out more</a>
+                        <p class="card-text">Activity ID: {{ activity.userid }}</p>
+                        <p class="card-text">User ID: {{ session['user']['_id']['$oid'] }}</p>
+                        <a href="#" class="btn btn-primary mt-3">
+                        Find out more</a>
+                        {% if activity.userid|string() == session['user']['_id']['$oid'] or session['user']['level'] == 1 or session['user']['level'] == 7%}
+                        <a href="#" class="btn btn-success mt-3 float-right">
+                            Edit
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
