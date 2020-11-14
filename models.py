@@ -89,6 +89,19 @@ class Activity:
             'createdOn': datetime.datetime.now(),
         }
 
+        # If location is 'Out & About' then add venue data
+        #
+        if int(request.form.get('location')) == 2:
+            activity['venue'] = {
+                'name': request.form.get('name'),
+                'addressLines': request.form.get('address_lines'),
+                'town': request.form.get('town').lower(),
+                'county': request.form.get('county').lower(),
+                'postcode': request.form.get('postcode'),
+                'website': request.form.get('website'),
+                'email': request.form.get('email'),
+            }
+
         # Check if activity with same title already exists
         #
         if mongo.db.activities.find_one({'title': activity['title']}):
