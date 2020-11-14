@@ -113,6 +113,12 @@ body {
     background: var(--themeSeaGreen);
 }
 
+.form__divider {
+    height: 2px;
+    background-color: var(--themeSeaGreen);
+    border: none;
+}
+
 .card {
     border: 1px solid var(--themeSuperLightGreen)
 }

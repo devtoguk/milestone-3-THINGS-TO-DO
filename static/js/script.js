@@ -68,3 +68,22 @@ $('form[name=submit_activity_form').submit(function(e) {
 
   e.preventDefault();
 });
+
+// $('#venue--details').collapse({
+//   toggle: false
+// });
+
+/* Show or hide the venue fields when Location is changed
+*/
+$('#location').change(function(e) {
+
+    const activityLocation = $('#location' ).val();
+    console.log('Location: ', activityLocation);
+    if (activityLocation === '2') {
+        $('#venue--details').collapse('show');
+    } else {
+        $('#venue--details').collapse('hide');
+    }
+
+});
+
