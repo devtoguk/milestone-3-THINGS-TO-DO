@@ -6,6 +6,8 @@ from bson.objectid import ObjectId
 from functools import wraps
 
 from models import mongo, User, Activity
+from forms import EditActivityForm, AddActivityForm
+from consts import CATEGORIES, WHEN_TODO
 
 if os.path.exists('env.py'):
     import env
@@ -31,15 +33,6 @@ app.config['MONGO_URI'] = os.environ.get('MONGO_URI')
 app.secret_key = os.environ.get('SECRET_KEY')
 
 mongo.init_app(app)
-
-
-# Constants
-CATEGORIES = ('Animals', 'Attraction', 'Crafting',
-              'Food', 'Nature', 'Sport and Leisure')
-
-WHEN_TODO = ('Anytime', 'January', 'February', 'March', 'April', 'May',
-             'June', 'July', 'August', 'September', 'October',
-             'November', 'December')
 
 
 @app.route('/')
@@ -120,25 +113,36 @@ def logout():
     return User().logout()
 
 
-@app.route('/activity/submit/')
+@app.route('/activity/submit/', methods=['GET', 'POST'])
 def submit_activity():
+
     if session.get('user') is None:
-        flash('You must be logged-in to submit an Activity', 'info')
+        flash('You must be logged-in to submit an Activity', 'error')
         return redirect('/user/login/')
 
-    return render_template('submit_activity.html',
-                           categories=CATEGORIES,
-                           when_todo=WHEN_TODO)
+    form = EditActivityForm()
 
+    if form.validate_on_submit():
+        # flash(f'Activity {form.title.data} created.', 'info')
+        td = form.venue.data
+        del td['location']
+        # result = td.pop('location', None)
+        # print(f'Result = {result}')
+        # print(td)
+        result = Activity().add_activity()
+        # print(result)
+        if result[0] == 'TITLE_EXISTS':
+            form.title.errors.append('An activity with this name already exists')
+            return render_template('activity_form.html', form=form,
+                                   categories=CATEGORIES)
 
-@app.route('/activity/add/', methods=['POST'])
-def add_activity():
-    return Activity().add_activity()
+        return redirect(url_for('index'))
+    elif request.method == 'POST':
+        print('Post with Errors!')
+        flash('Please correct form errors below', 'error')
 
-
-@app.route('/activity/thankyou/<string:title>/')
-def thankyou_activity(title):
-    return render_template('thank_you.html', categories=CATEGORIES, title=title)
+    return render_template('activity_form.html', form=form,
+                           categories=CATEGORIES)
 
 
 if __name__ == '__main__':

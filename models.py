@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, session, redirect
+from flask import Flask, jsonify, request, session, redirect, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from bson.objectid import ObjectId
 from bson.json_util import dumps, RELAXED_JSON_OPTIONS
@@ -66,25 +66,24 @@ class User:
 class Activity:
 
     def add_activity(self):
-        # print(request.form)
         user_session = session.get("user")
 
         # Create the activity object
         #
         activity = {
             'title': request.form.get('title'),
-            'shortDescr': request.form.get('short_descr'),
-            'longDescr': request.form.get('long_descr'),
+            'shortDescr': request.form.get('shortDescr'),
+            'longDescr': request.form.get('longDescr'),
             'location': int(request.form.get('location')),
-            'ageRange': request.form.get('age_range'),
+            'ageRange': request.form.get('ageRange'),
             'category': request.form.getlist('category'),
             'online': bool(request.form.get('online')),
-            'whenTodo': request.form.getlist('when_todo'),
+            'whenTodo': request.form.getlist('whenTodo'),
             'keywords': request.form.get('keywords'),
-            'additionalURL': request.form.get('additional_url'),
+            'additionalURL': request.form.get('additionalURL'),
             'status': 0,
             'featured': False,
-            'free': bool(request.form.get('free')),
+            'freeTodo': bool(request.form.get('freeTodo')),
             'userid': ObjectId(user_session['_id']['$oid']),
             'createdOn': datetime.datetime.now(),
         }
@@ -93,17 +92,21 @@ class Activity:
         #
         if int(request.form.get('location')) == 2:
             activity['venue'] = {
-                'name': request.form.get('name'),
-                'address': request.form.get('address'),
-                'postcode': request.form.get('postcode'),
-                'website': request.form.get('website'),
-                'email': request.form.get('email'),
+                'name': request.form.get('venue-name'),
+                'address': request.form.get('venue-address'),
+                'postcode': request.form.get('venue-postcode'),
+                'email': request.form.get('venue-email'),
             }
+            if len(request.form.get('venue-email')) > 0:
+                activity['venue']['email'] = request.form.get('venue-email')
+            if len(request.form.get('venue-website')) > 0:
+                activity['venue']['website'] = request.form.get('venue-website')
 
         # Check if activity with same title already exists
         #
         if mongo.db.activities.find_one({'title': activity['title']}):
-            return jsonify({'error': 'An activity already has that title'}), 400
+            flash(f'Activity called "{ activity["title"] }" already exists.', 'error')
+            return 'TITLE_EXISTS', 400
 
         # Add activity into the database and return the activity object
         #
@@ -111,6 +114,9 @@ class Activity:
             activity_json_str = dumps(activity,
                                       json_options=RELAXED_JSON_OPTIONS)
             activity_json = json.loads(activity_json_str)
-            return activity_json, 200
+            flash(f'Thank you...  "{ activity["title"] }" activity submitted.', 'info')
 
+            return activity_json, 200
+        
+        flash('Activity submission failed', 'error')
         return jsonify({'error': 'Activity submission failed'}), 400

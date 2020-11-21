@@ -1,0 +1,262 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card register__form-width mb-5 mx-auto">
+	<div class="card-header">
+		Submit an Activity
+	</div>
+    <!-- Activity form -->
+	<div class="card-body shadow">
+        <form name="" method="POST" action="">
+            <!-- Form fields title and short description -->
+            <div class="form-row">
+                {{ form.csrf_token }}
+                <!-- Title -->
+                <div class="form-group col-md-6">
+                    {{ form.title.label(class="") }}
+                    {% if form.title.errors %}
+                        {{ form.title(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.title.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.title(class="form-control") }}
+                    {% endif %}
+                </div>
+                <!-- Short description -->
+                <div class="form-group col-md-6">
+                    {{ form.shortDescr.label(class="") }}
+                    {% if form.shortDescr.errors %}
+                        {{ form.shortDescr(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.shortDescr.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.shortDescr(class="form-control") }}
+                    {% endif %}
+                </div>
+            </div>
+            <!-- Form field long description -->
+            <div class="form-row">
+                <!-- Long description -->
+                <div class="form-group col-12">
+                    {{ form.longDescr.label(class="") }}
+                    {% if form.longDescr.errors %}
+                        {{ form.longDescr(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.longDescr.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.longDescr(class="form-control") }}
+                    {% endif %}
+                </div>
+            </div>
+            <!-- Form fields location, age range, online, free -->
+            <div class="form-row">
+                <!-- Location -->
+                <div class="form-group col-md-6 col-lg-3">
+                    {{ form.location.label(class="") }}
+                    {{ form.location(class="form-control") }}
+                </div>
+                <!-- Age Range -->
+                <div class="form-group col-md-6 col-lg-3">
+                    {{ form.ageRange.label(class="") }}
+                    {% if form.ageRange.errors %}
+                        {{ form.ageRange(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.ageRange.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.ageRange(class="form-control") }}
+                    {% endif %}
+                </div>
+                <!-- Online only -->
+                <div class="form-group col-md-6 col-lg-3">
+                    {{ form.online.label(class="") }}
+                    {{ form.online(class="form-control") }}
+                </div>
+                <!-- Free todo -->
+                <div class="form-group col-md-6 col-lg-3">
+                    {{ form.freeTodo.label(class="") }}
+                    {{ form.freeTodo(class="form-control") }}
+                </div>
+            </div>
+
+            <!-- Additional venue fields if the activity is out and about -->
+            <div id="venue--header" class="collapse hide">
+                <hr class="form__divider">
+                <p>Venue details for an 'Out & About' activity
+                <span id="venue--toggle" class="toggle__arrow">&#x25BC;</span>
+                </p>
+            </div>
+            <div id="venue--details" class="collapse hide">
+                <!-- Venue form fields name and postcode (location) -->
+                <div class="form-row">
+                    <!-- Venue name -->
+                    <div class="form-group col-md-8 col-lg-6">
+                        {{ form.venue['name'].label(class="") }}
+                        {% if form.venue['name'].errors %}
+                            {{ form.venue['name'](class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.venue['name'].errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.venue['name'](class="form-control") }}
+                        {% endif %}
+                    </div>
+                    <!-- Venue postcode -->
+                    <div class="form-group col-md-4 col-lg-6">
+                        {{ form.venue['postcode'].label(class="") }}
+                        {% if form.venue['postcode'].errors %}
+                            {{ form.venue['postcode'](class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.venue['postcode'].errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.venue['postcode'](class="form-control") }}
+                        {% endif %}
+                    </div>
+                    <!-- Hidden location field -->
+                    <div class="form-group">
+                            {{ form.venue['location'](class="form-control") }}
+                    </div>                    
+                </div>
+                <!-- Venue form fields address, email and website -->
+                <div class="form-row">
+                    <!-- Venue address -->
+                    <div class="form-group col-lg-6">
+                        {{ form.venue['address'].label(class="") }}
+                        {% if form.venue['address'].errors %}
+                            {{ form.venue['address'](class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.venue['address'].errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.venue['address'](class="form-control") }}
+                        {% endif %}
+                    </div>
+                    <!-- Venue email and website -->
+                    <div class="form-group col-lg-6">
+                        <div class="form-row">
+                            <!-- Email -->
+                            <div class="form-group col-12">
+                                {{ form.venue['email'].label(class="") }}
+                                {% if form.venue['email'].errors %}
+                                    {{ form.venue['email'](class="form-control is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.venue['email'].errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.venue['email'](class="form-control") }}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <!-- Website -->
+                            <div class="form-group col-12">
+                                {{ form.venue['website'].label(class="") }}
+                                {% if form.venue['website'].errors %}
+                                    {{ form.venue['website'](class="form-control is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.venue['website'].errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.venue['website'](class="form-control") }}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="form__divider">
+            <!-- Form fields category and when todo -->
+            <div class="form-row">
+                <!-- Category -->
+                <div class="form-group col-md-3">
+                    {{ form.category.label(class="") }}
+                    {% if form.category.errors %}
+                        {{ form.category(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.category.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.category(class="form-control") }}
+                    {% endif %}
+                </div>
+                <!-- When todo -->
+                <div class="form-group col-md-3">
+                    {{ form.whenTodo.label(class="") }}
+                    {% if form.whenTodo.errors %}
+                        {{ form.whenTodo(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.whenTodo.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.whenTodo(class="form-control") }}
+                    {% endif %}
+                </div>
+                <!-- Form fields additional url and keywords -->
+                <div class="form-group col-md-6">
+                    <div class="form-row">
+                        <!-- Additional URL -->
+                        <div class="form-group col-12">
+                            {{ form.additionalURL.label(class="") }}
+                            {% if form.additionalURL.errors %}
+                                {{ form.additionalURL(class="form-control is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.additionalURL.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.additionalURL(class="form-control") }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <!-- Keywords -->
+                        <div class="form-group col-12">
+                            {{ form.keywords.label(class="") }}
+                            {% if form.keywords.errors %}
+                                {{ form.keywords(class="form-control is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.keywords.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.keywords(class="form-control") }}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="form__error form__error-hidden"></p>
+            <input type="submit" value="Submit Activity" class="btn btn-primary">
+        </form>
+	</div>
+</div>
+
+{% endblock %}

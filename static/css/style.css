@@ -191,6 +191,7 @@ body {
     height: 2.2em;
     background: transparent;
     /* padding: 0.5em; */
+    margin-bottom: 1em;
     color: var(--themeTreeBrown);
     font-family: 'Raleway', sans-serif;
     font-size: 1.2em;
@@ -199,6 +200,13 @@ body {
 }
 
 .flash__message-info {
+    background: var(--themeTranSeaGreen);
+    /* color: var(--themeDarkGreen); */
+    color: #fff;
+    padding: 0.5em;
+}
+
+.flash__message-error {
     background: var(--themeTransRed);
     /* color: var(--themeDarkGreen); */
     color: #fff;
@@ -212,6 +220,11 @@ body {
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) { 
+
+    /* Override bootstrap height to line-up textarea with other fields */
+    #category, #whenTodo, #venue-address {
+        height: 7.7em;
+    }
 
 }
 
@@ -232,17 +245,8 @@ body {
         font-size: 1.6em;
     }
 
-    /* Override bootstrap height to line-up textarea with other fields */
-    #address {
-        height: 7.7em;
-    }
-
-    /* Override bootstrap height to line-up selects with other fields */
-    .custom-select[multiple], .custom-select[size]:not([size="1"]) {
-        height: 7.7em;
-    }
-
 }
+
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) { 
 
