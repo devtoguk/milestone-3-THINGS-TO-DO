@@ -65,6 +65,13 @@ class User:
 
 class Activity:
 
+    def get_activity(self, activity_id):
+        # print(f'Model - {activity_id}')
+        activity = mongo.db.activities.find_one({'_id': ObjectId(activity_id)})
+        # print(f'Data: {activity}')
+        # flash(f'Found activity called id "{ activity_id }" OK.', 'info')
+        return activity
+
     def add_activity(self):
         user_session = session.get("user")
 

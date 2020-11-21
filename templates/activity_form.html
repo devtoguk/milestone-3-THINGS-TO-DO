@@ -3,7 +3,7 @@
 
 <div class="card register__form-width mb-5 mx-auto">
 	<div class="card-header">
-		Submit an Activity
+		{{ form_title }}
 	</div>
     <!-- Activity form -->
 	<div class="card-body shadow">
@@ -253,8 +253,9 @@
                     </div>
                 </div>
             </div>
-            <p class="form__error form__error-hidden"></p>
-            <input type="submit" value="Submit Activity" class="btn btn-primary">
+            <!-- <p class="form__error form__error-hidden"></p> -->
+            {{ form.submit }}
+            <!-- <input type="submit" value="Submit Activity" class="btn btn-primary"> -->
         </form>
 	</div>
 </div>

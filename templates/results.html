@@ -33,7 +33,7 @@
                         <a href="#" class="btn btn-primary mt-3">
                         Find out more</a>
                         {% if activity.userid|string() == session['user']['_id']['$oid'] or session['user']['level'] == 1 or session['user']['level'] == 7%}
-                        <a href="#" class="btn btn-success mt-3 float-right">
+                        <a href="/activity/edit/{{activity._id}}" class="btn btn-success mt-3 float-right">
                             Edit
                             <i class="fas fa-edit"></i>
                         </a>

@@ -120,7 +120,7 @@ def submit_activity():
         flash('You must be logged-in to submit an Activity', 'error')
         return redirect('/user/login/')
 
-    form = EditActivityForm()
+    form = AddActivityForm()
 
     if form.validate_on_submit():
         # flash(f'Activity {form.title.data} created.', 'info')
@@ -134,6 +134,7 @@ def submit_activity():
         if result[0] == 'TITLE_EXISTS':
             form.title.errors.append('An activity with this name already exists')
             return render_template('activity_form.html', form=form,
+                                   form_title='Add an Activity',
                                    categories=CATEGORIES)
 
         return redirect(url_for('index'))
@@ -142,6 +143,34 @@ def submit_activity():
         flash('Please correct form errors below', 'error')
 
     return render_template('activity_form.html', form=form,
+                           form_title='Add an Activity',
+                           categories=CATEGORIES)
+
+
+@app.route('/activity/edit/<string:activity_id>/', methods=['GET', 'POST'])
+def edit_activity(activity_id):
+
+    if session.get('user') is None:
+        flash('You must be logged-in to submit an Activity', 'error')
+        return redirect('/user/login/')
+
+    activity_data = Activity().get_activity(activity_id)
+    print(f'From route: {activity_data}')
+
+    form = EditActivityForm(data=activity_data)
+
+    if form.validate_on_submit():
+        td = form.venue.data
+        del td['location']
+        result = Activity().update_activity()
+        # print(result)
+        return redirect(url_for('index'))
+    elif request.method == 'POST':
+        print('Post with Errors!')
+        flash('Please correct form errors below', 'error')
+
+    return render_template('activity_form.html', form=form,
+                           form_title='Edit Activity',
                            categories=CATEGORIES)
 
 
