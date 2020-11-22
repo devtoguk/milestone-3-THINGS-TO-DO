@@ -151,11 +151,21 @@ def submit_activity():
 def edit_activity(activity_id):
 
     if session.get('user') is None:
-        flash('You must be logged-in to submit an Activity', 'error')
+        flash('You must be logged-in to edit an Activity', 'error')
         return redirect('/user/login/')
+    else:
+        user_session = session.get("user")
 
     activity_data = Activity().get_activity(activity_id)
-    print(f'From route: {activity_data}')
+    users_level = user_session.get('level', 0)
+    # Check if activity belongs to a user or if they are 1-moderator or 7-admin
+    #
+    if ObjectId(user_session['_id']['$oid']) != ObjectId(activity_data['userid']) and users_level != 1 and users_level != 7:
+        flash(f'You cannot edit the activity "{activity_data["title"]}"',
+              'error')
+        return redirect(url_for('index'))
+
+    # print(f'From route: {activity_data}')
 
     form = EditActivityForm(data=activity_data)
 
