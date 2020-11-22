@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, PasswordField, SubmitField, BooleanField, TextAreaField, SelectField, SelectMultipleField, FormField, Form
-from wtforms.validators import DataRequired, Length, Email, EqualTo, Optional, InputRequired, NumberRange, ValidationError
+from wtforms.validators import DataRequired, Length, Optional, Email, URL, EqualTo, Optional, InputRequired, NumberRange, ValidationError
 from wtforms.widgets import HiddenInput
 import email_validator
 from consts import CATEGORIES, WHEN_TODO
@@ -42,9 +42,9 @@ class VenueForm(Form):
     address = TextAreaField('Address',
                             validators=[RequiredIf('location', 2, 'This field is required when the location is set to "Out & About"'), Length(min=4, max=120)])
     email = StringField('Email',
-                          validators=[Length(min=0, max=80)])
+                          validators=[Optional(), Email(),Length(min=0, max=80)])
     website = StringField('Website',
-                            validators=[Length(min=0, max=120)])
+                            validators=[Optional(), URL(),Length(min=0, max=120)])
     location = IntegerField(widget=HiddenInput(),
                             validators=[DataRequired(), NumberRange(1, 2)])
 
@@ -85,9 +85,9 @@ class ActivityForm():
                                    validators=[DataRequired()],
                                    choices=[(when, when) for when in WHEN_TODO])
     additionalURL = StringField('Additional URL',
-                                validators=[Length(min=0, max=120)])
+                                validators=[Optional(), URL(), Length(min=0, max=120)])
     keywords = StringField('Keywords',
-                           validators=[Length(min=0, max=60)])
+                           validators=[Optional(), Length(min=0, max=60)])
     venue = FormField(VenueForm)
 
 

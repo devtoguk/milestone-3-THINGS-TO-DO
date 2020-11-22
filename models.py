@@ -76,14 +76,20 @@ class Activity:
             'category': request.form.getlist('category'),
             'online': int(request.form.get('online')),
             'whenTodo': request.form.getlist('whenTodo'),
-            'keywords': request.form.get('keywords'),
-            'additionalURL': request.form.get('additionalURL'),
             'status': 0,
             'featured': False,
             'freeTodo': int(request.form.get('freeTodo')),
             'userid': ObjectId(user_session['_id']['$oid']),
             'createdOn': datetime.datetime.now(),
         }
+ 
+        # Add non-blank optional fields additionalURL & keywords
+        #
+        if len(request.form.get('keywords')) > 0:
+            activity['keywords'] = request.form.get('keywords')
+        if len(request.form.get('additionalURL')) > 0:
+            activity['additionalURL'] = request.form.get('additionalURL')
+        
         # If location is 'Out & About' then add venue data
         #
         if int(request.form.get('location')) == 2:
@@ -91,7 +97,6 @@ class Activity:
                 'name': request.form.get('venue-name'),
                 'address': request.form.get('venue-address'),
                 'postcode': request.form.get('venue-postcode'),
-                'email': request.form.get('venue-email'),
             }
             if len(request.form.get('venue-email')) > 0:
                 activity['venue']['email'] = request.form.get('venue-email')
