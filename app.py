@@ -162,8 +162,9 @@ def edit_activity(activity_id):
     if form.validate_on_submit():
         td = form.venue.data
         del td['location']
-        result = Activity().update_activity()
-        # print(result)
+        print(f'We were editing activity: {activity_id}')
+        result = Activity().update_activity(activity_id)
+        print(result)
         return redirect(url_for('index'))
     elif request.method == 'POST':
         print('Post with Errors!')

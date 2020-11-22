@@ -68,7 +68,7 @@ class Activity:
     def get_activity(self, activity_id):
         # print(f'Model - {activity_id}')
         activity = mongo.db.activities.find_one({'_id': ObjectId(activity_id)})
-        # print(f'Data: {activity}')
+        print(f'Data: {activity}')
         # flash(f'Found activity called id "{ activity_id }" OK.', 'info')
         return activity
 
@@ -124,6 +124,61 @@ class Activity:
             flash(f'Thank you...  "{ activity["title"] }" activity submitted.', 'info')
 
             return activity_json, 200
-        
+
         flash('Activity submission failed', 'error')
         return jsonify({'error': 'Activity submission failed'}), 400
+
+    def update_activity(self, activity_id):
+        user_session = session.get("user")
+
+        # Create the activity object
+        #
+        activity = {
+            'title': request.form.get('title'),
+            'shortDescr': request.form.get('shortDescr'),
+            'longDescr': request.form.get('longDescr'),
+            'location': int(request.form.get('location')),
+            'ageRange': request.form.get('ageRange'),
+            'category': request.form.getlist('category'),
+            'online': int(request.form.get('online')),
+            'whenTodo': request.form.getlist('whenTodo'),
+            'keywords': request.form.get('keywords'),
+            'additionalURL': request.form.get('additionalURL'),
+            'status': 0,
+            'featured': False,
+            'freeTodo': int(request.form.get('freeTodo')),
+            'userid': ObjectId(user_session['_id']['$oid']),
+            'createdOn': datetime.datetime.now(),
+        }
+
+        # If location is 'Out & About' then add venue data
+        #
+        if int(request.form.get('location')) == 2:
+            activity['venue'] = {
+                'name': request.form.get('venue-name'),
+                'address': request.form.get('venue-address'),
+                'postcode': request.form.get('venue-postcode'),
+                'email': request.form.get('venue-email'),
+            }
+            if len(request.form.get('venue-email')) > 0:
+                activity['venue']['email'] = request.form.get('venue-email')
+            if len(request.form.get('venue-website')) > 0:
+                activity['venue']['website'] = request.form.get('venue-website')
+
+        # Update activity in the database and return the activity object
+        #
+        print(f'About to update: {activity_id}')
+        if mongo.db.activities.update_one({"_id": ObjectId(activity_id)},
+                  { "$set": {
+                             "title": request.form.get('title'),
+                             }
+                 }):
+            activity_json_str = dumps(activity,
+                                      json_options=RELAXED_JSON_OPTIONS)
+            activity_json = json.loads(activity_json_str)
+            flash(f'"{ activity["title"] }" activity updated.', 'info')
+
+            return activity_json, 200
+        
+        flash('Activity update failed', 'error')
+        return jsonify({'error': 'Activity update failed'}), 400
