@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, PasswordField, SubmitField, BooleanField, TextAreaField, SelectField, SelectMultipleField, FormField, Form
-from wtforms.validators import DataRequired, Length, Email, EqualTo, Optional, InputRequired, NumberRange
+from wtforms.validators import DataRequired, Length, Email, EqualTo, Optional, InputRequired, NumberRange, ValidationError
 from wtforms.widgets import HiddenInput
 import email_validator
 from consts import CATEGORIES, WHEN_TODO
@@ -49,6 +49,11 @@ class VenueForm(Form):
                             validators=[DataRequired(), NumberRange(1, 2)])
 
 
+def make_a_choice(form, field):
+    if field.data < 1:
+        raise ValidationError('Please choose an option')
+
+
 # class ActivityForm(FlaskForm):
 class ActivityForm():
     title = StringField('Title',
@@ -59,15 +64,20 @@ class ActivityForm():
     longDescr = TextAreaField(u'Long Description',
                               validators=[DataRequired(),
                                           Length(min=4, max=240)])
-    location = SelectField(u'Location',
-                           choices=[(1, 'Home'), (2, 'Out & About')])
+    location = SelectField(u'Location for Activity',
+                           validators=[InputRequired(), make_a_choice],
+                           choices=[(0, '--choose option--'), (1, 'Home'), (2, 'Out & About')], coerce=int)
     ageRange = StringField('Age Range',
                            validators=[DataRequired(),
                                        Length(min=1, max=6)])
     online = SelectField(u'Online only',
-                         choices=[('', 'No'), ('true', 'Yes')])
+                         validators=[InputRequired(), make_a_choice],
+                         choices=[(0, '--choose option--'), (1, 'No'), (2, 'Yes')], coerce=int)
+
     freeTodo = SelectField(u'Free todo',
-                           choices=[('true', 'Yes'), ('', 'No')])
+                           validators=[InputRequired(), make_a_choice],
+                           choices=[(0, '--choose option--'), (1, 'No'), (2, 'Yes')], coerce=int)
+
     category = SelectMultipleField(u'Category',
                                    validators=[DataRequired()],
                                    choices=[(cat, cat) for cat in CATEGORIES])

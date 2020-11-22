@@ -7,7 +7,7 @@
 	</div>
     <!-- Activity form -->
 	<div class="card-body shadow">
-        <form name="" method="POST" action="">
+        <form id="activity-form" name="" method="POST" action="">
             <!-- Form fields title and short description -->
             <div class="form-row">
                 {{ form.csrf_token }}
@@ -62,7 +62,16 @@
                 <!-- Location -->
                 <div class="form-group col-md-6 col-lg-3">
                     {{ form.location.label(class="") }}
-                    {{ form.location(class="form-control") }}
+                    {% if form.location.errors %}
+                        {{ form.location(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.location.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.location(class="form-control") }}
+                    {% endif %}
                 </div>
                 <!-- Age Range -->
                 <div class="form-group col-md-6 col-lg-3">
@@ -81,12 +90,30 @@
                 <!-- Online only -->
                 <div class="form-group col-md-6 col-lg-3">
                     {{ form.online.label(class="") }}
-                    {{ form.online(class="form-control") }}
+                    {% if form.online.errors %}
+                        {{ form.online(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.online.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.online(class="form-control") }}
+                    {% endif %}
                 </div>
                 <!-- Free todo -->
                 <div class="form-group col-md-6 col-lg-3">
                     {{ form.freeTodo.label(class="") }}
-                    {{ form.freeTodo(class="form-control") }}
+                    {% if form.freeTodo.errors %}
+                        {{ form.freeTodo(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.freeTodo.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.freeTodo(class="form-control") }}
+                    {% endif %}
                 </div>
             </div>
 
