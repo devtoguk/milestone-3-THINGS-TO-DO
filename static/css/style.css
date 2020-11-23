@@ -64,7 +64,6 @@ body {
 }
 
 
-
 /* Hero image */
 .hero__image {
     position: fixed;
@@ -162,6 +161,10 @@ body {
     height: 2.5em;
 }
 
+.card__btn {
+    border-radius: 30%;
+}
+
 /* Login form */
 .login__form-width {
     width: 94%;
@@ -228,6 +231,10 @@ body {
     /* Override bootstrap height to line-up textarea with other fields */
     #category, #whenTodo, #venue-address {
         height: 7.7em;
+    }
+
+    .card__btn {
+        border-radius: .25rem;
     }
 
 }
