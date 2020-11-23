@@ -62,12 +62,12 @@ def activity():
 @app.route('/search/', methods=['POST', 'GET'])
 def search():
     if request.method == "POST":
-        search_phrase = request.form.get('search_text')
+        search_text = request.form.get('search_text')
         activities = list(mongo.db.activities.find({'$text':
-                                                {'$search': search_phrase}}))
+                                                {'$search': search_text}}))
+        total = len(activities)
+        flash(f'Showing {total} search result{"s" if total != 1 else ""} for "{search_text}"', 'info')
         return render_template('results.html',
-                               results_type="text",
-                               search_phrase=search_phrase,
                                activities=activities,
                                categories=CATEGORIES)
 
@@ -78,10 +78,10 @@ def search():
 def category(category):
     if request.method == "GET":
         activities = list(mongo.db.activities.find({'category': category.lower()}))
+        total = len(activities)
+        flash(f'Showing {total} search result{"s" if total != 1 else ""} for category: {category}', 'info')
 
         return render_template('results.html',
-                               results_type="category",
-                               search_category=category,
                                activities=activities,
                                categories=CATEGORIES)
 

@@ -1,17 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="results__title text-center">
-    <span class="search__bg mx-auto text-center">
-        Search results for 
-        {% if results_type == "text" %}
-            &nbsp;" <strong>{{ search_phrase }}</strong> "
-        {% elif results_type == "category" %}
-            category: <strong>{{ search_category }}</strong>
-        {% endif %}
-    </span>
-</div>
-
 <div class="container">
     <div class="row">
         {% for activity in activities %}
