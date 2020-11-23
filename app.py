@@ -157,6 +157,11 @@ def edit_activity(activity_id):
         user_session = session.get("user")
 
     activity_data = Activity().get_activity(activity_id)
+
+    if activity_data is None:
+        flash('Activity not found', 'error')
+        return redirect(url_for('index'))
+
     users_level = user_session.get('level', 0)
     # Check if activity belongs to a user or if they are 1-moderator or 7-admin
     #

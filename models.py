@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, session, redirect, flash
+from flask import Flask, jsonify, request, session, redirect, flash, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
 from bson.objectid import ObjectId
 from bson.json_util import dumps, RELAXED_JSON_OPTIONS
@@ -105,10 +105,7 @@ class Activity:
         return activity
 
     def get_activity(self, activity_id):
-        # print(f'Model - {activity_id}')
         activity = mongo.db.activities.find_one({'_id': ObjectId(activity_id)})
-        print(f'Data: {activity}')
-        # flash(f'Found activity called id "{ activity_id }" OK.', 'info')
         return activity
 
     def add_activity(self):
