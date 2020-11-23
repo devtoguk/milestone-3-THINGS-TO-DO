@@ -44,10 +44,17 @@ def index():
                            categories=CATEGORIES)
 
 
+@app.route('/about/')
+def about():
+    activities = list(mongo.db.activities.find())
+    return render_template('about.html', activities=activities,
+                           nav_link='About',
+                           categories=CATEGORIES)
+
+
 @app.route('/dbtest/')
 def dbtest():
     activities = list(mongo.db.activities.find())
-    # print(activities)
     return render_template('dbtest.html', activities=activities,
                            categories=CATEGORIES)
 
@@ -89,6 +96,7 @@ def category(category):
 
         return render_template('results.html',
                                activities=activities,
+                               nav_link='Activities',
                                categories=CATEGORIES)
 
     return render_template('index.html')
@@ -141,6 +149,7 @@ def submit_activity():
             form.title.errors.append('An activity with this name already exists')
             return render_template('activity_form.html', form=form,
                                    form_title='Add an Activity',
+                                   nav_link='Submit_Activity',
                                    categories=CATEGORIES)
 
         return redirect(url_for('index'))
@@ -150,6 +159,7 @@ def submit_activity():
 
     return render_template('activity_form.html', form=form,
                            form_title='Add an Activity',
+                           nav_link='Submit_Activity',
                            categories=CATEGORIES)
 
 

@@ -1,17 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h3 class="">DB Test</h3>
-
-    <p>START LOOP</p>
+    <h3 class="">Temporary About page</h3>
 
     {% for activity in activities %}
         <p> {{ activity.title }}</p>
     {% endfor %}
-
-    <p>END LOOP</p>
-
-    <br>
     
     {{ session['logged_in'] }}
     {{ session['user'] }}
