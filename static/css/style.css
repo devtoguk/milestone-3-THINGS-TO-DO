@@ -150,7 +150,8 @@ body {
 
 
 .card {
-    border: 1px solid var(--themeSuperLightGreen)
+    background: transparent;
+    border: 1px solid var(--themeSuperLightGreen);
 }
 
 .card-header {
@@ -161,6 +162,9 @@ body {
     height: 2.5em;
 }
 
+.card-body {
+    background: rgba(250,250,250,0.9);
+}
 .card__btn {
     border-radius: 30%;
 }
