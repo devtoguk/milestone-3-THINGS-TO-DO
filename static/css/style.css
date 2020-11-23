@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Raleway:ital,wght@0,400;0,500;0,600;1,400;1,600&display=swap');
 
+/* @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&family=Mitr:wght@500&display=swap'); */
+
 :root {
     --themeGreen: rgb(119, 172, 3);
     --themeShadeGreen: rgb(108, 160, 15);
@@ -14,6 +16,8 @@
 
 body {
     background: var(--themeSuperLightGreen);
+    font-family: 'Raleway', sans-serif;
+    font-weight: normal;
     font-size: 16px;
 }
 
@@ -21,7 +25,7 @@ body {
 .nav-link {
     font-family: 'Raleway', sans-serif;
     font-size: 1.2em;
-    font-weight: 400;
+    font-weight: 500;
 }
 
 .navbar__custom .navbar-nav .nav-link {
@@ -63,6 +67,9 @@ body {
     cursor: pointer;
 }
 
+.btn {
+    font-family: Oswald, sans-serif;
+}
 
 /* Hero image */
 .hero__image {
@@ -201,11 +208,12 @@ body {
     width: 100%;
     height: 2.2em;
     background: transparent;
-    /* padding: 0.5em; */
+    /* padding: 0.2em; */
     margin-bottom: 1em;
     color: var(--themeTreeBrown);
-    font-family: 'Raleway', sans-serif;
-    font-size: 1.2em;
+    /* font-family: 'Raleway', sans-serif; */
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.4em;
     font-weight: 500;
     border-radius: calc(.25em - 1px);
 }
@@ -214,7 +222,7 @@ body {
     background: var(--themeTranSeaGreen);
     /* color: var(--themeDarkGreen); */
     color: #fff;
-    padding: 0.5em;
+    padding: 0.2em;
 }
 
 .flash__message-error {
