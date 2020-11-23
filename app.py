@@ -77,7 +77,13 @@ def search():
 @app.route('/category/<string:category>/', methods=['POST', 'GET'])
 def category(category):
     if request.method == "GET":
-        activities = list(mongo.db.activities.find({'category': category.lower()}))
+        if category == 'All':
+            activities = list(mongo.db.activities.find())
+        elif category == 'Featured':
+            activities = list(mongo.db.activities.find({'featured': True}))
+        else:
+            activities = list(mongo.db.activities.find({'category': category.lower()}))
+
         total = len(activities)
         flash(f'Showing {total} search result{"s" if total != 1 else ""} for category: {category}', 'info')
 
