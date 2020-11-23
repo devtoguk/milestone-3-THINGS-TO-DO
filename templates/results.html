@@ -17,8 +17,8 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ activity.title|upper }}</h5>
                         <p class="card-text">{{ activity.shortDescr }}</p>
-                        <p class="card-text">Created by ID: {{ activity.userid }}</p>
-                        <p class="card-text">Logged in ID: {{ session['user']['_id']['$oid'] }}</p>
+                        <!-- <p class="card-text">Created by ID: {{ activity.userid }}</p>
+                        <p class="card-text">Logged in ID: {{ session['user']['_id']['$oid'] }}</p> -->
                         <a href="#" class="btn btn-primary mt-3">
                         Find out more</a>
                         {% if activity.userid|string() == session['user']['_id']['$oid'] or session['user']['level'] == 1 or session['user']['level'] == 7%}

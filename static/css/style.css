@@ -158,6 +158,10 @@ body {
     background: var(--themeSeaGreen);
 }
 
+.card-title {
+    height: 2.5em;
+}
+
 /* Login form */
 .login__form-width {
     width: 94%;
