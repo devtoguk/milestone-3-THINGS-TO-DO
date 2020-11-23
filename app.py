@@ -73,12 +73,14 @@ def search():
         activities = list(mongo.db.activities.find({'$text':
                                                 {'$search': search_text}}))
         total = len(activities)
-        flash(f'Showing {total} search result{"s" if total != 1 else ""} for "{search_text}"', 'info')
-        return render_template('results.html',
-                               activities=activities,
-                               categories=CATEGORIES)
-
-    return render_template('index.html')
+        if total > 0:
+            flash(f'Showing {total} search result{"s" if total != 1 else ""} for "{search_text}"', 'info')
+            return render_template('results.html',
+                                   activities=activities,
+                                   categories=CATEGORIES)
+        else:
+            flash(f'No results found for "{search_text}"', 'error')
+            return render_template('index.html')
 
 
 @app.route('/category/<string:category>/', methods=['POST', 'GET'])
