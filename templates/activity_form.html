@@ -40,23 +40,47 @@
                     {% endif %}
                 </div>
             </div>
-            <!-- Form field long description -->
             <div class="form-row">
-                <!-- Long description -->
-                <div class="form-group col-12">
-                    {{ form.longDescr.label(class="") }}
-                    {% if form.longDescr.errors %}
-                        {{ form.longDescr(class="form-control is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.longDescr.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
+                <div class="col-lg-8">
+                    <div class="form-row">
+                        <div class="form-group col-12">
+                        <!-- Long description -->
+                            {{ form.longDescr.label(class="") }}
+                            {% if form.longDescr.errors %}
+                                {{ form.longDescr(rows="4", class="form-control is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.longDescr.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.longDescr(rows="4", class="form-control") }}
+                            {% endif %}
                         </div>
-                    {% else %}
-                        {{ form.longDescr(class="form-control") }}
-                    {% endif %}
+                        <div class="form-group col-12">
+                            {{ form.image.label(class="") }}
+                            <!-- <p>Current Image</p> -->
+                            {{ form.image(class="form-control") }}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-lg-4">
+                    <div class="form-row">
+                        <div class="form-group col-12">
+                            <!-- Display Image -->
+                            {% if form_title != 'Add an Activity' %}
+                                {% set image_name = activity._id %}
+                            {% else %}
+                                {% set image_name = "no_image_yet" %}
+                            {% endif %}
+                            <div class="form__image-align float-lg-right">
+                                <img src="/static/images/activities/{{ image_name }}.jpg" class="zcard-img-top img-thumbnail form__image-height">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <!-- Form field long description -->
             <!-- Form fields location, age range, online, free -->
             <div class="form-row">
                 <!-- Location -->
@@ -212,8 +236,8 @@
                         </div>
                     </div>
                 </div>
+                <hr class="form__divider">
             </div>
-            <hr class="form__divider">
             <!-- Form fields category and when todo -->
             <div class="form-row">
                 <!-- Category -->

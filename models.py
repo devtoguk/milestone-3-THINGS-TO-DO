@@ -122,13 +122,15 @@ class Activity:
 
         # Add activity into the database and return the activity object
         #
-        if mongo.db.activities.insert_one(activity):
-            activity_json_str = dumps(activity,
-                                      json_options=RELAXED_JSON_OPTIONS)
-            activity_json = json.loads(activity_json_str)
+        insert_result = mongo.db.activities.insert_one(activity)
+        if insert_result:
+            # activity_json_str = dumps(activity,
+            #                           json_options=RELAXED_JSON_OPTIONS)
+            # activity_json = json.loads(activity_json_str)
+            print(f'ID inserted as: {insert_result.inserted_id}')
             flash(f'Thank you...  "{ activity["title"] }" activity submitted.', 'info')
 
-            return activity_json, 200
+            return 'OK', 200
 
         flash('Activity submission failed', 'error')
         return jsonify({'error': 'Activity submission failed'}), 400

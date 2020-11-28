@@ -131,6 +131,10 @@ body {
     border: none;
 }
 
+.form__image-height {
+    height: 12.5em;
+}
+
 /* Tool tips */
 
 .tooltip-inner {
@@ -264,6 +268,10 @@ body {
 
     .results__title span {
         font-size: 1.6em;
+    }
+
+    .form__image-align {
+        margin-top: 2em;
     }
 
 }
