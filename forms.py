@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, PasswordField, SubmitField, BooleanField, TextAreaField, SelectField, SelectMultipleField, FileField, FormField, Form
+from wtforms import StringField, IntegerField, PasswordField, SubmitField, BooleanField, TextAreaField, SelectField, SelectMultipleField, FormField, Form
 from wtforms.validators import DataRequired, Length, Optional, Email, URL, EqualTo, Optional, InputRequired, NumberRange, ValidationError
+from flask_wtf.file import FileField, FileAllowed
 from wtforms.widgets import HiddenInput
 import email_validator
 from consts import CATEGORIES, WHEN_TODO
@@ -64,7 +65,8 @@ class ActivityForm():
     longDescr = TextAreaField(u'Long Description',
                               validators=[DataRequired(),
                                           Length(min=4, max=240)])
-    image = FileField('Image for Activity')
+    image = FileField('Image for Activity', validators=[FileAllowed(['jpg', 'png', 'jpeg'], 'Incorrect image format, please use JPG')])
+
     location = SelectField(u'Location for Activity',
                            validators=[InputRequired(), make_a_choice],
                            choices=[(0, '--choose option--'), (1, 'Home'), (2, 'Out & About')], coerce=int)

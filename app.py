@@ -37,19 +37,24 @@ mongo.init_app(app)
 
 app.config['UPLOADED_FILES_DEST'] = os.getcwd()
 app.config['UPLOADS_DEFAULT_DEST'] = 'static/images'
+app.config['MAX_CONTENT_LENGTH'] = 2 * 1024 * 1024
 
 images = UploadSet('activities', IMAGES)
 configure_uploads(app, images)
 
 
-# @app.route("/images/<filename>")
-# def image_file(filename):
-#     return app.config["UPLOADS_DEFAULT_DEST"] + 'activities' + filename
+@app.errorhandler(404)
+def page_unknown(e):
+    return 'Page unknown. Let\'s get you back on track. Click the link below. thank you', 404
+
+
+@app.errorhandler(413)
+def too_large(e):
+    return 'The file you chose was too large, click your browser [Back] button and try a smaller file (max size is 1mb). Thank you', 413
 
 
 @app.route('/')
 def index():
-    # flash('Test flash message', 'info')
     return render_template('index.html',
                            page_title='Things to Do and Places to Go: Home page',
                            page_description='From small adventures at home, to big adventures on days out! Find something to do...',nav_link='Home',
@@ -225,9 +230,9 @@ def edit_activity(activity_id):
         file_path = images.path(image_name)
         if os.path.exists(file_path):
             os.remove(file_path)
-
         filename = images.save(form.image.data, None, image_name)
         print(f'Filename is: {filename}')
+
         print(f'We were editing activity: {activity_id}')
         result = Activity().update_activity(activity_id)
         print(result)
