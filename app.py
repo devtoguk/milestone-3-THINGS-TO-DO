@@ -4,6 +4,7 @@ from flask import (
     redirect, request, session, url_for)
 from bson.objectid import ObjectId
 from functools import wraps
+from flask_uploads import configure_uploads, IMAGES, UploadSet
 
 from models import mongo, User, Activity
 from forms import EditActivityForm, AddActivityForm
@@ -33,6 +34,17 @@ app.config['MONGO_URI'] = os.environ.get('MONGO_URI')
 app.secret_key = os.environ.get('SECRET_KEY')
 
 mongo.init_app(app)
+
+app.config['UPLOADED_FILES_DEST'] = os.getcwd()
+app.config['UPLOADS_DEFAULT_DEST'] = 'static/images'
+
+images = UploadSet('activities', IMAGES)
+configure_uploads(app, images)
+
+
+# @app.route("/images/<filename>")
+# def image_file(filename):
+#     return app.config["UPLOADS_DEFAULT_DEST"] + 'activities' + filename
 
 
 @app.route('/')
@@ -95,6 +107,18 @@ def category(category):
 
         total = len(activities)
         flash(f'Showing {total} search result{"s" if total != 1 else ""} for category: {category}', 'info')
+
+        print(type(activities))
+        for act in activities:
+            print(type(act))
+            check_file = f'static/images/activities/{ act["_id"] }.jpg'
+            print(f'Filename is: {check_file}')
+            if os.path.exists(check_file):
+                act['imageExists'] = True
+            else:
+                act['imageExists'] = False
+
+            print(act)
 
         return render_template('results.html',
                                activities=activities,
@@ -191,10 +215,19 @@ def edit_activity(activity_id):
     # print(f'From route: {activity_data}')
 
     form = EditActivityForm(data=activity_data)
+    form.imageId.data = activity_id
 
     if form.validate_on_submit():
         td = form.venue.data
         del td['location']
+        print(form.image.data)
+        image_name = activity_id + '.jpg'
+        file_path = images.path(image_name)
+        if os.path.exists(file_path):
+            os.remove(file_path)
+
+        filename = images.save(form.image.data, None, image_name)
+        print(f'Filename is: {filename}')
         print(f'We were editing activity: {activity_id}')
         result = Activity().update_activity(activity_id)
         print(result)

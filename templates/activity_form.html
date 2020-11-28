@@ -7,7 +7,7 @@
 	</div>
     <!-- Activity form -->
 	<div class="card-body shadow">
-        <form id="activity-form" name="" method="POST" action="">
+        <form id="activity-form" method="POST" enctype="multipart/form-data">
             <!-- Form fields title and short description -->
             <div class="form-row">
                 {{ form.csrf_token }}
@@ -69,7 +69,7 @@
                         <div class="form-group col-12">
                             <!-- Display Image -->
                             {% if form_title != 'Add an Activity' %}
-                                {% set image_name = activity._id %}
+                                {% set image_name = form.imageId.data %}
                             {% else %}
                                 {% set image_name = "no_image_yet" %}
                             {% endif %}
@@ -236,8 +236,8 @@
                         </div>
                     </div>
                 </div>
-                <hr class="form__divider">
             </div>
+            <hr class="form__divider">
             <!-- Form fields category and when todo -->
             <div class="form-row">
                 <!-- Category -->

@@ -89,6 +89,8 @@ class ActivityForm():
                                 validators=[Optional(), URL(), Length(min=0, max=120)])
     keywords = StringField('Keywords',
                            validators=[Optional(), Length(min=0, max=60)])
+    imageId = StringField(widget=HiddenInput(),
+                            validators=[Optional()]) 
     venue = FormField(VenueForm)
 
 
