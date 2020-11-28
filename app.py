@@ -45,12 +45,18 @@ configure_uploads(app, images)
 
 @app.errorhandler(404)
 def page_unknown(e):
-    return 'Page unknown. Let\'s get you back on track. Click the link below. thank you', 404
+    print(f'Error is: {e}')
+    return render_template('error.html',
+                           error_message='Sorry we cannot locate that page.',
+                           error_code=404)
 
 
 @app.errorhandler(413)
 def too_large(e):
-    return 'The file you chose was too large, click your browser [Back] button and try a smaller file (max size is 1mb). Thank you', 413
+    print(f'Error is: {e}')
+    return render_template('error.html',
+                           error_message='The file you chose was too large, limit is 2mb.',
+                           error_code=413)
 
 
 @app.route('/')
