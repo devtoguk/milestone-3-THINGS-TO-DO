@@ -11,6 +11,7 @@
     --themeSeaGreen: rgb(180, 201, 144);
     --themeTranSeaGreen: rgb(180, 201, 144, 0.5);
     --themeTreeBrown: rgb(71, 79, 67);
+    --themeTransTreeBrown: rgb(71, 79, 67, 0.8);
     --themeDarkGreen: rgb(29, 62, 4);
 }
 
@@ -86,8 +87,11 @@ body {
 }
 
 .error__handler-message {
+    width: 80%;
     color: #fff;
-    font-size: 2.2em;
+    background: var(--themeTransTreeBrown);
+    font-size: 1.4em;
+    border-radius: calc(.25em - 1px);
 }
 
 
@@ -292,6 +296,10 @@ body {
 
     .form__image-align {
         margin-top: 2em;
+    }
+
+    .error__handler-message {
+        font-size: 2em;
     }
 
 }

@@ -5,6 +5,7 @@ from flask import (
 from bson.objectid import ObjectId
 from functools import wraps
 from flask_uploads import configure_uploads, IMAGES, UploadSet
+from werkzeug.exceptions import RequestEntityTooLarge
 
 from models import mongo, User, Activity
 from forms import EditActivityForm, AddActivityForm
@@ -43,19 +44,19 @@ images = UploadSet('activities', IMAGES)
 configure_uploads(app, images)
 
 
-@app.errorhandler(404)
-def page_unknown(e):
-    print(f'Error is: {e}')
-    return render_template('error.html',
-                           error_message='Sorry we cannot locate that page.',
-                           error_code=404)
+# @app.errorhandler(404)
+# def page_unknown(e):
+#     print(f'Error is: {e}')
+#     return render_template('error.html',
+#                            error_message='Sorry we cannot locate that page.',
+#                            error_code=404)
 
 
 @app.errorhandler(413)
 def too_large(e):
     print(f'Error is: {e}')
     return render_template('error.html',
-                           error_message='The file you chose was too large, limit is 2mb.',
+                           error_message='The file you chose was too large, our gallery limit is 2mb.',
                            error_code=413)
 
 
@@ -225,27 +226,33 @@ def edit_activity(activity_id):
 
     # print(f'From route: {activity_data}')
 
-    form = EditActivityForm(data=activity_data)
-    form.imageId.data = activity_id
+    try:
+        form = EditActivityForm(data=activity_data)
+    except RequestEntityTooLarge as e:
+        flash('Chosen file too large, limit is 2mb', 'error')
+        form = EditActivityForm(data=activity_data)
+    else:
+        form.imageId.data = activity_id
 
-    if form.validate_on_submit():
-        td = form.venue.data
-        del td['location']
-        print(form.image.data)
-        image_name = activity_id + '.jpg'
-        file_path = images.path(image_name)
-        if os.path.exists(file_path):
-            os.remove(file_path)
-        filename = images.save(form.image.data, None, image_name)
-        print(f'Filename is: {filename}')
+        if form.validate_on_submit():
+            td = form.venue.data
+            del td['location']
+            print(form.image.data)
+            image_name = activity_id + '.jpg'
+            file_path = images.path(image_name)
+            if os.path.exists(file_path):
+                os.remove(file_path)
 
-        print(f'We were editing activity: {activity_id}')
-        result = Activity().update_activity(activity_id)
-        print(result)
-        return redirect(url_for('index'))
-    elif request.method == 'POST':
-        print('Post with Errors!')
-        flash('Please correct form errors below', 'error')
+            filename = images.save(form.image.data, None, image_name)
+            print(f'Filename is: {filename}')
+
+            print(f'We were editing activity: {activity_id}')
+            result = Activity().update_activity(activity_id)
+            print(result)
+            return redirect(url_for('index'))
+        elif request.method == 'POST':
+            print('Post with Errors!')
+            flash('Please correct form errors below', 'error')
 
     return render_template('activity_form.html', form=form,
                            form_title='Edit Activity',

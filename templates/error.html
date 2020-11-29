@@ -13,14 +13,16 @@
     <title>Back on track...</title>
 </head>
 <body>
-    <div class="error__handler">
+    <div class="error__handler d-flex align-items-center justify-content-center">
         <main class="container error__handler-message">
+            <p class="text-center">Oooops...there was an error</p>
             <p class="text-center">{{ error_message }}</p>
+            <p class="text-center">Let's help you get back on track</p>
             {% if error_code == 413 %}
-                <p class="text-center">Please click 
-                <a href="javascript:window.history.back();">back</a> and choose another image. Thank you.</p>
+                <p class="text-center">Please click your browsers [back] button
+                 and choose another image. Thank you.</p>
             {% else %}
-                <p class="text-center">Click <a href="{{ url_for('index') }}">HERE</a> to get back on track...</p>
+                <p class="text-center">Click <a href="{{ url_for('index') }}">HERE</a> to get back to our home page.</p>
             {% endif %}
         </main>
     </div>
