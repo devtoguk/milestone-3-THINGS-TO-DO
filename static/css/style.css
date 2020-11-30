@@ -183,7 +183,7 @@ body {
     border-top-color: #0e0f0e !important;
 } */
 
-
+/* Results cards */
 .card {
     background: transparent;
     border: 1px solid var(--themeSuperLightGreen);
@@ -193,15 +193,17 @@ body {
     background: var(--themeSeaGreen);
 }
 
-.card-title {
-    height: 2.5em;
-}
-
 .card-body {
     background: rgba(250,250,250,0.9);
 }
 .card__btn {
     border-radius: 30%;
+}
+
+.card__image {
+    height: 213px;
+    width: 286px;
+    overflow: hidden;
 }
 
 /* Login form */
@@ -273,6 +275,10 @@ body {
 
     .card__btn {
         border-radius: .25rem;
+    }
+
+    .card-title {
+        height: 2.5em;
     }
 
 }

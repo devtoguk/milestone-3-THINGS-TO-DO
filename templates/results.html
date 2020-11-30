@@ -11,9 +11,11 @@
                     {% else %}
                         {% set image_name = "no_image_yet" %}
                     {% endif %}
-                    <a href="#">
-                        <img src="/static/images/activities/{{ image_name }}.jpg" class="card-img-top" alt="{{ activity.title|title }}" title="{{ activity.title|title }}">
-                    </a>
+                    <div class="card__image">
+                        <a href="#">
+                            <img src="/static/images/activities/{{ image_name }}.jpg" class="card-img-top" alt="{{ activity.title|title }}" title="{{ activity.title|title }}">
+                        </a>
+                    </div>
                     <div class="card-body">
                         <h5 class="card-title">{{ activity.title|upper }}</h5>
                         
