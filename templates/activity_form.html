@@ -313,7 +313,14 @@
                 </div>
             </div>
             <!-- <p class="form__error form__error-hidden"></p> -->
-            {{ form.submit }}
+            <!-- {{ form.submit }} -->
+            <button id="btn--form-update" class="btn btn-primary" type="submit" value="Submit">
+            {% if form_title == "Edit Activity" %}
+                Update Activity
+            {% else %}
+                Add Activity
+            {% endif %}
+            </button>
             <!-- <input type="submit" value="Submit Activity" class="btn btn-primary"> -->
         </form>
 	</div>

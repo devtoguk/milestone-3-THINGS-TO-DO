@@ -1,3 +1,23 @@
+/**
+ * Object to handle parts of the activity form
+ */
+const activityForm = {
+    submitButtonText: '',
+
+    validate: () => {
+        console.log('JS validate form?')
+        var x = $('#title').val();
+        console.log('Title value is: ', x)
+        if (x == '') {
+            console.log("Title must be filled out");
+            $('#btn--form-update').text(activityForm.submitButtonText);
+            console.log('Original button text is: ', activityForm.submitButtonText);
+        return false;
+        }
+    }
+
+};
+
 $('form[name=register_form').submit(function(e) {
 
   var $form = $(this);
@@ -44,35 +64,6 @@ $('form[name=login_form').submit(function(e) {
   e.preventDefault();
 });
 
-// $('form[name=submit_activity_form').submit(function(e) {
-
-//   var $form = $(this);
-//   var $error = $form.find('.form__error');
-//   var data = $form.serialize();
-
-//   $.ajax({
-//     url: '/activity/add/',
-//     type: 'POST',
-//     data: data,
-//     dataType: 'json',
-//     success: function(resp) {
-//         // console.log(resp);
-//         activityTitle = resp.title;
-//         window.location.href = '/activity/thankyou/' + activityTitle + '/';
-//     },
-//     error: function(resp) {
-//         console.log(resp);
-//         $error.text(resp.responseJSON.error).removeClass('form__error-hidden');
-//     }
-//   });
-
-//   e.preventDefault();
-// });
-
-// $('#venue--details').collapse({
-//   toggle: false
-// });
-
 
 /* Show or hide the venue fields when Location is changed
 */
@@ -110,16 +101,55 @@ $(function() {
     $('[data-toggle="tooltip"]').tooltip()
 });
 
-$(document).ready(function(){
-    /* Set hidden venue location to the same as the activity location
-       to help with form validation */
-    const currentLocation = $('#location' ).val()
-    $('#venue-location').val(currentLocation);
+// function validateForm() {
+//     console.log('JS validate form?')
+//     var x = $('#title').val();
+//     console.log('Title value is: ', x)
+//     if (x == '') {
+//         console.log("Title must be filled out");
+//         $('#btn--form-update').text(activityForm.submitButtonText);
+//         console.log('Original button text is: ', activityForm.submitButtonText);
+//     return false;
+//     }
+// }
 
-    /* re-show the venue fields if required on form-error re-display */
-    if (currentLocation == 2) { 
-        $('#venue--header').collapse('show');
-        $('#venue--details').collapse('show');
+$(document).ready(function(){
+
+    /* if on the activity_form
+    */
+   if( $('#title').length ) {
+
+        /* Detect form submit to change activity button contents and
+        perform basic front-end validation.
+        */
+        $('#btn--form-update').click(function(e) {
+            image = $('#image').val();
+            console.log('Image is: ', image)
+            $('#btn--form-update').html('Processing <i class="fas fa-spinner fa-spin"></i>');
+            activityForm.validate();
+        });
+
+        /* Set hidden venue location to the same as the activity location
+        to help with form validation */
+        const currentLocation = $('#location' ).val()
+        $('#venue-location').val(currentLocation);
+
+        /* re-show the venue fields if required on form-error re-display
+        */
+        if (currentLocation == 2) { 
+            $('#venue--header').collapse('show');
+            $('#venue--details').collapse('show');
+        }
+
+        activityForm.submitButtonText = $('#btn--form-update').text();
+        console.log('OBJ Button is: ', activityForm.submitButtonText);
+        // $(window).onunload(function(){
+        console.log('On a form page');
+        $('input, select, textarea').click(function(e) {
+            console.log('Clicked: ', e.target.id)
+            $('#btn--form-update').text(activityForm.submitButtonText);
+        });       
     }
+
 });
 
