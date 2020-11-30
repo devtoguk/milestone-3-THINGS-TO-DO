@@ -238,13 +238,14 @@ def edit_activity(activity_id):
             td = form.venue.data
             del td['location']
             print(form.image.data)
-            image_name = activity_id + '.jpg'
-            file_path = images.path(image_name)
-            if os.path.exists(file_path):
-                os.remove(file_path)
+            if form.image.data:
+                image_name = activity_id + '.jpg'
+                file_path = images.path(image_name)
+                if os.path.exists(file_path):
+                    os.remove(file_path)
 
-            filename = images.save(form.image.data, None, image_name)
-            print(f'Filename is: {filename}')
+                filename = images.save(form.image.data, None, image_name)
+                print(f'Filename is: {filename}')
 
             print(f'We were editing activity: {activity_id}')
             result = Activity().update_activity(activity_id)
