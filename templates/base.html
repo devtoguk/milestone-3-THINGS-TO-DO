@@ -91,7 +91,7 @@
             </ul>
         </div>
     </nav>
-    <section class="flash__message text-center">
+    <section id="flash--message" class="flash__message text-center">
         {% for category, message in get_flashed_messages(with_categories=True) %}
         <div class="flash__message-{{category}}">{{ message }}</div>
         {% endfor %}

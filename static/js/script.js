@@ -4,15 +4,70 @@
 const activityForm = {
     submitButtonText: '',
 
-    validate: () => {
-        console.log('JS validate form?')
-        var x = $('#title').val();
-        console.log('Title value is: ', x)
-        if (x == '') {
-            console.log("Title must be filled out");
+    validateEmptyField: (formFieldID, errorMessage=' field error.') => {
+        fieldValue = $('#' + formFieldID).val();
+        $('#' + formFieldID + '--error').addClass('d-none');
+        $('#' + formFieldID).removeClass('is-invalid');
+        console.log('Field is: ', formFieldID);
+        console.log('Value is: [', fieldValue + ']');
+        if (fieldValue == '') {
+            console.log("must be 4 characters or more. ", formFieldID);
             $('#btn--form-update').text(activityForm.submitButtonText);
+            $('#' + formFieldID + '--error').html('<span>' + errorMessage + '</span>');
+            $('#' + formFieldID + '--error').removeClass('d-none');
+            $('#' + formFieldID).addClass('is-invalid');
+            $('#' + formFieldID).focus();
             console.log('Original button text is: ', activityForm.submitButtonText);
         return false;
+        }
+    },
+
+    validateSelectField: (formFieldID, errorMessage=' select error.') => {
+        fieldValue = $('#' + formFieldID).val();
+        console.log(`${formFieldID} value is: ${fieldValue}`);
+        // $('#' + formFieldID + '--error').addClass('d-none');
+        // $('#' + formFieldID).removeClass('is-invalid');
+        // console.log('Field is: ', formFieldID);
+        // console.log('Value is: [', fieldValue + ']');
+        // if (fieldValue == '') {
+        //     console.log("must be 4 characters or more. ", formFieldID);
+        //     $('#btn--form-update').text(activityForm.submitButtonText);
+        //     $('#' + formFieldID + '--error').html('<span>' + errorMessage + '</span>');
+        //     $('#' + formFieldID + '--error').removeClass('d-none');
+        //     $('#' + formFieldID).addClass('is-invalid');
+        //     $('#' + formFieldID).focus();
+        //     console.log('Original button text is: ', activityForm.submitButtonText);
+        // return false;
+        // }
+    },
+
+    checkForm: () => {
+        console.log('JS validate form?');
+        // Remove any current flash messages
+        $('#flash--message').empty();
+        if (activityForm.validateEmptyField('title', 'Field must be at least 4 characters long.')) {
+            formStatus = true;
+        } else { formStatus = false; }
+
+        if (activityForm.validateEmptyField('shortDescr', 'Field must be at least 4 characters long.')) {
+            formStatus = true;
+        } else { formStatus = false; }
+        
+        if (activityForm.validateEmptyField('longDescr', 'Field must be at least 4 characters long.')) {
+            formStatus = true;
+        } else { formStatus = false; }
+
+        if (activityForm.validateEmptyField('category', 'At least one must be selected.')) {
+            formStatus = true;
+        } else { formStatus = false; }
+
+        if (activityForm.validateEmptyField('whenTodo', 'At least one must be selected.')) {
+            formStatus = true;
+        } else { formStatus = false; }
+
+        // Add message to the flash message area if there is a form error
+        if (!formStatus) { 
+            $('#flash--message').prepend('<div class="flash__message-error">Please correct form errors below</div>');
         }
     }
 
@@ -126,7 +181,7 @@ $(document).ready(function(){
             image = $('#image').val();
             console.log('Image is: ', image)
             $('#btn--form-update').html('Processing <i class="fas fa-spinner fa-spin"></i>');
-            activityForm.validate();
+            activityForm.checkForm();
         });
 
         /* Set hidden venue location to the same as the activity location

@@ -14,30 +14,33 @@
                 <!-- Title -->
                 <div class="form-group col-md-6">
                     {{ form.title.label(class="") }}
+                    {% set error_visible = 'd-none' %}
                     {% if form.title.errors %}
                         {{ form.title(class="form-control is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.title.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
+                        {% set error_visible = 'd-block' %}
                     {% else %}
                         {{ form.title(class="form-control") }}
                     {% endif %}
+                    <div id="title--error" class="invalid-feedback {{ error_visible }}">
+                        {% for error in form.title.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
                 </div>
                 <!-- Short description -->
                 <div class="form-group col-md-6">
                     {{ form.shortDescr.label(class="") }}
                     {% if form.shortDescr.errors %}
                         {{ form.shortDescr(class="form-control is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.shortDescr.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
+                        {% set error_visible = 'd-block' %}
                     {% else %}
                         {{ form.shortDescr(class="form-control") }}
                     {% endif %}
+                    <div id="shortDescr--error" class="invalid-feedback {{ error_visible }}">
+                        {% for error in form.shortDescr.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
             <div class="form-row">
@@ -48,14 +51,15 @@
                             {{ form.longDescr.label(class="") }}
                             {% if form.longDescr.errors %}
                                 {{ form.longDescr(rows="4", class="form-control is-invalid") }}
-                                <div class="invalid-feedback">
-                                    {% for error in form.longDescr.errors %}
-                                        <span>{{ error }}</span>
-                                    {% endfor %}
-                                </div>
+                                {% set error_visible = 'd-block' %}
                             {% else %}
                                 {{ form.longDescr(rows="4", class="form-control") }}
                             {% endif %}
+                            <div id="longDescr--error" class="invalid-feedback {{ error_visible }}">
+                                {% for error in form.longDescr.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
                         </div>
                         <div class="form-group col-12">
                             {{ form.image.label(class="") }}
@@ -253,28 +257,30 @@
                     {{ form.category.label(class="") }}
                     {% if form.category.errors %}
                         {{ form.category(class="form-control is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.category.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
+                        {% set error_visible = 'd-block' %}
                     {% else %}
                         {{ form.category(class="form-control") }}
                     {% endif %}
+                    <div id="category--error" class="invalid-feedback {{ error_visible }}">
+                        {% for error in form.category.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
                 </div>
                 <!-- When todo -->
                 <div class="form-group col-md-3">
                     {{ form.whenTodo.label(class="") }}
                     {% if form.whenTodo.errors %}
                         {{ form.whenTodo(class="form-control is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.whenTodo.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
+                        {% set error_visible = 'd-block' %}
                     {% else %}
                         {{ form.whenTodo(class="form-control") }}
                     {% endif %}
+                    <div id="whenTodo--error" class="invalid-feedback {{ error_visible }}">
+                        {% for error in form.whenTodo.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
                 </div>
                 <!-- Form fields additional url and keywords -->
                 <div class="form-group col-md-6">

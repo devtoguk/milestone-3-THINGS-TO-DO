@@ -250,7 +250,7 @@ body {
     background: var(--themeTranSeaGreen);
     /* color: var(--themeDarkGreen); */
     color: #fff;
-    padding: 0.2em;
+    padding: 0.5em;
 }
 
 .flash__message-error {
