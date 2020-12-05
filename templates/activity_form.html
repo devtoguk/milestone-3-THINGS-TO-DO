@@ -65,14 +65,15 @@
                             {{ form.image.label(class="") }}
                             {% if form.image.errors %}
                                 {{ form.image(class="form-control is-invalid") }}
-                                <div class="invalid-feedback">
-                                    {% for error in form.image.errors %}
-                                        <span>{{ error }}</span>
-                                    {% endfor %}
-                                </div>
+                                {% set error_visible = 'd-block' %}
                             {% else %}
                                 {{ form.image(class="form-control") }}
                             {% endif %}
+                            <div id="image--error" class="invalid-feedback">
+                                {% for error in form.image.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
                 </div>

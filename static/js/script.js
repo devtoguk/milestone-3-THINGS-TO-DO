@@ -3,71 +3,79 @@
  */
 const activityForm = {
     submitButtonText: '',
+    imageUploadType: ['image/jpeg'],
+    maxUploadImageSize: (2 * 1024 * 1024),
+    checkFieldsEmpty: [
+        {id: 'title', error: 'Field must be at least 4 characters long.'},
+        {id: 'shortDescr', error: 'Field must be at least 4 characters long.'},
+        {id: 'longDescr', error: 'Field must be at least 4 characters long.'},
+        {id: 'category', error: 'At least one must be selected.'},
+        {id: 'whenTodo', error: 'At least one must be selected.'}
+    ],
+
+    clearFieldError:(formFieldID) => {
+        $('#' + formFieldID + '--error').addClass('d-none');
+        $('#' + formFieldID).removeClass('is-invalid');
+    },
+
+    showFlashMessage: (message) => {
+        // Remove any current flash message and display new message
+        $('#flash--message').empty();
+        $('#flash--message').prepend('<div class="flash__message-error">' + message + '</div>');
+    },
+
+    showFieldError: (formFieldID, errorMessage) => {
+        // remove previous error message
+        activityForm.clearFieldError(formFieldID);
+        // show new error message
+        $('#btn--form-update').text(activityForm.submitButtonText);
+        $('#' + formFieldID + '--error').html('<span>' + errorMessage + '</span>');
+        $('#' + formFieldID + '--error').removeClass('d-none');
+        $('#' + formFieldID).addClass('is-invalid');
+        $('#' + formFieldID).focus();
+    },
 
     validateEmptyField: (formFieldID, errorMessage=' field error.') => {
         fieldValue = $('#' + formFieldID).val();
-        $('#' + formFieldID + '--error').addClass('d-none');
-        $('#' + formFieldID).removeClass('is-invalid');
-        console.log('Field is: ', formFieldID);
-        console.log('Value is: [', fieldValue + ']');
         if (fieldValue == '') {
-            console.log("must be 4 characters or more. ", formFieldID);
-            $('#btn--form-update').text(activityForm.submitButtonText);
-            $('#' + formFieldID + '--error').html('<span>' + errorMessage + '</span>');
-            $('#' + formFieldID + '--error').removeClass('d-none');
-            $('#' + formFieldID).addClass('is-invalid');
-            $('#' + formFieldID).focus();
-            console.log('Original button text is: ', activityForm.submitButtonText);
-        return false;
-        }
+            activityForm.showFieldError(formFieldID, errorMessage)
+            return true;
+        } else { return false; }
     },
 
-    validateSelectField: (formFieldID, errorMessage=' select error.') => {
-        fieldValue = $('#' + formFieldID).val();
-        console.log(`${formFieldID} value is: ${fieldValue}`);
-        // $('#' + formFieldID + '--error').addClass('d-none');
-        // $('#' + formFieldID).removeClass('is-invalid');
-        // console.log('Field is: ', formFieldID);
-        // console.log('Value is: [', fieldValue + ']');
-        // if (fieldValue == '') {
-        //     console.log("must be 4 characters or more. ", formFieldID);
-        //     $('#btn--form-update').text(activityForm.submitButtonText);
-        //     $('#' + formFieldID + '--error').html('<span>' + errorMessage + '</span>');
-        //     $('#' + formFieldID + '--error').removeClass('d-none');
-        //     $('#' + formFieldID).addClass('is-invalid');
-        //     $('#' + formFieldID).focus();
-        //     console.log('Original button text is: ', activityForm.submitButtonText);
-        // return false;
-        // }
+    validateFileInput: (formFieldID, fileSize, fileType) => {
+        let fileError = false;
+        // clear existing file error and flash message
+        activityForm.clearFieldError(formFieldID);
+        $('#flash--message').empty();
+        
+        if (fileSize > activityForm.maxUploadImageSize) {
+            let errorMessage = 'The selected file exceeds the upload file size limit';
+            activityForm.showFieldError(formFieldID, errorMessage);
+            fileError = true;
+        } else if (!activityForm.imageUploadType.includes(fileType)) {
+            let errorMessage = 'Incorrect image format, please use Jpeg';
+            activityForm.showFieldError(formFieldID, errorMessage);
+            fileError = true;
+        }
+        if (fileError) {
+            activityForm.showFlashMessage('Please correct form errors below');
+        }
     },
 
     checkForm: () => {
         console.log('JS validate form?');
-        // Remove any current flash messages
-        $('#flash--message').empty();
-        if (activityForm.validateEmptyField('title', 'Field must be at least 4 characters long.')) {
-            formStatus = true;
-        } else { formStatus = false; }
-
-        if (activityForm.validateEmptyField('shortDescr', 'Field must be at least 4 characters long.')) {
-            formStatus = true;
-        } else { formStatus = false; }
-        
-        if (activityForm.validateEmptyField('longDescr', 'Field must be at least 4 characters long.')) {
-            formStatus = true;
-        } else { formStatus = false; }
-
-        if (activityForm.validateEmptyField('category', 'At least one must be selected.')) {
-            formStatus = true;
-        } else { formStatus = false; }
-
-        if (activityForm.validateEmptyField('whenTodo', 'At least one must be selected.')) {
-            formStatus = true;
-        } else { formStatus = false; }
+        formError = false;
+        activityForm.checkFieldsEmpty.forEach( (formField) => {
+            console.log(`Check field ID: ${formField.id} | Msg is: ${formField.error}`);
+            if (activityForm.validateEmptyField(formField.id, formField.error)) {
+                formError = true;
+            }
+        });
 
         // Add message to the flash message area if there is a form error
-        if (!formStatus) { 
-            $('#flash--message').prepend('<div class="flash__message-error">Please correct form errors below</div>');
+        if (formError) {
+            activityForm.showFlashMessage('Please correct form errors below');
         }
     }
 
@@ -156,18 +164,6 @@ $(function() {
     $('[data-toggle="tooltip"]').tooltip()
 });
 
-// function validateForm() {
-//     console.log('JS validate form?')
-//     var x = $('#title').val();
-//     console.log('Title value is: ', x)
-//     if (x == '') {
-//         console.log("Title must be filled out");
-//         $('#btn--form-update').text(activityForm.submitButtonText);
-//         console.log('Original button text is: ', activityForm.submitButtonText);
-//     return false;
-//     }
-// }
-
 $(document).ready(function(){
 
     /* if on the activity_form
@@ -179,7 +175,6 @@ $(document).ready(function(){
         */
         $('#btn--form-update').click(function(e) {
             image = $('#image').val();
-            console.log('Image is: ', image)
             $('#btn--form-update').html('Processing <i class="fas fa-spinner fa-spin"></i>');
             activityForm.checkForm();
         });
@@ -196,15 +191,29 @@ $(document).ready(function(){
             $('#venue--details').collapse('show');
         }
 
+        /*  Reset form submit button to standard text
+        */
         activityForm.submitButtonText = $('#btn--form-update').text();
-        console.log('OBJ Button is: ', activityForm.submitButtonText);
-        // $(window).onunload(function(){
-        console.log('On a form page');
         $('input, select, textarea').click(function(e) {
-            console.log('Clicked: ', e.target.id)
             $('#btn--form-update').text(activityForm.submitButtonText);
-        });       
-    }
+        });
 
+        /* Validate file input field on change
+        */
+        $('#image').change( (e) => {
+            let fileSize = e.originalEvent.target.files[0].size;
+            let fileType = e.originalEvent.target.files[0].type;
+            activityForm.validateFileInput('image', fileSize, fileType);
+        });
+
+        /* Remove field error on change
+        */
+        activityForm.checkFieldsEmpty.forEach( (formField) => {
+            $('#' + formField.id).change( () => {
+                activityForm.clearFieldError(formField.id);
+            });
+        });
+        
+    }
 });
 
