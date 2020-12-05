@@ -203,6 +203,11 @@ $(document).ready(function(){
         $('#image').change( (e) => {
             let fileSize = e.originalEvent.target.files[0].size;
             let fileType = e.originalEvent.target.files[0].type;
+            $('#image').blur(function(){
+                if(!$(this).val()){
+                    activityForm.clearFieldError('image');
+                }
+            });            
             activityForm.validateFileInput('image', fileSize, fileType);
         });
 
