@@ -3,7 +3,7 @@
  */
 const activityForm = {
     submitButtonText: '',
-    imageUploadType: ['image/jpeg', 'image/png'],
+    imageUploadType: ['image/jpeg'],
     maxUploadImageSize: (2 * 1024 * 1024),
     checkFieldsEmpty: [
         {id: 'title', error: 'Field must be at least 4 characters long.'},

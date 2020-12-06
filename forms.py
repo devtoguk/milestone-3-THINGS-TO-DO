@@ -65,7 +65,7 @@ class ActivityForm():
     longDescr = TextAreaField(u'Long Description',
                               validators=[DataRequired(),
                                           Length(min=4, max=240)])
-    image = FileField('Image for Activity', validators=[FileAllowed(['jpg', 'png', 'jpeg'], 'Incorrect image format, please use JPG')])
+    image = FileField('Image for Activity', validators=[FileAllowed(['jpg', 'jpeg'], 'Incorrect image format, please use JPG')])
 
     location = SelectField(u'Location for Activity',
                            validators=[InputRequired(), make_a_choice],
