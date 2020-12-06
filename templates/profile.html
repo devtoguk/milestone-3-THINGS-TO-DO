@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card register__form-width mb-5 mx-auto">
+	<div class="card-header">
+		View User Profile
+	</div>
+    <!-- User profile details -->
+	<div class="card-body shadow">
+        <form name="profile_form">
+            <!-- Email -->
+            <div class="form-group">
+                <label class="profile__label" for="email">Email address</label>
+                <p id="email" name="email" class="profile__data">
+                    {{ session['user']['email'] }}
+                </p>
+            </div>
+            <!-- User name -->
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="name">Name</label>
+                    <input id="name" name="name" class="form-control profile__data" disabled value="{{ session['user']['name'] }}">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="screen_name">Screen name</label>
+                    <input id="screen_name" name="screen_name" disabled value="{{ session['user']['screen_name'] }}" class="form-control profile__data">
+                </div>
+            </div>
+            <!-- Location info: postcode, town, county -->
+            <div class="form-row">
+                <div class="form-group col-md-6 col-lg-3">
+                    <label for="postcode">Postcode</label>
+                    <input id="postcode" name="postcode" disabled value="{{ session['user']['postcode'] }}" class="form-control profile__data">
+                </div>
+                <div class="form-group col-md-6 col-lg-4">
+                    <label for="town">Town</label>
+                    <input id="town" name="town" disabled value="{{ session['user']['town'] }}" class="form-control profile__data">
+                </div>
+                <div class="form-group col-md-6 col-lg-5">
+                    <label for="county">County</label>
+                    <input id="county" name="county" disabled value="{{ session['user']['county'] }}" class="form-control profile__data">
+                </div>
+            </div>
+            <!-- <p class="form__error form__error-hidden"></p>
+            <input type="submit" value="Register" class="btn btn-primary"> -->
+        </form>
+        <!-- <p class="form__info-text">
+            If you have already registered please click <a href="/user/login/">HERE</a> to login.
+        </p> -->
+	</div>
+</div>
+
+{% endblock %}

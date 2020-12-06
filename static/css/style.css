@@ -159,6 +159,14 @@ body {
     height: 12.5em;
 }
 
+.profile__data {
+    font-weight: bold;
+}
+
+.profile__label {
+    color: var(--themeDarkGreen);
+}
+
 /* Tool tips */
 
 .tooltip-inner {

@@ -93,7 +93,7 @@ $('form[name=register_form').submit(function(e) {
     data: data,
     dataType: 'json',
     success: function(resp) {
-        window.location.href = '/dbtest/';
+        window.location.href = '/user/welcome/';
     },
     error: function(resp) {
         console.log(resp);
@@ -116,7 +116,7 @@ $('form[name=login_form').submit(function(e) {
     data: data,
     dataType: 'json',
     success: function(resp) {
-        window.location.href = '/activity/';
+        window.location.href = '/user/logged-in/';
     },
     error: function(resp) {
         console.log(resp);

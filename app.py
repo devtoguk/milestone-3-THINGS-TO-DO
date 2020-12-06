@@ -178,6 +178,30 @@ def logout():
     return User().logout()
 
 
+@app.route('/user/welcome/')
+def welcome():
+    user_session = session.get('user')
+    print(user_session)
+    user_name = user_session.get('name', 0)
+    flash(f'Welcome {user_name.title()}, thank you for registering.', 'info')
+    return redirect(url_for('index'))
+
+
+@app.route('/user/logged-in/')
+def logged_in():
+    user_session = session.get('user')
+    print(user_session)
+    user_name = user_session.get('name', 0)
+    flash(f'{user_name.title()} logged-in.', 'info')
+    return redirect(url_for('index'))
+
+
+@app.route('/user/profile/')
+def profile():
+    return render_template('profile.html',
+                           categories=CATEGORIES)
+
+
 @app.route('/activity/submit/', methods=['GET', 'POST'])
 def submit_activity():
 
