@@ -130,7 +130,7 @@ class Activity:
             print(f'ID inserted as: {insert_result.inserted_id}')
             flash(f'Thank you...  "{ activity["title"] }" activity submitted.', 'info')
 
-            return 'OK', 200
+            return str(insert_result.inserted_id), 200
 
         flash('Activity submission failed', 'error')
         return jsonify({'error': 'Activity submission failed'}), 400

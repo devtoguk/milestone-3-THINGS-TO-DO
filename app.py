@@ -10,6 +10,7 @@ from werkzeug.exceptions import RequestEntityTooLarge
 from models import mongo, User, Activity
 from forms import EditActivityForm, AddActivityForm
 from consts import CATEGORIES, WHEN_TODO
+from image import resize_image
 
 if os.path.exists('env.py'):
     import env
@@ -42,6 +43,18 @@ app.config['MAX_CONTENT_LENGTH'] = 2 * 1024 * 1024
 
 images = UploadSet('activities', IMAGES)
 configure_uploads(app, images)
+
+
+# Function to save uploaded activity image
+#
+def save_image(data, filename):
+    print(f'Trying to save image: {filename}')
+    file_path = images.path(filename)
+    if os.path.exists(file_path):
+        os.remove(file_path)
+
+    images.save(data, None, filename)
+    resize_image(filename)
 
 
 # @app.errorhandler(404)
@@ -182,13 +195,17 @@ def submit_activity():
         # print(f'Result = {result}')
         # print(td)
         result = Activity().add_activity()
-        # print(result)
+        activity_id = result[0]
+        # print(f'New ID is: {activity_id}')
         if result[0] == 'TITLE_EXISTS':
             form.title.errors.append('An activity with this name already exists')
             return render_template('activity_form.html', form=form,
                                    form_title='Add an Activity',
                                    nav_link='Submit_Activity',
                                    categories=CATEGORIES)
+        else:
+            if form.image.data:
+                save_image(form.image.data, activity_id + '.jpg')
 
         return redirect(url_for('index'))
     elif request.method == 'POST':
@@ -237,15 +254,10 @@ def edit_activity(activity_id):
         if form.validate_on_submit():
             td = form.venue.data
             del td['location']
-            print(form.image.data)
+            # print(form.image.data)
             if form.image.data:
-                image_name = activity_id + '.jpg'
-                file_path = images.path(image_name)
-                if os.path.exists(file_path):
-                    os.remove(file_path)
-
-                filename = images.save(form.image.data, None, image_name)
-                print(f'Filename is: {filename}')
+                if form.image.data:
+                    save_image(form.image.data, activity_id + '.jpg')
 
             print(f'We were editing activity: {activity_id}')
             result = Activity().update_activity(activity_id)
