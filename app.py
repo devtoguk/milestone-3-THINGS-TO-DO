@@ -117,7 +117,7 @@ def search():
                                    categories=CATEGORIES)
         else:
             flash(f'No results found for "{search_text}"', 'error')
-            return render_template('index.html')
+            return redirect(url_for('index'))
 
 
 @app.route('/category/<string:category>/', methods=['POST', 'GET'])
@@ -128,7 +128,7 @@ def category(category):
         elif category == 'Featured':
             activities = list(mongo.db.activities.find({'featured': True}))
         else:
-            activities = list(mongo.db.activities.find({'category': category.lower()}))
+            activities = list(mongo.db.activities.find({'category': category}))
 
         total = len(activities)
         flash(f'Showing {total} search result{"s" if total != 1 else ""} for category: {category}', 'info')
