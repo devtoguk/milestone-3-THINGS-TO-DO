@@ -296,6 +296,27 @@ def edit_activity(activity_id):
                            categories=CATEGORIES)
 
 
+@app.route('/activity/view/<string:activity_id>/')
+def view_activity(activity_id):
+
+    activity_data = Activity().get_activity(activity_id)
+
+    if activity_data is None:
+        flash('Activity not found', 'error')
+        return redirect(url_for('index'))
+
+    check_file = f'static/images/activities/{ activity_data["_id"] }.jpg'
+    if os.path.exists(check_file):
+        activity_data['imageExists'] = True
+    else:
+        activity_data['imageExists'] = False
+
+    return render_template('activity.html',
+                           activity=activity_data,
+                           nav_link='Activities',
+                           categories=CATEGORIES)
+
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),

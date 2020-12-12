@@ -1,23 +1,68 @@
 {% extends "base.html" %}
 {% block content %}
 
-<p>Test session data:</p>
-{{ session['logged_in'] }} <br><br>
-
-    <div class="text-center">
-        <p>
-            Hi {{ session['user']['name'] }}. You want to add an activity?
-        </p>
-        <br>
-        <h2>Your User Details:</h2>
-
-        <p>
-            <strong>ID: </strong>{{ session['user']['_id']['$oid'] }}<br>
-            <strong>NAME: </strong>{{ session['user']['name'] }}<br>
-            <strong>EMAIL: </strong>{{ session['user']['email'] }}<br>
-        </p>
-
+<div class="activity-view__container">
+    <!-- Title and short description -->
+    <div class="row">
+        <div class="col-12">
+            <h2>{{ activity.title|lower|capitalize }}</h2>
+            <p class="activity-view__short-descr">
+                {{ activity.shortDescr }}
+            </p>
+        </div>
     </div>
+    <!-- Image and long description -->
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="activity-view__image">
+                {% if activity.imageExists %}
+                    {% set image_name = activity._id %}
+                {% else %}
+                    {% set image_name = "no_image_yet" %}
+                {% endif %}
+                <img src="/static/images/activities/{{ image_name }}.jpg" class="card-img-top" alt="{{ activity.title|title }}" title="{{ activity.title|title }}">
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <p class="activity-view__long-descr">
+                {{ activity.longDescr }}
+            </p>
+        </div>
+    </div>
+    {% if activity.venue %}
+        <!-- Show venue information if available-->
+        <div class="row">
+            <div class="col-lg-6">
+                <p class="activity-view__label">Venue information</p>
+                <p class="activity-view__info">
+                    {{ activity.venue.name|lower|title }}<br>
+                    {{ activity.venue.address }}<br>
+                    {{ activity.venue.postcode }}<br>
+                </p>
+            </div>
+            <div class="col-lg-6">
+                <p class="activity-view__label">Email & Website</p>
+                <p class="activity-view__info">
+                    {{ activity.venue.email }}<br>
+                    <a href="{{ activity.venue.website }}" target="_blank" rel="noopener noreferrer">{{ activity.venue.website }}</a>
+                    <br>
+                </p>
+            </div>
+        </div>
+    {% endif %}
 
+    {% if activity.additionalURL %}
+        <!-- Show additional URL if available -->
+        <div class="row">
+            <div class="col-12">
+                <p class="activity-view__label">Link for additional information</p>
+                <p class="activity-view__info">
+                    <a href="{{ activity.additionalURL }}" target="_blank"  rel="noopener noreferrer">{{ activity.additionalURL }}</a>
+                    <br>
+                </p>
+            </div>
+        </div>
+    {% endif %}
+</div>
 
 {% endblock %}
