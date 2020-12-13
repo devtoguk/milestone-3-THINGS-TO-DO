@@ -32,20 +32,28 @@
     {% if activity.venue %}
         <!-- Show venue information if available-->
         <div class="row">
+            <!-- Venue address and map link-->
             <div class="col-lg-6">
                 <p class="activity-view__label">Venue information</p>
-                <p class="activity-view__info">
+                <p class="activity-view__address">
                     {{ activity.venue.name|lower|title }}<br>
-                    {{ activity.venue.address }}<br>
+                    {% for address_line in activity.venue.address.split('\n') %}
+                        {{ address_line }}<br>
+                    {% endfor %}
                     {{ activity.venue.postcode }}<br>
+                    <a class="activity-view__link info" href="https://www.google.com/maps/search/?api=1&query={{ activity.venue.name|lower|title }}" target="_blank" rel="noopener noreferrer">
+                    <i aria-hidden="true" class="fas fa-map-marker-alt" title="Venue web address"></i> Show on map</a>
                 </p>
             </div>
+            <!-- Email and web address -->
             <div class="col-lg-6">
-                <p class="activity-view__label">Email & Website</p>
-                <p class="activity-view__info">
-                    {{ activity.venue.email }}<br>
-                    <a href="{{ activity.venue.website }}" target="_blank" rel="noopener noreferrer">{{ activity.venue.website }}</a>
-                    <br>
+                <p class="activity-view__label">Contact</p>
+                <p class="activity-view__link">
+                    <a class="info" href="mailto:{{ activity.venue.email }}" target="_blank" rel="noopener noreferrer"><i aria-hidden="true" class="fas fa-at" title="Venue email address"></i> {{ activity.venue.email }}</a>
+                </p>
+                <p class="activity-view__link">
+                    <a class="info" href="{{ activity.venue.website }}" target="_blank" rel="noopener noreferrer">
+                    <i aria-hidden="true" class="fas fa-globe" title="Venue web address"></i> {{ activity.venue.website }}</a>
                 </p>
             </div>
         </div>
@@ -56,9 +64,8 @@
         <div class="row">
             <div class="col-12">
                 <p class="activity-view__label">Link for additional information</p>
-                <p class="activity-view__info">
-                    <a href="{{ activity.additionalURL }}" target="_blank"  rel="noopener noreferrer">{{ activity.additionalURL }}</a>
-                    <br>
+                <p class="activity-view__link">
+                    <a class="info" href="{{ activity.additionalURL }}" target="_blank" rel="noopener noreferrer"><i aria-hidden="true" class="fas fa-info-circle" title="Venue web address"></i> {{ activity.additionalURL }}</a>                    
                 </p>
             </div>
         </div>

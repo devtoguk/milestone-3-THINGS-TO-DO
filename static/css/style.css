@@ -257,6 +257,10 @@ body {
     font-size: 2em;
 }
 
+.activity-view__long-descr {
+    margin-top: 1.6em;
+}
+
 .activity-view__label {
     margin-top: 0.5em;
     margin-bottom: 0;
@@ -264,8 +268,29 @@ body {
     font-weight: bold;    
 }
 
-.activity-view__info {
+.activity-view__address {
 }
+
+.activity-view__link {
+    font-size: 1em;
+}
+
+a.info:link, a.info:visited {
+    display: inline-block;
+    background-color: white;
+    color: black;
+    border: 2px solid var(--themeGreen);
+    border-radius: 10px;
+    padding: 6px 12px;
+    text-align: center;
+    text-decoration: none;
+}
+
+a.info:hover, a.info:active {
+    background-color: var(--themeGreen);
+    color: white;
+}
+
 
 /* Flash message */
 .flash__message {
@@ -297,6 +322,7 @@ body {
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) { 
 
+
 }
 
 /* Medium devices (tablets, 768px and up) */
@@ -314,7 +340,6 @@ body {
     .card-title {
         height: 2.5em;
     }
-
 }
 
 /* Large devices (desktops, 992px and up) */
@@ -340,6 +365,10 @@ body {
 
     .error__handler-message {
         font-size: 2em;
+    }
+
+    .activity-view__long-descr {
+        margin-top: 0;
     }
 
 }
