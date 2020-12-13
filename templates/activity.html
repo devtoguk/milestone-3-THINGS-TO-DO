@@ -13,7 +13,7 @@
     </div>
     <!-- Image and long description -->
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-6 mb-lg-3">
             <div class="activity-view__image">
                 {% if activity.imageExists %}
                     {% set image_name = activity._id %}
@@ -23,10 +23,10 @@
                 <img src="/static/images/activities/{{ image_name }}.jpg" class="card-img-top" alt="{{ activity.title|title }}" title="{{ activity.title|title }}">
             </div>
         </div>
-        <div class="col-lg-6">
-            <p class="activity-view__long-descr">
+        <div class="col-lg-6 pl-lg-0 mb-3">
+            <div class="activity-view__long-descr">
                 {{ activity.longDescr }}
-            </p>
+            </div>
         </div>
     </div>
     {% if activity.venue %}
@@ -63,7 +63,7 @@
         <!-- Show additional URL if available -->
         <div class="row">
             <div class="col-12">
-                <p class="activity-view__label">Link for additional information</p>
+                <p class="activity-view__label">Additional subject information, etc</p>
                 <p class="activity-view__link">
                     <a class="info" href="{{ activity.additionalURL }}" target="_blank" rel="noopener noreferrer"><i aria-hidden="true" class="fas fa-info-circle" title="Venue web address"></i> {{ activity.additionalURL }}</a>                    
                 </p>
