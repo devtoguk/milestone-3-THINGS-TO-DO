@@ -58,13 +58,13 @@ def make_a_choice(form, field):
 # class ActivityForm(FlaskForm):
 class ActivityForm():
     title = StringField('Title',
-                        validators=[DataRequired(), Length(min=4, max=60)])
+                        validators=[DataRequired(), Length(min=4, max=50)])
     shortDescr = StringField('Short Description',
                              validators=[DataRequired(),
-                                         Length(min=4, max=120)])
+                                         Length(min=4, max=60)])
     longDescr = TextAreaField(u'Long Description',
                               validators=[DataRequired(),
-                                          Length(min=4, max=240)])
+                                          Length(min=4, max=1000)])
     image = FileField('Change Activity Image (jpg)', validators=[FileAllowed(['jpg', 'jpeg'], 'Incorrect image format, please use JPG')])
 
     location = SelectField(u'Location for Activity',

@@ -12,15 +12,21 @@
                         {% set image_name = "no_image_yet" %}
                     {% endif %}
                     <div class="card__image">
-                        <a href="#">
+                        <a href="/activity/view/{{activity._id}}">
                             <img src="/static/images/activities/{{ image_name }}.jpg" class="card-img-top" alt="{{ activity.title|title }}" title="{{ activity.title|title }}">
                         </a>
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">{{ activity.title|upper }}</h5>
                         
-                        <p class="card-text d-none d-md-block">{{ activity.shortDescr }}</p>
-                        <a href="#" class="btn btn-primary mt-3 card__btn">
+                        <p class="card-text d-none d-md-block">
+                            {% if activity.shortDescr|length > 29 %}
+                                {{ activity.shortDescr[0:32] }}...
+                            {% else %}
+                                {{ activity.shortDescr }}
+                            {% endif %}
+                        </p>
+                        <a href="/activity/view/{{activity._id}}" class="btn btn-primary mt-3 card__btn">
                         <i class="fas fa-info-circle"></i>
                         <span class="d-none d-md-inline">More details</span>
                         </a>
