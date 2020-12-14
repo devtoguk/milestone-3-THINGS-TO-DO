@@ -11,6 +11,9 @@ from models import mongo, User, Activity
 from forms import EditActivityForm, AddActivityForm
 from consts import CATEGORIES, WHEN_TODO
 from image import resize_image
+import logging
+import boto3
+from botocore.exceptions import ClientError
 
 if os.path.exists('env.py'):
     import env
@@ -44,17 +47,115 @@ app.config['MAX_CONTENT_LENGTH'] = 4 * 1024 * 1024
 images = UploadSet('activities', IMAGES)
 configure_uploads(app, images)
 
-
 # Function to save uploaded activity image
 #
+# def save_image(data, filename):
+#     print(f'Trying to save image: {filename}')
+#     file_path = images.path(filename)
+#     if os.path.exists(file_path):
+#         os.remove(file_path)
+
+#     images.save(data, None, filename)
+#     resize_image(filename)
+
+
+def s3_image_exists(file_name):
+    bucket_name = os.environ.get('S3_BUCKET_NAME')
+    s3 = boto3.resource('s3')
+    try:
+        s3.Object(bucket_name, file_name).load()
+    except ClientError as e:
+        if e.response['Error']['Code'] == "404":
+            print('File not found!')
+            return False
+        else:
+            # Something else has gone wrong.
+            print('System error:')
+            return False
+    else:
+        print('Found OK')
+        return True
+
+
+def create_presigned_url(bucket_name, object_name, expiration=3600):
+    """Generate a presigned URL to share an S3 object
+
+    :param bucket_name: string
+    :param object_name: string
+    :param expiration: Time in seconds for the presigned URL to remain valid
+    :return: Presigned URL as string. If error, returns None.
+    """
+
+    # Generate a presigned URL for the S3 object
+    s3_client = boto3.client('s3')
+
+    try:
+        response = s3_client.generate_presigned_url('get_object',
+                                                    Params={'Bucket': bucket_name,
+                                                            'Key': object_name},
+                                                    ExpiresIn=expiration)
+    except ClientError as e:
+        logging.error(e)
+        return None
+
+    # The response contains the presigned URL
+    return response
+
+
+
+def upload_file(file_name, bucket, object_name=None):
+    """Upload a file to an S3 bucket
+
+    :param file_name: File to upload
+    :param bucket: Bucket to upload to
+    :param object_name: S3 object name. If not specified then file_name is used
+    :return: True if file was uploaded, else False
+    """
+
+    # If S3 object_name was not specified, use file_name
+    if object_name is None:
+        object_name = file_name
+
+    # Upload the file
+    s3_client = boto3.client('s3')
+    try:
+
+        # response = s3_client.upload_fileobj(file_data, bucket, object_name)
+        response = s3_client.upload_file(file_name, bucket, object_name)
+    except ClientError as e:
+        logging.error(e)
+        return False
+    return True
+
+
 def save_image(data, filename):
     print(f'Trying to save image: {filename}')
+    # Remove old file
     file_path = images.path(filename)
     if os.path.exists(file_path):
         os.remove(file_path)
+    # s3 = boto3.resource('s3')
+    # print('Buckets:')
+    # for bucket in s3.buckets.all():
+    #     print(bucket.name)
 
+    # Save and resize image
+    image_folder = 'static/images/activities/'
+    bucket_name = os.environ.get('S3_BUCKET_NAME')
+    
     images.save(data, None, filename)
     resize_image(filename)
+
+    print(f'Filename: {filename}')
+    file_path = image_folder + filename
+    print(f'File-path: {file_path}')
+    # Upload image to AWS S3
+    # upload_file(data, bucket_name, object_name=filename)
+    upload_file(file_path, bucket_name, object_name=filename)
+    myURL = create_presigned_url(bucket_name,
+                                 filename, expiration=880)
+
+    print(f'My URL: {myURL}')
 
 
 # @app.errorhandler(404)
@@ -136,12 +237,15 @@ def category(category):
         print(type(activities))
         for act in activities:
             print(type(act))
-            check_file = f'static/images/activities/{ act["_id"] }.jpg'
+            check_file = f'{ act["_id"] }.jpg'
             print(f'Filename is: {check_file}')
-            if os.path.exists(check_file):
-                act['imageExists'] = True
+
+            if s3_image_exists(check_file):
+                bucket_name = os.environ.get('S3_BUCKET_NAME')
+                act['imageURL'] = create_presigned_url(bucket_name,
+                                                       check_file, expiration=3600)
             else:
-                act['imageExists'] = False
+                act['imageURL'] = f'/static/images/activities/no_image_yet.jpg'
 
             print(act)
 
