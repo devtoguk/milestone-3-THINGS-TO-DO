@@ -6,14 +6,9 @@
         {% for activity in activities %}
             <div class="col-md-6 col-lg-4 mb-5">
                 <div class="card mx-auto" style="width: 18rem;">
-                    {% if activity.imageExists %}
-                        {% set image_name = activity._id %}
-                    {% else %}
-                        {% set image_name = "no_image_yet" %}
-                    {% endif %}
                     <div class="card__image">
                         <a href="/activity/view/{{activity._id}}">
-                            <img src="/static/images/activities/{{ image_name }}.jpg" class="card-img-top" alt="{{ activity.title|title }}" title="{{ activity.title|title }}">
+                            <img src="{{ activity.imageURL }}" class="card-img-top" alt="{{ activity.title|title }}" title="{{ activity.title|title }}">
                         </a>
                     </div>
                     <div class="card-body">
