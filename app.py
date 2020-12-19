@@ -213,6 +213,22 @@ def search():
         total = len(activities)
         if total > 0:
             flash(f'Showing {total} search result{"s" if total != 1 else ""} for "{search_text}"', 'info')
+
+            # print(type(activities))
+            for act in activities:
+                # print(type(act))
+                check_file = f'{ act["_id"] }.jpg'
+                print(f'Text search -> filename is: {check_file}')
+
+                if s3_image_exists(check_file):
+                    bucket_name = os.environ.get('S3_BUCKET_NAME')
+                    act['imageURL'] = create_presigned_url(bucket_name,
+                                                           check_file, expiration=3600)
+                else:
+                    act['imageURL'] = '/static/images/activities/no_image_yet.jpg'
+
+            # print(act)
+
             return render_template('results.html',
                                    activities=activities,
                                    categories=CATEGORIES)
@@ -234,11 +250,11 @@ def category(category):
         total = len(activities)
         flash(f'Showing {total} search result{"s" if total != 1 else ""} for category: {category}', 'info')
 
-        print(type(activities))
+        # print(type(activities))
         for act in activities:
             print(type(act))
             check_file = f'{ act["_id"] }.jpg'
-            print(f'Filename is: {check_file}')
+            print(f'Cat List-> filename is: {check_file}')
 
             if s3_image_exists(check_file):
                 bucket_name = os.environ.get('S3_BUCKET_NAME')
@@ -247,7 +263,7 @@ def category(category):
             else:
                 act['imageURL'] = f'/static/images/activities/no_image_yet.jpg'
 
-            print(act)
+            # print(act)
 
         return render_template('results.html',
                                activities=activities,
@@ -409,11 +425,15 @@ def view_activity(activity_id):
         flash('Activity not found', 'error')
         return redirect(url_for('index'))
 
-    check_file = f'static/images/activities/{ activity_data["_id"] }.jpg'
-    if os.path.exists(check_file):
-        activity_data['imageExists'] = True
+    check_file = f'{ activity_data["_id"] }.jpg'
+    print(f'View activity -> filename is: {check_file}')
+
+    if s3_image_exists(check_file):
+        bucket_name = os.environ.get('S3_BUCKET_NAME')
+        activity_data['imageURL'] = create_presigned_url(bucket_name,
+                                                check_file, expiration=3600)
     else:
-        activity_data['imageExists'] = False
+        activity_data['imageURL'] = '/static/images/activities/no_image_yet.jpg'
 
     return render_template('activity.html',
                            activity=activity_data,
