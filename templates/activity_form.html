@@ -82,12 +82,12 @@
                         <div class="form-group col-12">
                             <!-- Display Image -->
                             {% if form_title != 'Add an Activity' %}
-                                {% set image_name = form.imageId.data %}
+                                {% set image_path = imageURL %}
                             {% else %}
-                                {% set image_name = "no_image_yet" %}
+                                {% set image_path = "/static/images/activities/blank.png" %}
                             {% endif %}
                             <div class="form__image-align float-lg-right">
-                                <img src="/static/images/activities/{{ image_name }}.jpg" class="zcard-img-top img-thumbnail form__image-height">
+                                <img src="{{ image_path }}" class="zcard-img-top img-thumbnail form__image-height">
                             </div>
                         </div>
                     </div>
