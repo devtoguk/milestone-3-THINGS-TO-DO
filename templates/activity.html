@@ -15,12 +15,7 @@
     <div class="row">
         <div class="col-lg-6 mb-lg-3">
             <div class="activity-view__image">
-                {% if activity.imageExists %}
-                    {% set image_name = activity._id %}
-                {% else %}
-                    {% set image_name = "no_image_yet" %}
-                {% endif %}
-                <img src="/static/images/activities/{{ image_name }}.jpg" class="card-img-top" alt="{{ activity.title|title }}" title="{{ activity.title|title }}">
+                <img src="{{ activity.imageURL }}" class="card-img-top" alt="{{ activity.title|title }}" title="{{ activity.title|title }}">
             </div>
         </div>
         <div class="col-lg-6 pl-lg-0 mb-3">
