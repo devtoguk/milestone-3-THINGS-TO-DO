@@ -70,7 +70,7 @@ def s3_image_exists(file_name):
             return False
         else:
             # Something else has gone wrong.
-            print('System error:')
+            print(f'System error: {e}')
             return False
     else:
         print('Found OK')
@@ -386,6 +386,14 @@ def edit_activity(activity_id):
         return redirect(url_for('index'))
 
     # print(f'From route: {activity_data}')
+    # set current imageURL
+    check_file = f'{ activity_id }.jpg'
+    if s3_image_exists(check_file):
+        bucket_name = os.environ.get('S3_BUCKET_NAME')
+        imageURL = create_presigned_url(bucket_name,
+                                                check_file, expiration=3600)
+    else:
+        imageURL = '/static/images/activities/no_image_yet.jpg'
 
     try:
         form = EditActivityForm(data=activity_data)
@@ -413,6 +421,7 @@ def edit_activity(activity_id):
 
     return render_template('activity_form.html', form=form,
                            form_title='Edit Activity',
+                           imageURL=imageURL,
                            categories=CATEGORIES)
 
 
