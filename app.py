@@ -139,10 +139,10 @@ def save_image(data, filename):
     # for bucket in s3.buckets.all():
     #     print(bucket.name)
 
-    # Save and resize image
+    # Save and resize temporary image
     image_folder = 'static/images/activities/'
     bucket_name = os.environ.get('S3_BUCKET_NAME')
-    
+
     images.save(data, None, filename)
     resize_image(filename)
 
@@ -225,7 +225,7 @@ def search():
                     act['imageURL'] = create_presigned_url(bucket_name,
                                                            check_file, expiration=3600)
                 else:
-                    act['imageURL'] = '/static/images/activities/no_image_yet.jpg'
+                    act['imageURL'] = '/static/images/no_image_yet.jpg'
 
             # print(act)
 
@@ -261,7 +261,7 @@ def category(category):
                 act['imageURL'] = create_presigned_url(bucket_name,
                                                        check_file, expiration=3600)
             else:
-                act['imageURL'] = f'/static/images/activities/no_image_yet.jpg'
+                act['imageURL'] = f'/static/images/no_image_yet.jpg'
 
             # print(act)
 
@@ -393,7 +393,7 @@ def edit_activity(activity_id):
         imageURL = create_presigned_url(bucket_name,
                                                 check_file, expiration=3600)
     else:
-        imageURL = '/static/images/activities/no_image_yet.jpg'
+        imageURL = '/static/images/no_image_yet.jpg'
 
     try:
         form = EditActivityForm(data=activity_data)
@@ -442,7 +442,7 @@ def view_activity(activity_id):
         activity_data['imageURL'] = create_presigned_url(bucket_name,
                                                 check_file, expiration=3600)
     else:
-        activity_data['imageURL'] = '/static/images/activities/no_image_yet.jpg'
+        activity_data['imageURL'] = '/static/images/no_image_yet.jpg'
 
     return render_template('activity.html',
                            activity=activity_data,
