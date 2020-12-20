@@ -89,7 +89,7 @@ class Activity:
             activity['keywords'] = request.form.get('keywords')
         if len(request.form.get('additionalURL')) > 0:
             activity['additionalURL'] = request.form.get('additionalURL')
-        
+
         # If location is 'Out & About' then add venue data
         #
         if int(request.form.get('location')) == 2:
@@ -106,6 +106,25 @@ class Activity:
 
     def get_activity(self, activity_id):
         activity = mongo.db.activities.find_one({'_id': ObjectId(activity_id)})
+        return activity
+
+    def view_activity(self, activity_id):
+        find_activity = list(mongo.db.activities.aggregate(
+            [
+                {'$match': {'_id': ObjectId(activity_id)}},
+                {'$lookup': {
+                    'from': 'users',
+                    'let': {'user_id': '$userid'},
+                    'pipeline': [{
+                        '$match': {'$expr': {'$eq': ['$_id', '$$user_id']}}
+                    },
+                        {'$project': {'password': 0, 'level': 0, '_id': 0}}
+                    ],
+                    'as': 'userInfo'
+                }},
+                {'$unwind': '$userInfo'}
+            ]))
+        activity = find_activity[0]
         return activity
 
     def add_activity(self):

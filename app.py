@@ -319,7 +319,7 @@ def edit_activity(activity_id):
 
 @app.route('/activity/view/<string:activity_id>/')
 def view_activity(activity_id):
-    activity_data = Activity().get_activity(activity_id)
+    activity_data = Activity().view_activity(activity_id)
     if activity_data is None:
         flash('Activity not found', 'error')
         return redirect(url_for('index'))

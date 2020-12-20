@@ -73,7 +73,12 @@
     <div class="row">
         <div class="col-12">
             <div class="activity-view__created float-right">
-                Created by user? on 
+                {% if activity.userInfo.screenName %}
+                    {% set created_by = activity.userInfo.screenName %}
+                {% else %}
+                    {% set created_by = activity.userInfo.name %}
+                {% endif %}
+                Created by {{ created_by|title }} on 
                 {{ activity.createdOn.strftime('%d-%b-%Y') }}
             </div>
         </div>
