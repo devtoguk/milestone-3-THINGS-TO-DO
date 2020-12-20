@@ -41,13 +41,20 @@
             <!-- Email and web address -->
             <div class="col-lg-6">
                 <p class="activity-view__label">Contact</p>
-                <p class="activity-view__link">
-                    <a class="info" href="mailto:{{ activity.venue.email }}" target="_blank" rel="noopener noreferrer"><i aria-hidden="true" class="fas fa-at" title="Venue email address"></i> {{ activity.venue.email }}</a>
-                </p>
-                <p class="activity-view__link">
-                    <a class="info" href="{{ activity.venue.website }}" target="_blank" rel="noopener noreferrer">
-                    <i aria-hidden="true" class="fas fa-globe" title="Venue web address"></i> {{ activity.venue.website }}</a>
-                </p>
+                {% if activity.venue.email %}
+                    <p class="activity-view__link">
+                        <a class="info" href="mailto:{{ activity.venue.email }}" target="_blank" rel="noopener noreferrer"><i aria-hidden="true" class="fas fa-at" title="Venue email address"></i> {{ activity.venue.email }}</a>
+                    </p>
+                {% endif %}
+                {% if activity.venue.website %}
+                    <p class="activity-view__link">
+                        <a class="info" href="{{ activity.venue.website }}" target="_blank" rel="noopener noreferrer">
+                        <i aria-hidden="true" class="fas fa-globe" title="Venue web address"></i> {{ activity.venue.website }}</a>
+                    </p>
+                {% endif %}
+                {% if not activity.venue.email and not activity.venue.website %}
+                    <p>No contact info on file</p>
+                {% endif %}
             </div>
         </div>
     {% endif %}
