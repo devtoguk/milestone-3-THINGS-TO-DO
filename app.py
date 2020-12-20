@@ -135,7 +135,7 @@ def search():
                                                 {'$search': search_text}}))
         total = len(activities)
         if total > 0:
-            flash(f'Showing {total} search result{"s" if total != 1 else ""} for "{search_text}"', 'info')
+            flash(f'{total} result{"s" if total != 1 else ""} for "{search_text}"', 'info')
 
             for act in activities:
                 act['imageURL'] = set_imageURL(act["_id"])
@@ -144,7 +144,7 @@ def search():
                                    activities=activities,
                                    categories=CATEGORIES)
         else:
-            flash(f'No results found for "{search_text}"', 'error')
+            flash(f'No results for "{search_text}"', 'error')
             return redirect(url_for('index'))
 
 
@@ -159,7 +159,7 @@ def category(category):
             activities = list(mongo.db.activities.find({'category': category}))
 
         total = len(activities)
-        flash(f'Showing {total} search result{"s" if total != 1 else ""} for category: {category}', 'info')
+        flash(f'{total} result{"s" if total != 1 else ""} for [{category}]', 'info')
 
         for act in activities:
             act['imageURL'] = set_imageURL(act["_id"])
@@ -290,7 +290,7 @@ def edit_activity(activity_id):
     try:
         form = EditActivityForm(data=activity_data)
     except RequestEntityTooLarge as e:
-        flash('Chosen file too large, limit is 2mb', 'error')
+        flash('Chosen file too large, limit is 4mb', 'error')
         form = EditActivityForm(data=activity_data)
     else:
         form.imageId.data = activity_id

@@ -19,7 +19,7 @@ body {
     background: var(--themeSuperLightGreen);
     font-family: 'Raleway', sans-serif;
     font-weight: normal;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 /* Navigation bar  */
@@ -349,6 +349,10 @@ a.info:hover, a.info:active {
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) { 
 
+    body {
+        font-size: 16px;
+    }
+    
     .jumbotron {
         width: 65%;
         margin-top: 8em;
