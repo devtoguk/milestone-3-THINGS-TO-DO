@@ -250,9 +250,16 @@ body {
 }
 
 .activity-view__container h2 {
+    margin-bottom: 4px;
     font-family: 'Oswald', sans-serif;
     font-size: 2.2em;
     font-weight: bold;
+}
+
+.activity-view__container h3 {
+    font-size: 1.6em;
+    font-weight: normal;
+    line-height: 1.2;
 }
 
 .activity-view__short-descr {
@@ -384,8 +391,8 @@ a.info:hover, a.info:active {
         font-size: 3.2em;
     }
 
-    .activity-view__short-descr {
-        font-size: 2em;
+    .activity-view__container h3 {
+        font-size: 2.2em;
     }
 
 }
