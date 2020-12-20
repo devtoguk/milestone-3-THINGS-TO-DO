@@ -287,6 +287,10 @@ body {
     font-size: 1em;
 }
 
+.activity-view__created {
+    font-size: 0.8em;
+}
+
 a.info:link, a.info:visited {
     display: inline-block;
     background-color: white;

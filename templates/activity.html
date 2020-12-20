@@ -70,6 +70,14 @@
             </div>
         </div>
     {% endif %}
+    <div class="row">
+        <div class="col-12">
+            <div class="activity-view__created float-right">
+                Created by user? on 
+                {{ activity.createdOn.strftime('%d-%b-%Y') }}
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}
