@@ -174,12 +174,16 @@ def category(category):
 
 @app.route('/user/register/')
 def register():
-    return render_template('register.html')
+    return render_template('register.html',
+                           nav_link='Login/Register',
+                           categories=CATEGORIES)
 
 
 @app.route('/user/login/')
 def login():
-    return render_template('login.html')
+    return render_template('login.html',
+                           nav_link='Login/Register',
+                           categories=CATEGORIES)
 
 
 @app.route('/user/add_user/', methods=['POST'])
