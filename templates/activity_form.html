@@ -3,7 +3,12 @@
 
 <div class="card register__form-width mb-5 mx-auto">
 	<div class="card-header">
-		{{ form_title }}
+        <div class="form__header-title">
+            {{ form_title }}
+        </div>
+        <div class="form__header-cancel float-right">
+            <a href="{{ url_for('cancel_edit') }}"><i class="far fa-window-close"></i></a>
+        </div>
 	</div>
     <!-- Activity form -->
 	<div class="card-body shadow">

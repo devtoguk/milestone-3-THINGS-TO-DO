@@ -341,6 +341,12 @@ def view_activity(activity_id):
         return redirect(url_for('index'))
 
 
+@app.route('/activity/cancel/')
+def cancel_edit():
+    flash('Add/Edit cancelled', 'info')
+    return redirect(url_for('index'))
+
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),

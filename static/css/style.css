@@ -149,6 +149,18 @@ body {
     background: var(--themeSeaGreen);
 }
 
+.form__header-title {
+    font-size: 1.2em;
+    display: inline-block;
+    padding-top: 0.5rem;
+}
+
+.form__header-cancel {
+    font-size: 2em;
+    display: inline-block;
+    padding-top: 0;
+}
+
 .form__divider {
     height: 2px;
     background-color: var(--themeSeaGreen);
@@ -198,6 +210,7 @@ body {
 }
 
 .card-header {
+    padding: 0 .5em;
     background: var(--themeSeaGreen);
 }
 
