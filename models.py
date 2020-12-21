@@ -52,6 +52,7 @@ class User:
 
     def logout(self):
         session.clear()
+        flash(f'You have been logged-out', 'info')
         return redirect('/')
 
     def login_user(self):
