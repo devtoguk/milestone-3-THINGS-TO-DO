@@ -124,8 +124,11 @@ class Activity:
                 }},
                 {'$unwind': '$userInfo'}
             ]))
-        activity = find_activity[0]
-        return activity
+        if len(find_activity) > 0:
+            activity = find_activity[0]
+            return activity
+        else:
+            return None
 
     def add_activity(self):
         # user_session = session.get("user")

@@ -16,7 +16,7 @@ from image import resize_image
 # from botocore.exceptions import ClientError
 from functions import (
     set_imageURL, create_presigned_url,
-    upload_file)
+    upload_file, check_activity_id)
 
 if os.path.exists('env.py'):
     import env
@@ -319,16 +319,19 @@ def edit_activity(activity_id):
 
 @app.route('/activity/view/<string:activity_id>/')
 def view_activity(activity_id):
-    activity_data = Activity().view_activity(activity_id)
-    if activity_data is None:
-        flash('Activity not found', 'error')
-        return redirect(url_for('index'))
+    if check_activity_id(activity_id):
+        activity_data = Activity().view_activity(activity_id)
+        if activity_data is None:
+            flash('Activity not found', 'error')
+            return redirect(url_for('index'))
 
-    activity_data['imageURL'] = set_imageURL(activity_id)
-    return render_template('activity.html',
-                           activity=activity_data,
-                           nav_link='Activities',
-                           categories=CATEGORIES)
+        activity_data['imageURL'] = set_imageURL(activity_id)
+        return render_template('activity.html',
+                               activity=activity_data,
+                               nav_link='Activities',
+                               categories=CATEGORIES)
+    else:
+        return redirect(url_for('index'))
 
 
 if __name__ == '__main__':

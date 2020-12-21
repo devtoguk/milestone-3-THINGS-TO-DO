@@ -1,7 +1,22 @@
 import os
 import boto3
+from flask import flash
 from botocore.exceptions import ClientError
 import logging
+from bson.objectid import ObjectId
+
+
+def check_activity_id(activity_id):
+    """Check if id is a valid objectId
+
+    :param activity_id: string
+    :return: True if the id is valid, else False and flash error
+    """
+    if not ObjectId.is_valid(activity_id):
+        flash('Activity ID not valid', 'error')
+        return False
+    else:
+        return True
 
 
 def s3_image_exists(file_name):
