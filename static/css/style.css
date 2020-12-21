@@ -19,7 +19,7 @@ body {
     background: var(--themeSuperLightGreen);
     font-family: 'Raleway', sans-serif;
     font-weight: normal;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 /* Navigation bar  */
@@ -243,20 +243,29 @@ body {
 
 .activity-view__container {
     margin-bottom: 2em;
-    padding: 1em;
+    /* padding: 1em; */
+    padding: 4px 1em;
     background: rgba(250,250,250,0.9);
     border: 2px solid var(--themeSuperLightGreen);
     border-radius: calc(.4em - 1px);
 }
 
 .activity-view__container h2 {
+    margin-bottom: 4px;
     font-family: 'Oswald', sans-serif;
-    font-size: 3.2em;
+    font-size: 2.2em;
     font-weight: bold;
 }
 
+.activity-view__container h3 {
+    font-size: 1.6em;
+    font-weight: normal;
+    line-height: 1.2;
+}
+
 .activity-view__short-descr {
-    font-size: 2em;
+    font-size: 1.8em;
+    line-height: 1.2;
 }
 
 .activity-view__long-descr {
@@ -278,6 +287,10 @@ body {
     font-size: 1em;
 }
 
+.activity-view__created {
+    font-size: 0.8em;
+}
+
 a.info:link, a.info:visited {
     display: inline-block;
     background-color: white;
@@ -287,6 +300,7 @@ a.info:link, a.info:visited {
     padding: 6px 12px;
     text-align: center;
     text-decoration: none;
+    transition: 0.35s;
 }
 
 a.info:hover, a.info:active {
@@ -299,20 +313,19 @@ a.info:hover, a.info:active {
 .flash__message {
     width: 100%;
     height: 2.2em;
+    margin-bottom: 0.3em;
     background: transparent;
-    margin-bottom: 1em;
     color: var(--themeTreeBrown);
     font-family: 'Oswald', sans-serif;
-    font-size: 1.4em;
-    font-weight: 400;
-    border-radius: calc(.25em - 1px);
+    font-size: 1em;
 }
 
 .flash__message-info {
     background: var(--themeTranSeaGreen);
     /* color: var(--themeDarkGreen); */
     color: #fff;
-    padding: 0.5em;
+    /* padding: 0.5em; */
+    padding: 0 0 0.3em 0;
 }
 
 .flash__message-error {
@@ -349,6 +362,10 @@ a.info:hover, a.info:active {
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) { 
 
+    body {
+        font-size: 16px;
+    }
+
     .jumbotron {
         width: 65%;
         margin-top: 8em;
@@ -373,6 +390,18 @@ a.info:hover, a.info:active {
 
     .activity-view__long-descr {
         height: 324px;
+    }
+
+    .activity-view__container h2 {
+        font-size: 3.2em;
+    }
+
+    .activity-view__container h3 {
+        font-size: 2.2em;
+    }
+
+    .flash__message {
+        font-size: 1.4em;
     }
 
 }
