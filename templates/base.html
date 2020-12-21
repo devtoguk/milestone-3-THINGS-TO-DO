@@ -83,7 +83,10 @@
                         </div>
                     </li>
                 {% else %}
-                    <li class="nav-item pr-2 pl-lg-2">
+                    <li class="nav-item pr-2 pl-lg-2 
+                        {% if nav_link == 'Login/Register' %}
+                            active
+                        {% endif %}">
                         <a class="nav-link" href="/user/login/">Login/Register</a>
                     </li>
                 {% endif %}
