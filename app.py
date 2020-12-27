@@ -160,21 +160,31 @@ def category(category):
                               find().sort('createdOn', -1).limit(6))
         elif category == 'Submitted':
             user_session = session.get('user')
-            userid = ObjectId(user_session['_id']['$oid'])
-            activities = list(mongo.db.activities.
-                              find({'userid': ObjectId(userid)}).
-                              sort('createdOn', -1))
-            message = 'Activities submitted by me'
+            if user_session:
+                userid = ObjectId(user_session['_id']['$oid'])
+                activities = list(mongo.db.activities.
+                                  find({'userid': ObjectId(userid)}).
+                                  sort('createdOn', -1))
+                message = 'Activities submitted by me'
+            else:
+                flash('You are not logged-in', 'error')
+                return redirect(url_for('login'))
+
         elif category == 'Favourites':
             user_session = session.get('user')
-            userid = ObjectId(user_session['_id']['$oid'])
-            user_data = list(mongo.db.users.
-                             find({'_id': ObjectId(userid)},
-                                  {'_id': 0, 'favourites': 1}))
-            user_favourites = user_data[0]['favourites']
-            activities = list(mongo.db.activities.
-                              find({'_id': {'$in': user_favourites}}))
-            message = 'My Favourite Activities'
+            if user_session:
+                userid = ObjectId(user_session['_id']['$oid'])
+                user_data = list(mongo.db.users.
+                                 find({'_id': ObjectId(userid)},
+                                      {'_id': 0, 'favourites': 1}))
+                user_favourites = user_data[0]['favourites']
+                activities = list(mongo.db.activities.
+                                  find({'_id': {'$in': user_favourites}}))
+                message = 'My Favourite Activities'
+            else:
+                flash('You are not logged-in', 'error')
+                return redirect(url_for('login'))
+
         else:
             activities = list(mongo.db.activities.find({'category': category}))
             total = len(activities)
@@ -190,7 +200,7 @@ def category(category):
                                nav_link='Activities',
                                categories=CATEGORIES)
 
-    return render_template('index.html')
+    return redirect(url_for('index'))
 
 
 @app.route('/user/register/')
