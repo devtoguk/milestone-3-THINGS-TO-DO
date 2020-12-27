@@ -341,9 +341,9 @@ def view_activity(activity_id):
         return redirect(url_for('index'))
 
 
-@app.route('/activity/cancel/')
-def cancel_edit():
-    flash('Add/Edit cancelled', 'info')
+@app.route('/form/cancel/<message>')
+def cancel_form(message):
+    flash(f'{message} cancelled', 'info')
     return redirect(url_for('index'))
 
 
