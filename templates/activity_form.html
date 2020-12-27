@@ -106,56 +106,60 @@
                     {{ form.location.label(class="") }}
                     {% if form.location.errors %}
                         {{ form.location(class="form-control is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.location.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
+                        {% set error_visible = 'd-block' %}
                     {% else %}
                         {{ form.location(class="form-control") }}
                     {% endif %}
+                    <div id="location--error" class="invalid-feedback {{ error_visible }}">
+                        {% for error in form.location.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
                 </div>
                 <!-- Age Range -->
                 <div class="form-group col-md-6 col-lg-3">
                     {{ form.ageRange.label(class="") }}
                     {% if form.ageRange.errors %}
                         {{ form.ageRange(class="form-control is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.ageRange.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
+                        {% set error_visible = 'd-block' %}
                     {% else %}
-                        {{ form.ageRange(class="form-control") }}
+                        {{ form.ageRange(placeholder="eg. 3-99", pattern="\d{1,2}[-]\d{1,2}", class="form-control") }}
                     {% endif %}
+                    <div id="ageRange--error" class="invalid-feedback {{ error_visible }}">
+                        {% for error in form.ageRange.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
                 </div>
                 <!-- Online only -->
                 <div class="form-group col-md-6 col-lg-3">
                     {{ form.online.label(class="") }}
                     {% if form.online.errors %}
                         {{ form.online(class="form-control is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.online.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
+                        {% set error_visible = 'd-block' %}
                     {% else %}
                         {{ form.online(class="form-control") }}
                     {% endif %}
+                    <div id="online--error" class="invalid-feedback {{ error_visible }}">
+                        {% for error in form.online.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
                 </div>
                 <!-- Free todo -->
                 <div class="form-group col-md-6 col-lg-3">
                     {{ form.freeTodo.label(class="") }}
                     {% if form.freeTodo.errors %}
                         {{ form.freeTodo(class="form-control is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.freeTodo.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
+                        {% set error_visible = 'd-block' %}
                     {% else %}
                         {{ form.freeTodo(class="form-control") }}
                     {% endif %}
+                    <div id="freeTodo--error" class="invalid-feedback {{ error_visible }}">
+                        {% for error in form.freeTodo.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
 
