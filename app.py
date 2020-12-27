@@ -6,9 +6,8 @@ from bson.objectid import ObjectId
 from functools import wraps
 from flask_uploads import configure_uploads, IMAGES, UploadSet
 from werkzeug.exceptions import RequestEntityTooLarge
-
 from models import mongo, User, Activity
-from forms import EditActivityForm, AddActivityForm
+from forms import ActivityForm
 from consts import CATEGORIES
 from image import resize_image
 # import logging
@@ -232,7 +231,7 @@ def submit_activity():
         flash('You must be logged-in to submit an Activity', 'error')
         return redirect('/user/login/')
 
-    form = AddActivityForm()
+    form = ActivityForm()
 
     if form.validate_on_submit():
         # flash(f'Activity {form.title.data} created.', 'info')
@@ -293,10 +292,10 @@ def edit_activity(activity_id):
         imageURL = set_imageURL(activity_id)
 
         try:
-            form = EditActivityForm(data=activity_data)
+            form = ActivityForm(data=activity_data)
         except RequestEntityTooLarge as e:
             flash('Chosen file too large, limit is 4mb', 'error')
-            form = EditActivityForm(data=activity_data)
+            form = ActivityForm(data=activity_data)
         else:
             form.imageId.data = activity_id
 
