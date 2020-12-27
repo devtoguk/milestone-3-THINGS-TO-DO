@@ -149,6 +149,7 @@ def search():
 
 @app.route('/category/<string:category>/', methods=['POST', 'GET'])
 def category(category):
+    message = f'{category} Activities'
     if request.method == "GET":
         if category == 'All':
             activities = list(mongo.db.activities.find())
@@ -157,14 +158,19 @@ def category(category):
         elif category == 'Recently Added':
             activities = list(mongo.db.activities.
                               find().sort('createdOn', -1).limit(6))
+        elif category == 'Submitted':
+            user_session = session.get('user')
+            userid = ObjectId(user_session['_id']['$oid'])
+            activities = list(mongo.db.activities.
+                              find({'userid': ObjectId(userid)}).
+                              sort('createdOn', -1))
+            message = 'Activities submitted by me'
         else:
             activities = list(mongo.db.activities.find({'category': category}))
-
-        if category != 'Featured' and category != 'Recently Added':
             total = len(activities)
-            flash(f'{total} result{"s" if total != 1 else ""} for [{category}]', 'info')
-        else:
-            flash(f'{category} Activities', 'info')
+            message = f'{total} result{"s" if total != 1 else ""} for [{category}]'
+
+        flash(message, 'info')
 
         for act in activities:
             act['imageURL'] = set_imageURL(act["_id"])

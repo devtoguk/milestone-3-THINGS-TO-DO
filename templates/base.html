@@ -72,6 +72,7 @@
                         <div class="dropdown-menu dropdown-menu-lg-right" aria-labelledby="profileDropdown">
                             <a class="dropdown-item" href="/user/profile/">View Profile</a>
                             <a class="dropdown-item" href="/user/favourites/">My Favourites</a>
+                            <a class="dropdown-item" href="/category/Submitted/">Submitted by Me</a>
                             {% if session['user']['level'] == 1 or session['user']['level'] == 7 %}
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="/admin/approve/">Approve Submissions</a>
