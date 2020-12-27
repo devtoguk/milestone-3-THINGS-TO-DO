@@ -165,6 +165,16 @@ def category(category):
                               find({'userid': ObjectId(userid)}).
                               sort('createdOn', -1))
             message = 'Activities submitted by me'
+        elif category == 'Favourites':
+            user_session = session.get('user')
+            userid = ObjectId(user_session['_id']['$oid'])
+            user_data = list(mongo.db.users.
+                             find({'_id': ObjectId(userid)},
+                                  {'_id': 0, 'favourites': 1}))
+            user_favourites = user_data[0]['favourites']
+            activities = list(mongo.db.activities.
+                              find({'_id': {'$in': user_favourites}}))
+            message = 'My Favourite Activities'
         else:
             activities = list(mongo.db.activities.find({'category': category}))
             total = len(activities)
