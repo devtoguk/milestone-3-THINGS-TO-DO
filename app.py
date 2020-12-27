@@ -341,9 +341,11 @@ def view_activity(activity_id):
         return redirect(url_for('index'))
 
 
-@app.route('/form/cancel/<message>')
+@app.route('/form/cancel/<message>/')
 def cancel_form(message):
-    flash(f'{message} cancelled', 'info')
+    print(f'Message is: [{message}]')
+    if message != 'None':
+        flash(f'{message} cancelled', 'info')
     return redirect(url_for('index'))
 
 

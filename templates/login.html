@@ -3,7 +3,12 @@
 
 <div class="card login__form-width mx-auto">
 	<div class="card-header">
-		User Login
+        <div class="form__header-title">
+            User Login
+        </div>
+        <div class="form__header-cancel float-right">
+            <a class="action" href="{{ url_for('cancel_form', message='User Login') }}"><i class="far fa-window-close"></i></a>
+        </div>
 	</div>
     <!-- User registration form -->
 	<div class="card-body shadow">
