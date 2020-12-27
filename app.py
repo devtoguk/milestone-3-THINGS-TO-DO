@@ -6,9 +6,8 @@ from bson.objectid import ObjectId
 from functools import wraps
 from flask_uploads import configure_uploads, IMAGES, UploadSet
 from werkzeug.exceptions import RequestEntityTooLarge
-
 from models import mongo, User, Activity
-from forms import EditActivityForm, AddActivityForm
+from forms import ActivityForm
 from consts import CATEGORIES
 from image import resize_image
 # import logging
@@ -232,7 +231,7 @@ def submit_activity():
         flash('You must be logged-in to submit an Activity', 'error')
         return redirect('/user/login/')
 
-    form = AddActivityForm()
+    form = ActivityForm()
 
     if form.validate_on_submit():
         # flash(f'Activity {form.title.data} created.', 'info')
@@ -274,51 +273,54 @@ def edit_activity(activity_id):
     else:
         user_session = session.get("user")
 
-    activity_data = Activity().get_activity(activity_id)
+    if check_activity_id(activity_id):
+        activity_data = Activity().get_activity(activity_id)
 
-    if activity_data is None:
-        flash('Activity not found', 'error')
-        return redirect(url_for('index'))
-
-    users_level = user_session.get('level', 0)
-    # Check if activity belongs to a user or if they are 1-moderator or 7-admin
-    #
-    if ObjectId(user_session['_id']['$oid']) != ObjectId(activity_data['userid']) and users_level != 1 and users_level != 7:
-        flash(f'You cannot edit the activity "{activity_data["title"]}"',
-              'error')
-        return redirect(url_for('index'))
-
-    # set current imageURL
-    imageURL = set_imageURL(activity_id)
-
-    try:
-        form = EditActivityForm(data=activity_data)
-    except RequestEntityTooLarge as e:
-        flash('Chosen file too large, limit is 4mb', 'error')
-        form = EditActivityForm(data=activity_data)
-    else:
-        form.imageId.data = activity_id
-
-        if form.validate_on_submit():
-            td = form.venue.data
-            del td['location']
-            # print(form.image.data)
-            if form.image.data:
-                if form.image.data:
-                    save_image(form.image.data, activity_id + '.jpg')
-
-            print(f'We were editing activity: {activity_id}')
-            result = Activity().update_activity(activity_id)
-            print(result)
+        if activity_data is None:
+            flash('Activity not found', 'error')
             return redirect(url_for('index'))
-        elif request.method == 'POST':
-            print('Post with Errors!')
-            flash('Please correct form errors below', 'error')
 
-    return render_template('activity_form.html', form=form,
-                           form_title='Edit Activity',
-                           imageURL=imageURL,
-                           categories=CATEGORIES)
+        users_level = user_session.get('level', 0)
+        # Check if activity belongs to a user or if they are 1-moderator or 7-admin
+        #
+        if ObjectId(user_session['_id']['$oid']) != ObjectId(activity_data['userid']) and users_level != 1 and users_level != 7:
+            flash(f'You cannot edit the activity "{activity_data["title"]}"',
+                'error')
+            return redirect(url_for('index'))
+
+        # set current imageURL
+        imageURL = set_imageURL(activity_id)
+
+        try:
+            form = ActivityForm(data=activity_data)
+        except RequestEntityTooLarge as e:
+            flash('Chosen file too large, limit is 4mb', 'error')
+            form = ActivityForm(data=activity_data)
+        else:
+            form.imageId.data = activity_id
+
+            if form.validate_on_submit():
+                td = form.venue.data
+                del td['location']
+                # print(form.image.data)
+                if form.image.data:
+                    if form.image.data:
+                        save_image(form.image.data, activity_id + '.jpg')
+
+                print(f'We were editing activity: {activity_id}')
+                result = Activity().update_activity(activity_id)
+                print(result)
+                return redirect(url_for('index'))
+            elif request.method == 'POST':
+                print('Post with Errors!')
+                flash('Please correct form errors below', 'error')
+
+        return render_template('activity_form.html', form=form,
+                               form_title='Edit Activity',
+                               imageURL=imageURL,
+                               categories=CATEGORIES)
+    else:
+        return redirect(url_for('index'))
 
 
 @app.route('/activity/view/<string:activity_id>/')
@@ -336,6 +338,14 @@ def view_activity(activity_id):
                                categories=CATEGORIES)
     else:
         return redirect(url_for('index'))
+
+
+@app.route('/form/cancel/<message>/')
+def cancel_form(message):
+    print(f'Message is: [{message}]')
+    if message != 'None':
+        flash(f'{message} cancelled', 'info')
+    return redirect(url_for('index'))
 
 
 if __name__ == '__main__':

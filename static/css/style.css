@@ -149,6 +149,18 @@ body {
     background: var(--themeSeaGreen);
 }
 
+.form__header-title {
+    font-size: 1.2em;
+    display: inline-block;
+    padding-top: 0.5rem;
+}
+
+.form__header-cancel {
+    font-size: 2em;
+    display: inline-block;
+    padding-top: 0;
+}
+
 .form__divider {
     height: 2px;
     background-color: var(--themeSeaGreen);
@@ -157,6 +169,15 @@ body {
 
 .form__image-height {
     height: 12.5em;
+}
+
+a.action:link, a.action:visited {
+    color: var(--themeSuperLightGreen);
+    transition: 0.35s;
+}
+
+a.action:hover, a.action:active {
+    color: white;
 }
 
 .profile__data {
@@ -198,6 +219,7 @@ body {
 }
 
 .card-header {
+    padding: 0 .5em;
     background: var(--themeSeaGreen);
 }
 
@@ -332,7 +354,7 @@ a.info:hover, a.info:active {
     background: var(--themeTransRed);
     /* color: var(--themeDarkGreen); */
     color: #fff;
-    padding: 0.5em;
+    padding: 0 0 0.3em 0;
 }
 
 /* Small devices (landscape phones, 576px and up) */

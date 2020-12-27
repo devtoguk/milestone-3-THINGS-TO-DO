@@ -55,8 +55,8 @@ def make_a_choice(form, field):
         raise ValidationError('Please choose an option')
 
 
-# class ActivityForm(FlaskForm):
-class ActivityForm():
+# class ActivityForm():
+class ActivityForm(FlaskForm):
     title = StringField('Title',
                         validators=[DataRequired(), Length(min=4, max=50)])
     shortDescr = StringField('Short Description',
@@ -94,11 +94,3 @@ class ActivityForm():
     imageId = StringField(widget=HiddenInput(),
                             validators=[Optional()]) 
     venue = FormField(VenueForm)
-
-
-class EditActivityForm(FlaskForm, ActivityForm):
-    submit = SubmitField('Update Activity')
-
-
-class AddActivityForm(FlaskForm, ActivityForm):
-    submit = SubmitField('Submit Activity')

@@ -174,7 +174,7 @@ class Activity:
             activity_json_str = dumps(activity,
                                       json_options=RELAXED_JSON_OPTIONS)
             activity_json = json.loads(activity_json_str)
-            flash(f'"{ activity["title"] }" activity updated.', 'info')
+            flash(f'"{ activity["title"] }" updated.', 'info')
 
             return activity_json, 200
 

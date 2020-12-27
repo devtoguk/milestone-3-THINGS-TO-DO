@@ -3,7 +3,12 @@
 
 <div class="card register__form-width mb-5 mx-auto">
 	<div class="card-header">
-		View User Profile
+        <div class="form__header-title">
+            View User Profile
+        </div>
+        <div class="form__header-cancel float-right">
+            <a class="action" href="{{ url_for('cancel_form', message='None') }}"><i class="far fa-window-close"></i></a>
+        </div>
 	</div>
     <!-- User profile details -->
 	<div class="card-body shadow">

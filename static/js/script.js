@@ -9,6 +9,10 @@ const activityForm = {
         {id: 'title', error: 'Field must be at least 4 characters long.'},
         {id: 'shortDescr', error: 'Field must be at least 4 characters long.'},
         {id: 'longDescr', error: 'Field must be at least 4 characters long.'},
+        {id: 'location', error: 'Please select an option.'},
+        {id: 'ageRange', error: 'Enter age range ie. 3-99  10-14  etc'},
+        {id: 'online', error: 'Please select an option.'},
+        {id: 'freeTodo', error: 'Please select an option.'},
         {id: 'category', error: 'At least one must be selected.'},
         {id: 'whenTodo', error: 'At least one must be selected.'}
     ],
@@ -37,7 +41,8 @@ const activityForm = {
 
     validateEmptyField: (formFieldID, errorMessage=' field error.') => {
         fieldValue = $('#' + formFieldID).val();
-        if (fieldValue == '') {
+        console.log('Field value: ', fieldValue)
+        if (fieldValue == '' || fieldValue == 0) {
             activityForm.showFieldError(formFieldID, errorMessage)
             return true;
         } else { return false; }
