@@ -171,6 +171,16 @@ body {
     height: 12.5em;
 }
 
+a.action:link, a.action:visited {
+    color: var(--themeSuperLightGreen);
+    transition: 0.35s;
+}
+
+a.action:hover, a.action:active {
+    color: white;
+}
+
+
 .profile__data {
     font-weight: bold;
 }
