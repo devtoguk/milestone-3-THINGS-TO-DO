@@ -154,11 +154,17 @@ def category(category):
             activities = list(mongo.db.activities.find())
         elif category == 'Featured':
             activities = list(mongo.db.activities.find({'featured': True}))
+        elif category == 'Recently Added':
+            activities = list(mongo.db.activities.
+                              find().sort('createdOn', -1).limit(6))
         else:
             activities = list(mongo.db.activities.find({'category': category}))
 
-        total = len(activities)
-        flash(f'{total} result{"s" if total != 1 else ""} for [{category}]', 'info')
+        if category != 'Featured' and category != 'Recently Added':
+            total = len(activities)
+            flash(f'{total} result{"s" if total != 1 else ""} for [{category}]', 'info')
+        else:
+            flash(f'{category} Activities', 'info')
 
         for act in activities:
             act['imageURL'] = set_imageURL(act["_id"])
