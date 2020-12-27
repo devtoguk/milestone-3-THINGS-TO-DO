@@ -180,7 +180,6 @@ a.action:hover, a.action:active {
     color: white;
 }
 
-
 .profile__data {
     font-weight: bold;
 }
@@ -355,7 +354,7 @@ a.info:hover, a.info:active {
     background: var(--themeTransRed);
     /* color: var(--themeDarkGreen); */
     color: #fff;
-    padding: 0.5em;
+    padding: 0 0 0.3em 0;
 }
 
 /* Small devices (landscape phones, 576px and up) */
