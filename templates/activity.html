@@ -1,11 +1,32 @@
 {% extends "base.html" %}
 {% block content %}
 
+{% if activity.inUsersFavourites == 'Y' %}
+    {% set favourite_icon_style = 'fas' %}
+    {% set favourite_link_style = 'favourites__remove' %}
+    {% set favourite_alt_text = 'Remove from' %}
+    {% set favourite_action = '0' %}
+{% else %}
+    {% set favourite_icon_style = 'far' %}
+    {% set favourite_link_style = 'favourites__add' %}
+    {% set favourite_alt_text = 'Add to your' %}
+    {% set favourite_action = '1' %}
+{% endif %}
+
 <div class="activity-view__container">
     <!-- Title and short description -->
     <div class="row">
-        <div class="col-12">
+        <div class="col-11">
             <h2>{{ activity.title|lower|capitalize }}</h2>
+        </div>
+        <div class="col-1">
+            <div class="d-inline-block float-right mt-1">
+                <a class="{{ favourite_link_style }}" href="/activity/favourite/{{ activity._id }}/{{ favourite_action}}/" alt="{{ favourite_alt_text }} your Activity Favourites" title="{{ favourite_alt_text }} your Activity Favourites">
+                    <i class="{{ favourite_icon_style }} fa-heart fa-2x"></i>
+                </a>
+            </div>
+        </div>
+        <div class="col-12">
             <h3>{{ activity.shortDescr }}</h3>
         </div>
     </div>
