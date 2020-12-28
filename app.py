@@ -396,32 +396,40 @@ def view_activity(activity_id):
 
 @app.route('/activity/favourite/<string:activity_id>/<string:action>/')
 def favourite_activity(activity_id, action):
+    if not Activity().get_activity(activity_id):
+        flash('Activity not found', 'error')
+        return redirect(url_for('index'))
+
     user_session = session.get('user')
     if user_session:
-        userid = ObjectId(user_session['_id']['$oid'])
-        if action == '0':
-            if mongo.db.users.update_one({"_id": ObjectId(userid)},
-                                         {'$pull': {'favourites': ObjectId(activity_id)}}):
-                flash('Activity removed from your Activity Favourites', 'info')
-                return redirect(url_for('view_activity',
-                                activity_id=activity_id))
-            else:
-                flash('Favourites update failed', 'error')
+        if check_activity_id(activity_id):
+            userid = ObjectId(user_session['_id']['$oid'])
+            if action == '0':
+                if mongo.db.users.update_one({"_id": ObjectId(userid)},
+                                             {'$pull': {'favourites': ObjectId(activity_id)}}):
+                    flash('Activity removed from your Activity Favourites',
+                          'info')
+                    return redirect(url_for('view_activity',
+                                            activity_id=activity_id))
+                else:
+                    flash('Favourites update failed', 'error')
 
-        elif action == '1':
-            if mongo.db.users.update_one({"_id": ObjectId(userid)},
-                                         {'$push': {'favourites': ObjectId(activity_id)}}):
-                flash('Activity added to your Activity Favourites', 'info')
-                return redirect(url_for('view_activity',
-                                activity_id=activity_id))
+            elif action == '1':
+                if mongo.db.users.update_one({"_id": ObjectId(userid)},
+                                             {'$push': {'favourites': ObjectId(activity_id)}}):
+                    flash('Activity added to your Activity Favourites', 'info')
+                    return redirect(url_for('view_activity',
+                                    activity_id=activity_id))
+                else:
+                    flash('Favourites update failed', 'error')
             else:
-                flash('Favourites update failed', 'error')
-        else:
-            flash('Favourites update error', 'error')
-        return redirect(url_for('index'))
+                flash('Favourites update error', 'error')
+
     else:
         flash('You are not logged-in', 'error')
         return redirect(url_for('login'))
+
+    return redirect(url_for('index'))
 
 
 @app.route('/form/cancel/<message>/')
