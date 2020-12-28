@@ -357,6 +357,19 @@ a.info:hover, a.info:active {
     padding: 0 0 0.3em 0;
 }
 
+
+/* Favourites */
+
+a.favourites__add:link, a.action:visited {
+    color: grey;
+    transition: 0.35s;
+}
+
+a.favourites__add:hover, a.action:active {
+    color: var(--themeRed);
+}
+
+
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) { 
 

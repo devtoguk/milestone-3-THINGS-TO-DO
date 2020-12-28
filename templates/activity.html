@@ -4,8 +4,17 @@
 <div class="activity-view__container">
     <!-- Title and short description -->
     <div class="row">
-        <div class="col-12">
+        <div class="col-11">
             <h2>{{ activity.title|lower|capitalize }}</h2>
+        </div>
+        <div class="col-1">
+            <div class="d-inline-block float-right mt-1">
+                <a class="favourites__add" href="#" alt="Add to your Activity Favourites" title="Add to your Activity Favourites">
+                    <i class="far fa-heart fa-2x"></i>
+                </a>
+            </div>
+        </div>
+        <div class="col-12">
             <h3>{{ activity.shortDescr }}</h3>
         </div>
     </div>
