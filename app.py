@@ -424,7 +424,7 @@ def favourite_activity(activity_id, action):
         else:
             flash('Favourites update operation invalid', 'error')
     else:
-        flash('You are not logged-in', 'error')
+        flash('You must be logged-in to use Favourites', 'error')
         return redirect(url_for('login'))
     return redirect(url_for('index'))
 
