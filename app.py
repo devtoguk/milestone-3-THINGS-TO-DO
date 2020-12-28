@@ -80,12 +80,12 @@ def save_image(data, filename):
     print(f'My URL: {myURL}')
 
 
-# @app.errorhandler(404)
-# def page_unknown(e):
-#     print(f'Error is: {e}')
-#     return render_template('error.html',
-#                            error_message='Sorry we cannot locate that page.',
-#                            error_code=404)
+@app.errorhandler(404)
+def page_unknown(e):
+    print(f'Error is: {e}')
+    return render_template('error.html',
+                           error_message='Sorry we cannot locate that page.',
+                           error_code=404)
 
 
 @app.errorhandler(413)
