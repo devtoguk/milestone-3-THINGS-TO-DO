@@ -166,8 +166,12 @@ class Activity:
         # Create the activity object
         #
         activity = self.activity_object()
-        # Remove user id field so we don't override the creator
+        # Remove userid & createdOn fields so we don't override creator info
         del activity['userid']
+        del activity['createdOn']
+        # Remove featured so the featured status is not changed back to false
+        del activity['featured']
+
         # Update activity in the database and return the activity object
         #
         print(f'About to update: {activity_id}')
