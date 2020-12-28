@@ -16,10 +16,10 @@
 <div class="activity-view__container">
     <!-- Title and short description -->
     <div class="row">
-        <div class="col-11">
+        <div class="col-10">
             <h2>{{ activity.title|lower|capitalize }}</h2>
         </div>
-        <div class="col-1">
+        <div class="col-2">
             <div class="d-inline-block float-right mt-1">
                 <a class="{{ favourite_link_style }}" href="/activity/favourite/{{ activity._id }}/{{ favourite_action}}/" alt="{{ favourite_alt_text }} your Activity Favourites" title="{{ favourite_alt_text }} your Activity Favourites">
                     <i class="{{ favourite_icon_style }} fa-heart fa-2x"></i>
