@@ -364,12 +364,64 @@ def view_activity(activity_id):
             return redirect(url_for('index'))
 
         activity_data['imageURL'] = set_imageURL(activity_id)
+        print('Check if user has this activity in their faves list')
+        user_session = session.get('user')
+        if user_session:
+            userid = ObjectId(user_session['_id']['$oid'])
+            user_data = list(mongo.db.users.
+                                find({'_id': ObjectId(userid)},
+                                    {'_id': 0, 'favourites': 1}))
+            if 'favourites' in user_data[0]:
+                user_favourites = user_data[0]['favourites']
+                print(f'User faves are: {user_favourites}')
+                if ObjectId(activity_id) in user_favourites:
+                    print('*** IN user favourites ***')
+                    activity_data['inUsersFavourites'] = 'Y'
+                else:
+                    activity_data['inUsersFavourites'] = 'N'
+            else:
+                print('User has no favourites')
+                activity_data['inUsersFavourites'] = 'N'
+        else:
+            print('User not logged-in!')
+            activity_data['inUsersFavourites'] = 'U'
+
         return render_template('activity.html',
                                activity=activity_data,
                                nav_link='Activities',
                                categories=CATEGORIES)
     else:
         return redirect(url_for('index'))
+
+
+@app.route('/activity/favourite/<string:activity_id>/<string:action>/')
+def favourite_activity(activity_id, action):
+    user_session = session.get('user')
+    if user_session:
+        userid = ObjectId(user_session['_id']['$oid'])
+        if action == '0':
+            if mongo.db.users.update_one({"_id": ObjectId(userid)},
+                                         {'$pull': {'favourites': ObjectId(activity_id)}}):
+                flash('Activity removed from your Activity Favourites', 'info')
+                return redirect(url_for('view_activity',
+                                activity_id=activity_id))
+            else:
+                flash('Favourites update failed', 'error')
+
+        elif action == '1':
+            if mongo.db.users.update_one({"_id": ObjectId(userid)},
+                                         {'$push': {'favourites': ObjectId(activity_id)}}):
+                flash('Activity added to your Activity Favourites', 'info')
+                return redirect(url_for('view_activity',
+                                activity_id=activity_id))
+            else:
+                flash('Favourites update failed', 'error')
+        else:
+            flash('Favourites update error', 'error')
+        return redirect(url_for('index'))
+    else:
+        flash('You are not logged-in', 'error')
+        return redirect(url_for('login'))
 
 
 @app.route('/form/cancel/<message>/')

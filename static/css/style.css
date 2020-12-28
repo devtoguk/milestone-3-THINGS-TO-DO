@@ -360,15 +360,23 @@ a.info:hover, a.info:active {
 
 /* Favourites */
 
-a.favourites__add:link, a.action:visited {
+a.favourites__add:link, a.favourites__add:visited {
     color: grey;
-    transition: 0.35s;
+    transition: 0.25s;
 }
 
-a.favourites__add:hover, a.action:active {
+a.favourites__add:hover, a.favourites__add:active {
     color: var(--themeRed);
 }
 
+a.favourites__remove:link, a.favourites__remove:visited {
+    color: var(--themeRed);
+    transition: 0.25s;
+}
+
+a.favourites__remove:hover, a.favourites__remove:active {
+    color: grey;
+}
 
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) { 
