@@ -13,7 +13,8 @@ class User:
 
     def start_session(self, user):
         del user['password']
-        del user['favourites']
+        if 'favourites' in user:
+            del user['favourites']
         session['logged_in'] = True
         user_json_str = dumps(user, json_options=RELAXED_JSON_OPTIONS)
         user_json = json.loads(user_json_str)
