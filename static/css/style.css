@@ -13,6 +13,8 @@
     --themeTreeBrown: rgb(71, 79, 67);
     --themeTransTreeBrown: rgb(71, 79, 67, 0.8);
     --themeDarkGreen: rgb(29, 62, 4);
+    --themeHeartRed: rgb(248, 79, 98);
+    --themeHeartGrey: rgb(152, 152, 152);
 }
 
 body {
@@ -361,21 +363,21 @@ a.info:hover, a.info:active {
 /* Favourites */
 
 a.favourites__add:link, a.favourites__add:visited {
-    color: grey;
+    color: var(--themeHeartGrey);
     transition: 0.25s;
 }
 
 a.favourites__add:hover, a.favourites__add:active {
-    color: var(--themeRed);
+    color: var(--themeHeartRed);
 }
 
 a.favourites__remove:link, a.favourites__remove:visited {
-    color: var(--themeRed);
+    color: var(--themeHeartRed);
     transition: 0.25s;
 }
 
 a.favourites__remove:hover, a.favourites__remove:active {
-    color: grey;
+    color: var(--themeHeartGrey);
 }
 
 /* Small devices (landscape phones, 576px and up) */
