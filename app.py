@@ -3,7 +3,6 @@ from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
 from bson.objectid import ObjectId
-from functools import wraps
 from flask_uploads import configure_uploads, IMAGES, UploadSet
 from werkzeug.exceptions import RequestEntityTooLarge
 from models import mongo, User, Activity
@@ -11,8 +10,7 @@ from forms import ActivityForm
 from consts import CATEGORIES
 from image import resize_image
 from functions import (
-    set_imageURL, create_presigned_url,
-    upload_file, check_activity_id)
+    set_imageURL, upload_file, check_activity_id)
 
 if os.path.exists('env.py'):
     import env
@@ -35,33 +33,24 @@ configure_uploads(app, images)
 
 
 def save_image(data, filename):
-    print(f'Trying to save image: {filename}')
-    # Remove old file
+    """Resize and upload image to S3 Bucket
+
+    :param data: image data
+    :param filename: string
+    """
     file_path = images.path(filename)
     if os.path.exists(file_path):
         os.remove(file_path)
-    # s3 = boto3.resource('s3')
-    # print('Buckets:')
-    # for bucket in s3.buckets.all():
-    #     print(bucket.name)
 
-    # Save and resize temporary image
+    # Save temporary image and resize
     image_folder = 'static/images/activities/'
     bucket_name = os.environ.get('S3_BUCKET_NAME')
-
     images.save(data, None, filename)
     resize_image(filename)
 
-    print(f'Filename: {filename}')
+    # Upload image to AWS S3 bucket
     file_path = image_folder + filename
-    print(f'File-path: {file_path}')
-    # Upload image to AWS S3
-    # upload_file(data, bucket_name, object_name=filename)
     upload_file(file_path, bucket_name, object_name=filename)
-    myURL = create_presigned_url(bucket_name,
-                                 filename, expiration=880)
-
-    print(f'My URL: {myURL}')
 
 
 @app.errorhandler(404)
