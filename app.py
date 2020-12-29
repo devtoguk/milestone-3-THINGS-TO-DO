@@ -20,19 +20,6 @@ if os.path.exists('env.py'):
 app = Flask(__name__)
 
 
-# Decorators
-#
-def login_required(f):
-    @wraps(f)
-    def wrap(*arg, **kwargs):
-        if 'logged_in' in session:
-            return f(*arg, **kwargs)
-        else:
-            return redirect('/')
-
-    return wrap
-
-
 app.config['MONGO_DBNAME'] = os.environ.get('MONGO_DBNAME')
 app.config['MONGO_URI'] = os.environ.get('MONGO_URI')
 app.secret_key = os.environ.get('SECRET_KEY')
@@ -243,7 +230,7 @@ def profile():
 def submit_activity():
 
     if session.get('user') is None:
-        flash('You must be logged-in to submit an Activity', 'error')
+        flash(f'You must be logged-in to submit an Activity', 'error')
         return redirect('/user/login/')
 
     form = ActivityForm()
