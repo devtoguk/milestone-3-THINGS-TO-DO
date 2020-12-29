@@ -66,7 +66,7 @@ def too_large():
     return render_template(
         'error.html',
         error_message=('The file you chose was too large, '
-                       'our gallery limit is 2mb.'),
+                       'our gallery limit is 4mb.'),
         error_code=413)
 
 
