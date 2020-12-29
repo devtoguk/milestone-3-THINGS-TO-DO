@@ -486,7 +486,12 @@ def favourite_activity(activity_id, action):
 
 @app.route('/form/cancel/<message>/')
 def cancel_form(message):
-    print(f'Message is: [{message}]')
+    """
+    Display form cancel message
+
+    :param message: string
+    :return: Redirect to home page
+    """
     if message != 'None':
         flash(f'{message} cancelled', 'info')
     return redirect(url_for('index'))
