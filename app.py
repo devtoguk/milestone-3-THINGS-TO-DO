@@ -200,87 +200,6 @@ def category(category):
     return redirect(url_for('index'))
 
 
-@app.route('/user/register/')
-def register():
-    """
-    Render User Registration page
-    """
-    return render_template(
-        'register.html',
-        page_title=('Things to Do and Places to Go: User Registration'),
-        nav_link='Login/Register',
-        categories=CATEGORIES)
-
-
-@app.route('/user/login/')
-def login():
-    """
-    Render User Login page
-    """
-    return render_template(
-        'login.html',
-        page_title=('Things to Do and Places to Go: User Login'),
-        nav_link='Login/Register',
-        categories=CATEGORIES)
-
-
-@app.route('/user/add_user/', methods=['POST'])
-def add_user():
-    """
-    Attempt to add new user to database
-    Called from javascript file
-    """
-    return User().add_user()
-
-
-@app.route('/user/login_user/', methods=['POST'])
-def login_user():
-    """
-    Attempt to login user
-    Called from javascript file
-    """
-    return User().login_user()
-
-
-@app.route('/user/logout/')
-def logout():
-    """
-    Attempt to logout the user
-    """
-    return User().logout()
-
-
-@app.route('/user/welcome/<string:user_status>/')
-def welcome(user_status):
-    """
-    Setup user session and flash login message
-    Called from javascript file
-
-    :param user_status: string N for new user R for existing
-    :return: redirect to home page
-    """
-    user_session = session.get('user')
-    user_name = user_session.get('name', 0)
-    if user_status == 'N':
-        flash(f'''Welcome {user_name.title()},
-                  thank you for registering.''', 'info')
-    else:
-        flash(f'{user_name.title()} logged-in.', 'info')
-
-    return redirect(url_for('index'))
-
-
-@app.route('/user/profile/')
-def profile():
-    """
-    Render User Profile page
-    """
-    return render_template(
-        'profile.html',
-        page_title=('Things to Do and Places to Go: User Profile'),
-        categories=CATEGORIES)
-
-
 @app.route('/activity/submit/', methods=['GET', 'POST'])
 def submit_activity():
     """
@@ -496,6 +415,87 @@ def cancel_form(message):
     if message != 'None':
         flash(f'{message} cancelled', 'info')
     return redirect(url_for('index'))
+
+
+@app.route('/user/register/')
+def register():
+    """
+    Render User Registration page
+    """
+    return render_template(
+        'register.html',
+        page_title=('Things to Do and Places to Go: User Registration'),
+        nav_link='Login/Register',
+        categories=CATEGORIES)
+
+
+@app.route('/user/login/')
+def login():
+    """
+    Render User Login page
+    """
+    return render_template(
+        'login.html',
+        page_title=('Things to Do and Places to Go: User Login'),
+        nav_link='Login/Register',
+        categories=CATEGORIES)
+
+
+@app.route('/user/add_user/', methods=['POST'])
+def add_user():
+    """
+    Attempt to add new user to database
+    Called from javascript file
+    """
+    return User().add_user()
+
+
+@app.route('/user/login_user/', methods=['POST'])
+def login_user():
+    """
+    Attempt to login user
+    Called from javascript file
+    """
+    return User().login_user()
+
+
+@app.route('/user/logout/')
+def logout():
+    """
+    Attempt to logout the user
+    """
+    return User().logout()
+
+
+@app.route('/user/welcome/<string:user_status>/')
+def welcome(user_status):
+    """
+    Setup user session and flash login message
+    Called from javascript file
+
+    :param user_status: string N for new user R for existing
+    :return: redirect to home page
+    """
+    user_session = session.get('user')
+    user_name = user_session.get('name', 0)
+    if user_status == 'N':
+        flash(f'''Welcome {user_name.title()},
+                  thank you for registering.''', 'info')
+    else:
+        flash(f'{user_name.title()} logged-in.', 'info')
+
+    return redirect(url_for('index'))
+
+
+@app.route('/user/profile/')
+def profile():
+    """
+    Render User Profile page
+    """
+    return render_template(
+        'profile.html',
+        page_title=('Things to Do and Places to Go: User Profile'),
+        categories=CATEGORIES)
 
 
 if __name__ == '__main__':
