@@ -271,8 +271,13 @@ def welcome(user_status):
 
 @app.route('/user/profile/')
 def profile():
-    return render_template('profile.html',
-                           categories=CATEGORIES)
+    """
+    Render User Profile page
+    """
+    return render_template(
+        'profile.html',
+        page_title=('Things to Do and Places to Go: User Profile'),
+        categories=CATEGORIES)
 
 
 @app.route('/activity/submit/', methods=['GET', 'POST'])
