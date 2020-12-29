@@ -114,6 +114,7 @@ def search():
             flash(f'''{total} result{"s" if total != 1 else ""}
                       for "{search_text}"''', 'info')
 
+            # Set image URLs either no_image_yet or S3 bucket image
             for act in activities:
                 act['imageURL'] = set_imageURL(act["_id"])
 
@@ -130,7 +131,15 @@ def search():
 
 @app.route('/category/<string:category>/', methods=['POST', 'GET'])
 def category(category):
+    """
+    Show database results based on the selected category
+
+    :param category: string
+    :return: render results or redirect to home page
+    """
+    # Set default results flash message
     message = f'{category} Activities'
+
     if request.method == "GET":
         if category == 'All':
             activities = list(mongo.db.activities.find())
@@ -155,10 +164,12 @@ def category(category):
             user_session = session.get('user')
             if user_session:
                 userid = ObjectId(user_session['_id']['$oid'])
+                # Get users favourites list
                 user_data = list(mongo.db.users.
                                  find({'_id': ObjectId(userid)},
                                       {'_id': 0, 'favourites': 1}))
                 user_favourites = user_data[0]['favourites']
+                # Get activities which are in the users favourites list
                 activities = list(mongo.db.activities.
                                   find({'_id': {'$in': user_favourites}}))
                 message = 'My Favourite Activities'
@@ -169,26 +180,35 @@ def category(category):
         else:
             activities = list(mongo.db.activities.find({'category': category}))
             total = len(activities)
-            message = f'{total} result{"s" if total != 1 else ""} for [{category}]'
+            message = f'''{total} result{"s" if total != 1 else ""}
+                          for [{category}]'''
 
         flash(message, 'info')
 
+        # Set image URLs either no_image_yet or S3 bucket image
         for act in activities:
             act['imageURL'] = set_imageURL(act["_id"])
 
-        return render_template('results.html',
-                               activities=activities,
-                               nav_link='Activities',
-                               categories=CATEGORIES)
+        return render_template(
+            'results.html',
+            page_title=(f'Things to Do and Places to Go: {message}'),
+            activities=activities,
+            nav_link='Activities',
+            categories=CATEGORIES)
 
     return redirect(url_for('index'))
 
 
 @app.route('/user/register/')
 def register():
-    return render_template('register.html',
-                           nav_link='Login/Register',
-                           categories=CATEGORIES)
+    """
+    Render User Registration page
+    """
+    return render_template(
+        'register.html',
+        page_title=('Things to Do and Places to Go: User Registration'),
+        nav_link='Login/Register',
+        categories=CATEGORIES)
 
 
 @app.route('/user/login/')
