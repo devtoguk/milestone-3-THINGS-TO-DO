@@ -54,20 +54,20 @@ def save_image(data, filename):
 
 
 @app.errorhandler(404)
-def page_unknown():
+def page_unknown(e):
     return render_template(
         'error.html',
         error_message='Sorry we cannot locate that page.',
-        error_code=404)
+        error_code=e)
 
 
 @app.errorhandler(413)
-def too_large():
+def too_large(e):
     return render_template(
         'error.html',
         error_message=('The file you chose was too large, '
                        'our gallery limit is 4mb.'),
-        error_code=413)
+        error_code=e)
 
 
 @app.route('/')
