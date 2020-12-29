@@ -244,26 +244,28 @@ def login_user():
 @app.route('/user/logout/')
 def logout():
     """
-    Attempt to logout the user        
+    Attempt to logout the user
     """
     return User().logout()
 
 
-@app.route('/user/welcome/')
-def welcome():
-    user_session = session.get('user')
-    print(user_session)
-    user_name = user_session.get('name', 0)
-    flash(f'Welcome {user_name.title()}, thank you for registering.', 'info')
-    return redirect(url_for('index'))
+@app.route('/user/welcome/<string:user_status>/')
+def welcome(user_status):
+    """
+    Setup user session and flash login message
+    Called from javascript file
 
-
-@app.route('/user/logged-in/')
-def logged_in():
+    :param user_status: string N for new user R for existing
+    :return: redirect to home page
+    """
     user_session = session.get('user')
-    print(user_session)
     user_name = user_session.get('name', 0)
-    flash(f'{user_name.title()} logged-in.', 'info')
+    if user_status == 'N':
+        flash(f'''Welcome {user_name.title()},
+                  thank you for registering.''', 'info')
+    else:
+        flash(f'{user_name.title()} logged-in.', 'info')
+
     return redirect(url_for('index'))
 
 
