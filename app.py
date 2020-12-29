@@ -10,9 +10,6 @@ from models import mongo, User, Activity
 from forms import ActivityForm
 from consts import CATEGORIES
 from image import resize_image
-# import logging
-# import boto3
-# from botocore.exceptions import ClientError
 from functions import (
     set_imageURL, create_presigned_url,
     upload_file, check_activity_id)
@@ -109,20 +106,6 @@ def about():
     activities = list(mongo.db.activities.find())
     return render_template('about.html', activities=activities,
                            nav_link='About',
-                           categories=CATEGORIES)
-
-
-@app.route('/dbtest/')
-def dbtest():
-    activities = list(mongo.db.activities.find())
-    return render_template('dbtest.html', activities=activities,
-                           categories=CATEGORIES)
-
-
-@app.route('/activity/')
-@login_required
-def activity():
-    return render_template('activity.html',
                            categories=CATEGORIES)
 
 
