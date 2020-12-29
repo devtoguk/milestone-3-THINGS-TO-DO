@@ -117,9 +117,12 @@ def search():
             for act in activities:
                 act['imageURL'] = set_imageURL(act["_id"])
 
-            return render_template('results.html',
-                                   activities=activities,
-                                   categories=CATEGORIES)
+            return render_template(
+                'results.html',
+                page_title=('Things to Do and Places to Go: '
+                            f'Search results for "{search_text}"'),
+                activities=activities,
+                categories=CATEGORIES)
         else:
             flash(f'No results for "{search_text}"', 'info')
             return redirect(url_for('index'))
