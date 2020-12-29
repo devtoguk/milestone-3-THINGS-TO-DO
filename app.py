@@ -282,36 +282,32 @@ def profile():
 
 @app.route('/activity/submit/', methods=['GET', 'POST'])
 def submit_activity():
+    """
+    Submit activity
 
+    Render activity form
+    Check form is valid and save to the database
+    """
     if session.get('user') is None:
-        flash(f'You must be logged-in to submit an Activity', 'error')
-        return redirect('/user/login/')
+        flash('You must be logged-in to submit an Activity', 'error')
+        return redirect(url_for('login'))
 
     form = ActivityForm()
 
     if form.validate_on_submit():
-        # flash(f'Activity {form.title.data} created.', 'info')
         td = form.venue.data
         del td['location']
-        # result = td.pop('location', None)
-        # print(f'Result = {result}')
-        # print(td)
         result = Activity().add_activity()
         activity_id = result[0]
-        # print(f'New ID is: {activity_id}')
-        if result[0] == 'TITLE_EXISTS':
-            form.title.errors.append('An activity with this name already exists')
-            return render_template('activity_form.html', form=form,
-                                   form_title='Add an Activity',
-                                   nav_link='Submit_Activity',
-                                   categories=CATEGORIES)
-        else:
+        if result[0] != 'TITLE_EXISTS':
             if form.image.data:
                 save_image(form.image.data, activity_id + '.jpg')
 
-        return redirect(url_for('index'))
+            return redirect(url_for('index'))
+
+        form.title.errors.append('An activity with this name already exists')
+
     elif request.method == 'POST':
-        print('Post with Errors!')
         flash('Please correct form errors below', 'error')
 
     return render_template('activity_form.html', form=form,
