@@ -310,18 +310,28 @@ def submit_activity():
     elif request.method == 'POST':
         flash('Please correct form errors below', 'error')
 
-    return render_template('activity_form.html', form=form,
-                           form_title='Add an Activity',
-                           nav_link='Submit_Activity',
-                           categories=CATEGORIES)
+    return render_template(
+        'activity_form.html', form=form,
+        page_title=('Things to Do and Places to Go: Submit new Activity'),
+        form_title='Add an Activity',
+        nav_link='Submit_Activity',
+        categories=CATEGORIES)
 
 
 @app.route('/activity/edit/<string:activity_id>/', methods=['GET', 'POST'])
 def edit_activity(activity_id):
+    """
+    Edit activity
+    
+    Render activity form
+    Check form is valid and save to the database
 
+    :param activity_id: string
+    :return: redirect to home page
+    """
     if session.get('user') is None:
         flash('You must be logged-in to edit an Activity', 'error')
-        return redirect('/user/login/')
+        return redirect(url_for('login'))
     else:
         user_session = session.get("user")
 
@@ -333,44 +343,46 @@ def edit_activity(activity_id):
             return redirect(url_for('index'))
 
         users_level = user_session.get('level', 0)
-        # Check if activity belongs to a user or if they are 1-moderator or 7-admin
-        #
-        if ObjectId(user_session['_id']['$oid']) != ObjectId(activity_data['userid']) and users_level != 1 and users_level != 7:
-            flash(f'You cannot edit the activity "{activity_data["title"]}"',
-                'error')
+        # Check user owns activity or user level is 1-moderator or 7-admin
+        if (ObjectId(user_session['_id']['$oid']) !=
+            ObjectId(activity_data['userid'])) and (
+                users_level != 1 and users_level != 7):
+            flash(f'''You cannot edit the activity "
+                      {activity_data["title"]}"''', 'error')
             return redirect(url_for('index'))
 
-        # set current imageURL
+        # Set current imageURL for preview image
         imageURL = set_imageURL(activity_id)
 
+        # Check form isn't too large (image data size)
         try:
             form = ActivityForm(data=activity_data)
-        except RequestEntityTooLarge as e:
+        except RequestEntityTooLarge:
             flash('Chosen file too large, limit is 4mb', 'error')
             form = ActivityForm(data=activity_data)
         else:
             form.imageId.data = activity_id
 
             if form.validate_on_submit():
+                # Remove venue location field as not required for database
                 td = form.venue.data
                 del td['location']
-                # print(form.image.data)
-                if form.image.data:
-                    if form.image.data:
-                        save_image(form.image.data, activity_id + '.jpg')
 
-                print(f'We were editing activity: {activity_id}')
-                result = Activity().update_activity(activity_id)
-                print(result)
+                if form.image.data:
+                    save_image(form.image.data, activity_id + '.jpg')
+
+                Activity().update_activity(activity_id)
                 return redirect(url_for('index'))
+
             elif request.method == 'POST':
-                print('Post with Errors!')
                 flash('Please correct form errors below', 'error')
 
-        return render_template('activity_form.html', form=form,
-                               form_title='Edit Activity',
-                               imageURL=imageURL,
-                               categories=CATEGORIES)
+        return render_template(
+            'activity_form.html', form=form,
+            page_title=('Things to Do and Places to Go: Edit Activity'),
+            form_title='Edit Activity',
+            imageURL=imageURL,
+            categories=CATEGORIES)
     else:
         return redirect(url_for('index'))
 
