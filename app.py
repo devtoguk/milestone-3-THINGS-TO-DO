@@ -71,29 +71,43 @@ def too_large(e):
 
 @app.route('/')
 def index():
-    return render_template('index.html',
-                           page_title='Things to Do and Places to Go: Home page',
-                           page_description='From small adventures at home, to big adventures on days out! Find something to do...',nav_link='Home',
-                           categories=CATEGORIES)
+    """
+    Render Home page
+    """
+    return render_template(
+        'index.html',
+        page_title='Things to Do and Places to Go: Home page',
+        page_description=('From small adventures at home, '
+                          'to big adventures on days out! '
+                          'Find something to do...'),
+        nav_link='Home',
+        categories=CATEGORIES)
 
 
 @app.route('/about/')
 def about():
-    activities = list(mongo.db.activities.find())
-    return render_template('about.html', activities=activities,
+    """
+    Render About Us page
+    """
+    return render_template('about.html',
                            nav_link='About',
                            categories=CATEGORIES)
 
 
 @app.route('/search/', methods=['POST', 'GET'])
 def search():
+    """
+    Render text search results
+    """
     if request.method == "POST":
         search_text = request.form.get('search_text')
-        activities = list(mongo.db.activities.find({'$text':
-                                                {'$search': search_text}}))
+        activities = list(mongo.db.activities.find(
+                          {'$text':
+                              {'$search': search_text}}))
         total = len(activities)
         if total > 0:
-            flash(f'{total} result{"s" if total != 1 else ""} for "{search_text}"', 'info')
+            flash(f'''{total} result{"s" if total != 1 else ""}
+                      for "{search_text}"''', 'info')
 
             for act in activities:
                 act['imageURL'] = set_imageURL(act["_id"])
@@ -102,7 +116,7 @@ def search():
                                    activities=activities,
                                    categories=CATEGORIES)
         else:
-            flash(f'No results for "{search_text}"', 'error')
+            flash(f'No results for "{search_text}"', 'info')
             return redirect(url_for('index'))
 
 
