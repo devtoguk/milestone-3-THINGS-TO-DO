@@ -322,7 +322,7 @@ def submit_activity():
 def edit_activity(activity_id):
     """
     Edit activity
-    
+
     Render activity form
     Check form is valid and save to the database
 
@@ -351,7 +351,7 @@ def edit_activity(activity_id):
                       {activity_data["title"]}"''', 'error')
             return redirect(url_for('index'))
 
-        # Set current imageURL for preview image
+        # Set imageURL for preview image
         imageURL = set_imageURL(activity_id)
 
         # Check form isn't too large (image data size)
@@ -389,39 +389,48 @@ def edit_activity(activity_id):
 
 @app.route('/activity/view/<string:activity_id>/')
 def view_activity(activity_id):
+    """
+    View activity
+
+    :param activity_id: string
+    :return: Render activity view or redirect to home page
+    """
+    # Check if activity_id is a valid ObjectId and exists in DB
     if check_activity_id(activity_id):
         activity_data = Activity().view_activity(activity_id)
         if activity_data is None:
             flash('Activity not found', 'error')
             return redirect(url_for('index'))
 
+        # Set imageURL for activity image
         activity_data['imageURL'] = set_imageURL(activity_id)
-        print('Check if user has this activity in their faves list')
         user_session = session.get('user')
+        # Check if a user is logged-in
         if user_session:
             userid = ObjectId(user_session['_id']['$oid'])
-            user_data = list(mongo.db.users.
-                                find({'_id': ObjectId(userid)},
+            user_data = list(
+                mongo.db.users.find({'_id': ObjectId(userid)},
                                     {'_id': 0, 'favourites': 1}))
+            # Check if activity is in current users favourites
             if 'favourites' in user_data[0]:
                 user_favourites = user_data[0]['favourites']
-                print(f'User faves are: {user_favourites}')
                 if ObjectId(activity_id) in user_favourites:
-                    print('*** IN user favourites ***')
                     activity_data['inUsersFavourites'] = 'Y'
                 else:
                     activity_data['inUsersFavourites'] = 'N'
             else:
-                print('User has no favourites')
+                # Current users favourites are empty
                 activity_data['inUsersFavourites'] = 'N'
         else:
-            print('User not logged-in!')
+            # User is not logged-in
             activity_data['inUsersFavourites'] = 'U'
 
-        return render_template('activity.html',
-                               activity=activity_data,
-                               nav_link='Activities',
-                               categories=CATEGORIES)
+        return render_template(
+            'activity.html',
+            page_title=('Things to Do and Places to Go: Activity View'),
+            activity=activity_data,
+            nav_link='Activities',
+            categories=CATEGORIES)
     else:
         return redirect(url_for('index'))
 
