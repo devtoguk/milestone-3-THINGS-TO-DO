@@ -213,23 +213,39 @@ def register():
 
 @app.route('/user/login/')
 def login():
-    return render_template('login.html',
-                           nav_link='Login/Register',
-                           categories=CATEGORIES)
+    """
+    Render User Login page
+    """
+    return render_template(
+        'login.html',
+        page_title=('Things to Do and Places to Go: User Login'),
+        nav_link='Login/Register',
+        categories=CATEGORIES)
 
 
 @app.route('/user/add_user/', methods=['POST'])
 def add_user():
+    """
+    Attempt to add new user to database
+    Called from javascript file
+    """
     return User().add_user()
 
 
 @app.route('/user/login_user/', methods=['POST'])
 def login_user():
+    """
+    Attempt to login user
+    Called from javascript file
+    """
     return User().login_user()
 
 
 @app.route('/user/logout/')
 def logout():
+    """
+    Attempt to logout the user        
+    """
     return User().logout()
 
 
