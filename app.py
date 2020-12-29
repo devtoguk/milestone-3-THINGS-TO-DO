@@ -437,14 +437,24 @@ def view_activity(activity_id):
 
 @app.route('/activity/favourite/<string:activity_id>/<string:action>/')
 def favourite_activity(activity_id, action):
+    """
+    Add or remove activity from users Activity Favourites
+
+    :param activity_id: string
+    :param action: string '0' remove  '1' add
+    :return: Render activity view or redirect to home page
+    """
+    # Check if activity_id is a valid ObjectId
     if not check_activity_id(activity_id):
         return redirect(url_for('index'))
 
+    # Check if activity_id exists in mongoDB
     if not Activity().get_activity(activity_id):
         flash('Activity not found', 'error')
         return redirect(url_for('index'))
 
     user_session = session.get('user')
+    # Check if a user is logged-in and set action variables
     if user_session:
         userid = ObjectId(user_session['_id']['$oid'])
         if action == '0' or action == '1':
@@ -455,11 +465,14 @@ def favourite_activity(activity_id, action):
                 mongo_operator = '$push'
                 message = 'added to'
 
-            if mongo.db.users.update_one({"_id": ObjectId(userid)},
-                                         {mongo_operator: {'favourites': ObjectId(activity_id)}}):
+            # Add / Remove activity_id from users favourites
+            if mongo.db.users.update_one(
+                {"_id": ObjectId(userid)},
+                    {mongo_operator: {'favourites': ObjectId(activity_id)}}):
                 flash(f'Activity {message} your Activity Favourites', 'info')
-                return redirect(url_for('view_activity',
-                                        activity_id=activity_id))
+                return redirect(url_for(
+                    'view_activity',
+                    activity_id=activity_id))
             else:
                 flash('Favourites update failed', 'error')
         else:
@@ -467,6 +480,7 @@ def favourite_activity(activity_id, action):
     else:
         flash('You must be logged-in to use Favourites', 'error')
         return redirect(url_for('login'))
+
     return redirect(url_for('index'))
 
 
