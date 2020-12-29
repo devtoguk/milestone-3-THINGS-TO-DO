@@ -89,9 +89,14 @@ def about():
     """
     Render About Us page
     """
-    return render_template('about.html',
-                           nav_link='About',
-                           categories=CATEGORIES)
+    return render_template(
+        'about.html',
+        page_title='About Things to Do and Places to Go',
+        page_description=('Find out a little more about the '
+                          'activity website, Things to Do and '
+                          'Places to Go.'),
+        nav_link='About',
+        categories=CATEGORIES)
 
 
 @app.route('/search/', methods=['POST', 'GET'])
