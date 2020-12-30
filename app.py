@@ -50,7 +50,7 @@ def save_image(data, filename):
 
     # Upload image to AWS S3 bucket
     file_path = image_folder + filename
-    upload_file(file_path, bucket_name, object_name=filename)
+    upload_file(file_path, bucket_name, filename)
 
 
 @app.errorhandler(404)
