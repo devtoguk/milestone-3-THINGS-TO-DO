@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
+<!-- Set variables to help display favourite heart-icon -->
 {% if activity.inUsersFavourites == 'Y' %}
     {% set favourite_icon_style = 'fas' %}
     {% set favourite_link_style = 'favourites__remove' %}
@@ -93,6 +94,7 @@
             </div>
         </div>
     {% endif %}
+    <!-- Show activity creator name or screenName and creation date -->
     <div class="row">
         <div class="col-12">
             <div class="activity-view__created float-right">

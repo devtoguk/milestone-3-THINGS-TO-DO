@@ -10,7 +10,7 @@
             <a class="action" href="{{ url_for('cancel_form', message='Add\Edit') }}"><i class="far fa-window-close"></i></a>
         </div>
 	</div>
-    <!-- Activity form -->
+    <!-- Activity form with error display-->
 	<div class="card-body shadow">
         <form id="activity-form" method="POST" enctype="multipart/form-data">
             <!-- Form fields title and short description -->
@@ -51,8 +51,8 @@
             <div class="form-row">
                 <div class="col-lg-8">
                     <div class="form-row">
-                        <div class="form-group col-12">
                         <!-- Long description -->
+                        <div class="form-group col-12">
                             {{ form.longDescr.label(class="") }}
                             {% if form.longDescr.errors %}
                                 {{ form.longDescr(rows="4", class="form-control is-invalid") }}
@@ -66,6 +66,7 @@
                                 {% endfor %}
                             </div>
                         </div>
+                        <!-- Image -->
                         <div class="form-group col-12">
                             {{ form.image.label(class="") }}
                             {% if form.image.errors %}
@@ -82,10 +83,10 @@
                         </div>
                     </div>
                 </div>
+                <!-- Display Image -->
                 <div class="form-group col-lg-4">
                     <div class="form-row">
                         <div class="form-group col-12">
-                            <!-- Display Image -->
                             {% if form_title != 'Add an Activity' %}
                                 {% set image_path = imageURL %}
                             {% else %}
@@ -98,7 +99,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Form field long description -->
             <!-- Form fields location, age range, online, free -->
             <div class="form-row">
                 <!-- Location -->
@@ -328,8 +328,6 @@
                     </div>
                 </div>
             </div>
-            <!-- <p class="form__error form__error-hidden"></p> -->
-            <!-- {{ form.submit }} -->
             <button id="btn--form-update" class="btn btn-primary" type="submit" value="Submit">
             {% if form_title == "Edit Activity" %}
                 Update Activity
@@ -337,7 +335,6 @@
                 Add Activity
             {% endif %}
             </button>
-            <!-- <input type="submit" value="Submit Activity" class="btn btn-primary"> -->
         </form>
 	</div>
 </div>
