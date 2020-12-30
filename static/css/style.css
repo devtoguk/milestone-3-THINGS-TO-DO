@@ -71,6 +71,14 @@ body {
     font-family: Oswald, sans-serif;
 }
 
+.btn-success:hover {
+    background-color: #1f7e34;
+}
+
+.btn-success {
+    background-color: #218838;
+}
+
 .site__logo {
     height: 60px;
     width: 229px;
