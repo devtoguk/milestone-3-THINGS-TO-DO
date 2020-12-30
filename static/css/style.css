@@ -108,7 +108,7 @@ body {
     z-index: -2;
     width: 100%;
     height: 100%;
-    background-image: url(../images/things_to_do_back.jpg);
+    background-image: url(../images/things_to_do_back_sm.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -372,6 +372,10 @@ a.favourites__remove:hover, a.favourites__remove:active {
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) { 
+
+    .hero__image {
+        background-image: url(../images/things_to_do_back_lg.jpg);
+    }
 
     /* Override bootstrap height to line-up textarea with other fields */
     #category, #whenTodo, #venue-address {
