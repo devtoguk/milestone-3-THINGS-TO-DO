@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Raleway:ital,wght@0,400;0,500;0,600;1,400;1,600&display=swap');
 
-/* @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&family=Mitr:wght@500&display=swap'); */
-
 :root {
     --themeGreen: rgb(119, 172, 3);
     --themeShadeGreen: rgb(108, 160, 15);
@@ -24,7 +22,7 @@ body {
     font-size: 14px;
 }
 
-/* Navigation bar  */
+/* Navigation Bar */
 .nav-link {
     font-family: 'Raleway', sans-serif;
     font-size: 1.1em;
@@ -59,7 +57,6 @@ body {
 }
 
 /* Helpers */
-
 .border__highlight {
     border: 1px solid var(--themeSuperLightGreen)
 }
@@ -74,6 +71,12 @@ body {
     font-family: Oswald, sans-serif;
 }
 
+.site__logo {
+    height: 60px;
+    width: 229px;
+}
+
+/* Errors Handlers */
 .error__handler {
     position: fixed;
     top: 0;
@@ -97,7 +100,7 @@ body {
 }
 
 
-/* Hero image */
+/* Hero Image */
 .hero__image {
     position: fixed;
     top: 0;
@@ -105,16 +108,14 @@ body {
     z-index: -2;
     width: 100%;
     height: 100%;
-    background-image: url(../images/things_to_do_back.jpg);
+    background-image: url(../images/things_to_do_back_sm.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     opacity: 0.8;
 }
 
-/* Home page */
 /* Jumbotron */
-
 .jumbotron {
     width: 94%;
     margin-top: 4em;
@@ -130,13 +131,17 @@ body {
     font-weight: 500;
 }
 
-/* Form defaults */
+/* Forms */
+.login__form-width, .register__form-width {
+    width: 94%;
+}
+
 .form__error {
     margin: 0;
+    color: var(--themeRed);
     font-size: 16px;
     line-height: 26px;
     text-align: center;
-    color: var(--themeRed);
 }
 
 .form__error-hidden {
@@ -152,15 +157,15 @@ body {
 }
 
 .form__header-title {
-    font-size: 1.2em;
     display: inline-block;
     padding-top: 0.5rem;
+    font-size: 1.2em;
 }
 
 .form__header-cancel {
-    font-size: 2em;
     display: inline-block;
     padding-top: 0;
+    font-size: 2em;
 }
 
 .form__divider {
@@ -182,6 +187,7 @@ a.action:hover, a.action:active {
     color: white;
 }
 
+/* User Profile */
 .profile__data {
     font-weight: bold;
 }
@@ -191,10 +197,9 @@ a.action:hover, a.action:active {
 }
 
 /* Tool tips */
-
 .tooltip-inner {
-    background-color: var(--themeTreeBrown);
     color: #fff;
+    background-color: var(--themeTreeBrown);
     text-align: left;
 }
 
@@ -206,15 +211,7 @@ a.action:hover, a.action:active {
     border-bottom-color: var(--themeTreeBrown) !important;
 }
 
-/* .tooltip.bs-tooltip-left .arrow:before {
-    border-left-color: #cc000a !important;
-} */
-
-/* .tooltip.bs-tooltip-top .arrow:before {
-    border-top-color: #0e0f0e !important;
-} */
-
-/* Results cards */
+/* Cards */
 .card {
     background: transparent;
     border: 1px solid var(--themeSuperLightGreen);
@@ -228,27 +225,22 @@ a.action:hover, a.action:active {
 .card-body {
     background: rgba(250,250,250,0.9);
 }
-.card__btn {
+
+/* Results */
+.results__btn {
+    padding: 5px 12px 7px 13px;
     border-radius: 30%;
 }
 
-.card__image {
+.results__image {
     height: 213px;
     width: 286px;
     overflow: hidden;
 }
 
-/* Login form */
-.login__form-width {
-    width: 94%;
+.results__width {
+    width: 18rem;
 }
-
-/* Register form */
-.register__form-width {
-    width: 94%;
-}
-
-/* Results */
 
 .results__title {
     margin: 2em 0;
@@ -257,17 +249,17 @@ a.action:hover, a.action:active {
 
 .results__title span {
     padding: 0.5em;
-    background: var(--themeTranSeaGreen);
     color: var(--themeTreeBrown);
+    background: var(--themeTranSeaGreen);
     font-family: 'Raleway', sans-serif;
     font-size: 1.2em;
     font-weight: 500;
     border-radius: calc(.25em - 1px);
 }
 
+/* Activity View */
 .activity-view__container {
     margin-bottom: 2em;
-    /* padding: 1em; */
     padding: 4px 1em;
     background: rgba(250,250,250,0.9);
     border: 2px solid var(--themeSuperLightGreen);
@@ -304,7 +296,9 @@ a.action:hover, a.action:active {
     font-weight: bold;    
 }
 
-.activity-view__address {
+.activity-view__postcode {
+    font-family: sans-serif;
+    color: #3f3f3f
 }
 
 .activity-view__link {
@@ -317,51 +311,45 @@ a.action:hover, a.action:active {
 
 a.info:link, a.info:visited {
     display: inline-block;
-    background-color: white;
+    padding: 6px 12px;
     color: black;
+    background-color: white;
     border: 2px solid var(--themeGreen);
     border-radius: 10px;
-    padding: 6px 12px;
     text-align: center;
     text-decoration: none;
     transition: 0.35s;
 }
 
 a.info:hover, a.info:active {
-    background-color: var(--themeGreen);
     color: white;
+    background-color: var(--themeGreen);
 }
 
-
-/* Flash message */
+/* Flash Messages */
 .flash__message {
     width: 100%;
     height: 2.2em;
     margin-bottom: 0.3em;
-    background: transparent;
     color: var(--themeTreeBrown);
+    background: transparent;
     font-family: 'Oswald', sans-serif;
     font-size: 1em;
 }
 
 .flash__message-info {
-    background: var(--themeTranSeaGreen);
-    /* color: var(--themeDarkGreen); */
     color: #fff;
-    /* padding: 0.5em; */
+    background: var(--themeTranSeaGreen);
     padding: 0 0 0.3em 0;
 }
 
 .flash__message-error {
-    background: var(--themeTransRed);
-    /* color: var(--themeDarkGreen); */
     color: #fff;
+    background: var(--themeTransRed);
     padding: 0 0 0.3em 0;
 }
 
-
 /* Favourites */
-
 a.favourites__add:link, a.favourites__add:visited {
     color: var(--themeHeartGrey);
     transition: 0.25s;
@@ -380,21 +368,22 @@ a.favourites__remove:hover, a.favourites__remove:active {
     color: var(--themeHeartGrey);
 }
 
-/* Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) { 
-
-
-}
+/* Media Queries */
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) { 
+
+    .hero__image {
+        background-image: url(../images/things_to_do_back_lg.jpg);
+    }
 
     /* Override bootstrap height to line-up textarea with other fields */
     #category, #whenTodo, #venue-address {
         height: 7.7em;
     }
 
-    .card__btn {
+    .results__btn {
+        padding: 6px 12px 6px 12px;
         border-radius: .25rem;
     }
 
