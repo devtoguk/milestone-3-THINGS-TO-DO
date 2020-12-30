@@ -41,10 +41,10 @@ const activityForm = {
     },
 
     validateEmptyField: (formFieldID, errorMessage=' field error.') => {
-        fieldValue = $('#' + formFieldID).val();
+        const fieldValue = $('#' + formFieldID).val();
         // Check if field value blank or no selection made
         if (fieldValue == '' || fieldValue == 0) {
-            activityForm.showFieldError(formFieldID, errorMessage)
+            activityForm.showFieldError(formFieldID, errorMessage);
             return true;
         } else { 
             return false;
@@ -72,7 +72,7 @@ const activityForm = {
     },
 
     checkForm: () => {
-        formError = false;
+        let formError = false;
         activityForm.checkFieldsEmpty.forEach( (formField) => {
             if (activityForm.validateEmptyField(formField.id, formField.error)) {
                 formError = true;
@@ -87,12 +87,12 @@ const activityForm = {
 
 };
 
+// Check for user registration form submitted
 $('form[name=register_form').submit(function(e) {
     e.preventDefault();
     let $form = $(this);
     let $error = $form.find('.form__error');
     let data = $form.serialize();
-
     $.ajax({
         url: '/user/add_user/',
         type: 'POST',
@@ -105,15 +105,14 @@ $('form[name=register_form').submit(function(e) {
             $error.text(resp.responseJSON.error).removeClass('form__error-hidden');
         }
     });
-
 });
 
+// Check for user login form submitted
 $('form[name=login_form').submit(function(e) {
-  e.preventDefault();
-  let $form = $(this);
-  let $error = $form.find('.form__error');
-  let data = $form.serialize();
-
+    e.preventDefault();
+    let $form = $(this);
+    let $error = $form.find('.form__error');
+    let data = $form.serialize();
     $.ajax({
         url: '/user/login_user/',
         type: 'POST',
@@ -126,8 +125,70 @@ $('form[name=login_form').submit(function(e) {
             $error.text(resp.responseJSON.error).removeClass('form__error-hidden');
         }
     });
-
 });
+
+/*
+ * Function to setup event listeners on add/edit activity form
+ */
+function activityFormEventListeners() {
+    // Show or hide the venue fields when Location is changed
+    $('#location').change(function(e) {
+        const activityLocation = $('#location' ).val();
+        const locationFields = ['venue-name', 'venue-postcode', 'venue-address'];
+        $('#venue-location').val(activityLocation);
+        if (activityLocation === '2') {
+            locationFields.forEach( field => {
+                $('#' + field).attr('required', '');
+            });
+            $('#venue--header').collapse('show');
+            $('#venue--details').collapse('show');
+        } else {
+            $('#venue--header').collapse('hide');
+            $('#venue--details').collapse('hide');
+            locationFields.forEach( field => {
+                $('#' + field).removeAttr('required');
+            });
+        }
+    });
+
+    // Allow the user to toggle the venue details section
+    $('#venue--toggle').click(function(e) {
+        $('#venue--details').collapse('toggle');
+    });
+
+    /* Detect form submit to change activity button contents and
+    perform basic front-end validation. */
+    $('#btn--form-update').click(function(e) {
+        // image = $('#image').val();
+        $('#btn--form-update').html('Processing <i class="fas fa-spinner fa-spin"></i>');
+        activityForm.checkForm();
+    });
+
+    // Reset form submit button to standard text
+    activityForm.submitButtonText = $('#btn--form-update').text();
+    $('input, select, textarea').click(function(e) {
+        $('#btn--form-update').text(activityForm.submitButtonText);
+    });
+
+    // Validate file input field on change
+    $('#image').change( (e) => {
+        let fileSize = e.originalEvent.target.files[0].size;
+        let fileType = e.originalEvent.target.files[0].type;
+        $('#image').blur(function(){
+            if(!$(this).val()){
+                activityForm.clearFieldError('image');
+            }
+        });            
+        activityForm.validateFileInput('image', fileSize, fileType);
+    });
+
+    // Remove field error on change
+    activityForm.checkFieldsEmpty.forEach( (formField) => {
+        $('#' + formField.id).change( () => {
+            activityForm.clearFieldError(formField.id);
+        });
+    });
+}
 
 $(document).ready(function(){
 
@@ -135,44 +196,11 @@ $(document).ready(function(){
     if( $('#title').length ) {
 
         // Activate tooltips
-        $('[data-toggle="tooltip"]').tooltip()
-
-        // Show or hide the venue fields when Location is changed
-        $('#location').change(function(e) {
-            const activityLocation = $('#location' ).val();
-            const locationFields = ['venue-name', 'venue-postcode', 'venue-address']
-            $('#venue-location').val(activityLocation);
-            if (activityLocation === '2') {
-                locationFields.forEach( field => {
-                    $('#' + field).attr('required', '');
-                });
-                $('#venue--header').collapse('show');
-                $('#venue--details').collapse('show');
-            } else {
-                $('#venue--header').collapse('hide');
-                $('#venue--details').collapse('hide');
-                locationFields.forEach( field => {
-                    $('#' + field).removeAttr('required');
-                });
-            }
-        });
-
-        // Allow the user to toggle the venue details section
-        $('#venue--toggle').click(function(e) {
-            $('#venue--details').collapse('toggle');
-        });
-
-        /* Detect form submit to change activity button contents and
-        perform basic front-end validation. */
-        $('#btn--form-update').click(function(e) {
-            image = $('#image').val();
-            $('#btn--form-update').html('Processing <i class="fas fa-spinner fa-spin"></i>');
-            activityForm.checkForm();
-        });
+        $('[data-toggle="tooltip"]').tooltip();
 
         /* Set hidden venue location to the same as the activity location
         to help with form validation */
-        const currentLocation = $('#location' ).val()
+        const currentLocation = $('#location' ).val();
         $('#venue-location').val(currentLocation);
 
         // Re-show the venue fields if required on form-error re-display
@@ -181,30 +209,7 @@ $(document).ready(function(){
             $('#venue--details').collapse('show');
         }
 
-        // Reset form submit button to standard text
-        activityForm.submitButtonText = $('#btn--form-update').text();
-        $('input, select, textarea').click(function(e) {
-            $('#btn--form-update').text(activityForm.submitButtonText);
-        });
-
-        // Validate file input field on change
-        $('#image').change( (e) => {
-            let fileSize = e.originalEvent.target.files[0].size;
-            let fileType = e.originalEvent.target.files[0].type;
-            $('#image').blur(function(){
-                if(!$(this).val()){
-                    activityForm.clearFieldError('image');
-                }
-            });            
-            activityForm.validateFileInput('image', fileSize, fileType);
-        });
-
-        // Remove field error on change
-        activityForm.checkFieldsEmpty.forEach( (formField) => {
-            $('#' + formField.id).change( () => {
-                activityForm.clearFieldError(formField.id);
-            });
-        });
+        activityFormEventListeners();
     }
 
 });
