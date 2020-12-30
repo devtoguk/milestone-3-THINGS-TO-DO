@@ -6,8 +6,8 @@
         <!-- Loop through activities and display in cards -->
         {% for activity in activities %}
             <div class="col-md-6 col-lg-4 mb-5">
-                <div class="card mx-auto" style="width: 18rem;">
-                    <div class="card__image">
+                <div class="card mx-auto results__width">
+                    <div class="results__image">
                         <a href="/activity/view/{{activity._id}}">
                             <img src="{{ activity.imageURL }}" class="card-img-top" alt="{{ activity.title|title }}" title="{{ activity.title|title }}">
                         </a>
@@ -22,7 +22,7 @@
                                 {{ activity.shortDescr }}
                             {% endif %}
                         </p>
-                        <a href="/activity/view/{{activity._id}}" class="btn btn-primary mt-3 card__btn">
+                        <a href="/activity/view/{{activity._id}}" class="btn btn-primary mt-3 results__btn">
                         <i class="fas fa-info-circle"></i>
                         <span class="d-none d-md-inline">More details</span>
                         </a>
