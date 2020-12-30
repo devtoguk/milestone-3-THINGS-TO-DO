@@ -49,12 +49,14 @@
             <!-- Venue address and map link-->
             <div class="col-lg-6">
                 <p class="activity-view__label">Venue information</p>
-                <p class="activity-view__address">
+                <p>
                     {{ activity.venue.name|lower|title }}<br>
                     {% for address_line in activity.venue.address.split('\n') %}
                         {{ address_line }}<br>
                     {% endfor %}
-                    {{ activity.venue.postcode }}<br>
+                    <span class="activity-view__postcode">
+                        {{ activity.venue.postcode }}<br>
+                    </span>
                     <a class="activity-view__link info" href="https://www.google.com/maps/search/?api=1&query={{ activity.venue.name|lower|title }}" target="_blank" rel="noopener noreferrer">
                     <i aria-hidden="true" class="fas fa-map-marker-alt" title="Venue web address"></i> Show on map</a>
                 </p>
