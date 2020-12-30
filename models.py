@@ -89,7 +89,7 @@ class Activity:
         """
         user_session = session.get("user")
         activity = {
-            'title': request.form.get('title'),
+            'title': request.form.get('title').lower(),
             'shortDescr': request.form.get('shortDescr'),
             'longDescr': request.form.get('longDescr'),
             'location': int(request.form.get('location')),
