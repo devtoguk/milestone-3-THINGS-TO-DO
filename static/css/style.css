@@ -71,6 +71,11 @@ body {
     font-family: Oswald, sans-serif;
 }
 
+.site__logo {
+    height: 60px;
+    width: 229px;
+}
+
 /* Errors Handlers */
 .error__handler {
     position: fixed;
