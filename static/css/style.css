@@ -228,6 +228,7 @@ a.action:hover, a.action:active {
 
 /* Results */
 .results__btn {
+    padding: 5px 12px 7px 13px;
     border-radius: 30%;
 }
 
@@ -378,6 +379,7 @@ a.favourites__remove:hover, a.favourites__remove:active {
     }
 
     .results__btn {
+        padding: 6px 12px 6px 12px;
         border-radius: .25rem;
     }
 
