@@ -1,0 +1,5 @@
+User-agent: * 
+Disallow: /activity/
+Disallow: /user/
+Disallow: /search/
+Disallow: /category/
