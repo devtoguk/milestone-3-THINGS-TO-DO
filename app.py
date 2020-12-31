@@ -1,7 +1,8 @@
 import os
 from flask import (
     Flask, flash, render_template,
-    redirect, request, session, url_for)
+    redirect, request, session,
+    url_for, send_from_directory)
 from bson.objectid import ObjectId
 from flask_uploads import configure_uploads, IMAGES, UploadSet
 from werkzeug.exceptions import RequestEntityTooLarge
@@ -16,6 +17,11 @@ if os.path.exists('env.py'):
     import env
 
 app = Flask(__name__)
+
+
+@app.route("/robots.txt")
+def robots():
+    return send_from_directory("static", "robots.txt")
 
 
 app.config['MONGO_DBNAME'] = os.environ.get('MONGO_DBNAME')
