@@ -41,6 +41,7 @@ class User:
             'town': request.form.get('town').lower(),
             'county': request.form.get('county').lower(),
             'level': 0,
+            'favourites': [],
             'password': request.form.get('password')
         }
 
