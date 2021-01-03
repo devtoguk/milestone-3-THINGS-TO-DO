@@ -96,6 +96,8 @@ def about():
     """
     Render About Us page
     """
+    total_activities = mongo.db.activities.count()
+    total_users = mongo.db.users.count()
     return render_template(
         'about.html',
         page_title='About Things to Do and Places to Go',
@@ -103,6 +105,8 @@ def about():
                           'activity website, Things to Do and '
                           'Places to Go.'),
         nav_link='About',
+        total_activities=total_activities,
+        total_users=total_users,
         categories=CATEGORIES)
 
 
@@ -175,11 +179,17 @@ def category(category):
                 user_data = list(mongo.db.users.
                                  find({'_id': ObjectId(userid)},
                                       {'_id': 0, 'favourites': 1}))
-                user_favourites = user_data[0]['favourites']
-                # Get activities which are in the users favourites list
-                activities = list(mongo.db.activities.
-                                  find({'_id': {'$in': user_favourites}}))
-                message = 'My Favourite Activities'
+                if 'favourites' in user_data[0] and user_data[0]['favourites']:
+                    # Get activities which are in the users favourites list
+                    user_favourites = user_data[0]['favourites']
+                    activities = list(mongo.db.activities.
+                                      find({'_id':
+                                           {'$in': user_favourites}}))
+                    message = 'My Favourite Activities'
+                else:
+                    activities = []
+                    message = 'You currently have no Favourite Activities'
+
             else:
                 flash('You are not logged-in', 'error')
                 return redirect(url_for('login'))
