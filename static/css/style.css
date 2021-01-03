@@ -57,6 +57,10 @@ body {
 }
 
 /* Helpers */
+.wrapper {
+    min-height: 100vh;
+}
+
 .border__highlight {
     border: 1px solid var(--themeSuperLightGreen)
 }
@@ -146,17 +150,18 @@ body {
 }
 
 .about__container h1 {
-    font-size: 2em;;
     color: var(--themeRed);
+    font-size: 2em;;
 }
 
 .about__container h3 {
-    font-size: 1.8em;;
+    padding: 0 1.4em;
     color: var(--themeGreen);
+    font-size: 1.8em;
+    font-style: italic;
 }
 
 .about__container p {
-    /* color: #212529; */
     font-family: 'Raleway', sans-serif;
     font-size: 1.2em;
 }
@@ -172,8 +177,35 @@ body {
     font-size: 1.2em;
 }
 
+/* Footer */
+.footer__container {
+    padding: 1.25em;
+    background: var(--themeGreen);
+    color: #fff;
+    font-family: 'Raleway', sans-serif;
+}
+
+.social__icon {
+    display: inline-block;
+    margin-right: 0.5em;
+    font-size: 2em;
+}
+
+a.social:link, a.social:visited {
+    color: var(--themeTreeBrown);
+    text-shadow: 1px 1px var(--themeSuperLightGreen);
+    transition: 0.35s;
+}
+
+a.social:hover, a.social:active {
+    /* color: #fff; */
+    text-shadow: none;
+
+}
+
+
 /* Forms */
-.login__form-width, .register__form-width {
+.login__form-width, .register__form-width, .activity__form-width {
     width: 94%;
 }
 
@@ -217,6 +249,10 @@ body {
 
 .form__image-height {
     height: 12.5em;
+}
+
+.form__bm {
+    margin-bottom: 5em;
 }
 
 a.action:link, a.action:visited {
@@ -432,18 +468,6 @@ a.favourites__remove:hover, a.favourites__remove:active {
         height: 2.5em;
     }
 
-    .about__container {
-        width: 65%;
-    }
-
-    .about__container h1 {
-        font-size: 2.4em;;
-    }
-
-    .about__container h3 {
-        font-size: 2.2em;;
-    }
-
 }
 
 /* Large devices (desktops, 992px and up) */
@@ -489,6 +513,18 @@ a.favourites__remove:hover, a.favourites__remove:active {
 
     .flash__message {
         font-size: 1.4em;
+    }
+
+    .about__container {
+        width: 65%;
+    }
+
+    .about__container h1 {
+        font-size: 2.4em;;
+    }
+
+    .about__container h3 {
+        font-size: 2.2em;;
     }
 
 }
