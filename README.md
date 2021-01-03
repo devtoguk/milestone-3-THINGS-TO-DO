@@ -7,7 +7,7 @@ The live deployed site can be accessed using the following link: [Things To Do P
 - [Summary](#summary)
 - [Business Goals](#business-goals)
 - [Customer Goals](#customer-goals)
-- [Advertise Goals](#advertise-goals)
+- [Advertiser Goals](#advertiser-goals)
 - [UX](#ux)
   * [Ideal Customer:](#ideal-customer)
   * [Ideal Advertiser:](#ideal-advertiser)
@@ -75,14 +75,14 @@ their website.
 1. How do I search for activities using a word or phrase?
 2. How do I find activities by category.
 3. How can I submit my own idea for an activity to the database.
-4. How can I see all the activiites I have submitted.
+4. How can I see all the activities I have submitted.
 5. How can I edit an activity I have submitted.
 6. How do I find featured activities.
 7. How do I find newly added activities.
 8. How do I keep a list of my favourite activities.
 
 ### Advertiser Stories
--  (this is part of our future development, as the app gets more popular)
+1. (this is part of our future development, as the app gets more popular)
 2. How do I get my banner on the website?
 3. How can I find out how many clicks my banner has received.
 
