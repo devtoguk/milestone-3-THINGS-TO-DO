@@ -1,6 +1,6 @@
 # Things To Do Places To Go - Deployment Information
 
-[Website deployed on Heroku](https://things-to-do-project.herokuapp.com/)
+[App deployed on Heroku](https://things-to-do-project.herokuapp.com/)
 
 [Back to main README.md file](/README.md)
 

@@ -1,7 +1,7 @@
 # Things To Do Places To Go
 ![Things To Do Places To Go responsive view](docs/responsive-screenshot.jpg)
 
-The live deployed site can be accessed using the following link: [Things To Do Places To Go](https://things-to-do-project.herokuapp.com/)
+The live deployed app can be accessed using the following link: [Things To Do Places To Go](https://things-to-do-project.herokuapp.com/)
 
 ## Table of Contents
 - [Summary](#summary)
@@ -31,26 +31,23 @@ The live deployed site can be accessed using the following link: [Things To Do P
 - [Disclaimer](#disclaimer)
 
 ## Summary
-The purpose of the ‘Things To Do Places To Go’ project is to create a website which will
-allow people to find activities to do. From small adventures in the garden, to big
-adventures on days out.  Eventually advertisers will be able to use the site to display
-their banners.
+The purpose of the ‘Things To Do Places To Go’ project is to create an app which will allow people to find activities to do. From small adventures in the garden, to big adventures on days out.  Eventually advertisers will be able to use the app to display their banners.
 
 ## Business Goals
 
-- Create an easy to use website which will keep users coming back time-after-time with a growing database of activities.
+- Create an easy to use app which will keep users coming back time-after-time with a growing database of activities.
 - Allow users to submit their own activity ideas.
-- Allow advertisers to have banners on the website to help generate revenue.
+- Allow advertisers to have banners on the app to help generate revenue.
 
 ## Customer Goals
 - Search for an activity to do.
 - Easy to find the information so they can make an informed decision.
-- Have the ability to submit an activity idea for the website.
+- Have the ability to submit an activity idea for the app.
 - Be able to keep a list of their favourite activities.
 
 ## Advertiser Goals
 - (this is part of our future development, as the app gets more popular)
-- The ability to have a banner on the website to attract potential customers to
+- The ability to have a banner on the app to attract potential customers to
 their website.
 - Access information about how many clicks my banner has received
 
@@ -64,7 +61,7 @@ their website.
 ### Ideal Advertiser:
 - (this is part of our future development, as the app gets more popular)
 - English speaking (UK & Ireland based)
-- Wants to advertise their service/product on an activity based website.
+- Wants to advertise their service/product on an activity based app.
 
 ## User Stories
 
@@ -80,7 +77,7 @@ their website.
 
 ### Advertiser Stories
 1. (this is part of our future development, as the app gets more popular)
-2. How do I get my banner on the website?
+2. How do I get my banner on the app?
 3. How can I find out how many clicks my banner has received.
 
 ## Information Architecture
@@ -145,14 +142,14 @@ Click the link below to view a PDF file containing all the wireframe screen desi
 [Wireframe PDF](docs/wireframes.pdf)  (ctrl-click to open in a new tab)
 
 ## Surface
-After the initial thought of doing an activity website I had a browse on
+After the initial thought of doing an activity app I had a browse on
 [Unsplash](https://unsplash.com/photos/tvc5imO5pXk) and found the image below:
 ![Things To Do Places To Go - background idea](docs/background.jpg)
 
-The colors for the website were chosen based on this image, keeping with the fresh greens, and using other colours from the image for logo,
+The colors for the app were chosen based on this image, keeping with the fresh greens, and using other colours from the image for logo,
 buttons, etc
 
-The google fonts chosen were 'Raleway' and 'Oswald' which I think match the website layout.
+The google fonts chosen were 'Raleway' and 'Oswald' which I think match the app layout.
 
 
 ## Technologies Used
@@ -164,17 +161,17 @@ The google fonts chosen were 'Raleway' and 'Oswald' which I think match the webs
 - Jinja - template language
 - Bootstrap v4.5
 - Fontawesome - free icons
-- [Google Fonts](https://fonts.google.com/) - for website fonts 'Oswald' & 'Raleway'.
+- [Google Fonts](https://fonts.google.com/) - for the fonts 'Oswald' & 'Raleway'.
 - [Autoprefixer](https://autoprefixer.github.io/) - used to ensure the CSS code was valid for browsers which match (last 2 versions, > 5%)
 - [Optimizilla](https://imagecompressor.com/) - used to compress JPEG/PNG content.
 
 ## Features
-All the site pages have a responsive navigation bar with site logo on left, clicking the logo will take the user to the Home page. The nav-bar is sticky and remains at
+All the app pages have a responsive navigation bar with logo top-left, clicking the logo will take the user to the Home page. The nav-bar is sticky and remains at
 the top of all pages, so basic navigation is always at hand.
 
 The activity hero-image is displayed on all pages.
 
-At the bottom of all site pages is the footer which gives the social
+At the bottom of all app pages is the footer which gives the social
 media links to get in touch.
 
 [Home](https://things-to-do-project.herokuapp.com/)
@@ -185,7 +182,7 @@ Desktops, tablets and mobiles all display in the same format.
 
 [About](https://things-to-do-project.herokuapp.com/about/)
 
-This page simple shows the about us text of the website.
+This page simple shows the about us text of the app.
 
 Desktops, tablets and mobiles all display in the same format.
 
@@ -263,7 +260,7 @@ and one column on mobiles.
 
 [Logout](https://things-to-do-project.herokuapp.com/user/logout/)
 
-The user can use this option to logout of the website.
+The user can use this option to logout of the app.
 Once logged out they are re-directed to the Home page.
 
 
@@ -275,7 +272,7 @@ These are list in no particular order:
   activities with the same keywords.
 - Admin/Moderator option to toggle featured activities on/off.
 - Admin/Moderator option to approve or disapprove activities.
-- Integrate Google Map view into the site rather than a link.
+- Integrate Google Map view into the app rather than a link.
 - Use of postcode, town or county to provide activities near me searches.
 - Ability for users to reset their password if forgotten.
 - Return the user back to their original URL if the system has asked.
@@ -333,4 +330,4 @@ Other helpful tutorials accessed:
 - [Using Flask to upload files to Amazon s3 tutorial](https://www.zabana.me/notes/flask-tutorial-upload-files-amazon-s3)
 
 ## Disclaimer
-The content of this website is solely for educational purposes.
+The content of this app is solely for educational purposes.

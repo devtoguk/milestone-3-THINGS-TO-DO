@@ -1,6 +1,6 @@
 # Things To Do Places To Go - Testing Information
 
-[Website deployed on Heroku](https://things-to-do-project.herokuapp.com/)
+[App deployed on Heroku](https://things-to-do-project.herokuapp.com/)
 
 [Back to main README.md file](/README.md)
 
@@ -19,7 +19,7 @@
   Had several Parse Errors but these seem to be caused by my use of CSS variables. Found the following link which explained more why I
   got the errors. [Stackoverflow](https://stackoverflow.com/questions/57661659/w3c-css-validation-parse-error-on-variables)
 - [Flake8 within GitPod]() - used to check Python code base against coding style (PEP8)
-- [Chrome Developer Tools](https://developers.google.com/web/tools/chrome-devtools) - used to help check the responsiveness of the site and also use of Audits to test for performance, accessibility, best practices & SEO
+- [Chrome Developer Tools](https://developers.google.com/web/tools/chrome-devtools) - used to help check the responsiveness of the app and also use of Audits to test for performance, accessibility, best practices & SEO
 
 ## User story testing
 (based on the UX section of README.md)
@@ -137,11 +137,11 @@
 
 ## Additional Testing
 1. Asked friends and family to use the application on their phone, tablets and desktops where possible and let me know any issues. Got good feedback, with no real issues.
-2. I have tested the site on a desktop using the following modern browsers: Chrome, Firefox and Edge. As well as testing on Android phone/tablet and Apple iPhone.
+2. I have tested the app on a desktop using the following modern browsers: Chrome, Firefox and Edge. As well as testing on Android phone/tablet and Apple iPhone.
 3. The application has not been written to work on Internet Explorer. In the real World if a client wanted an application to work on IE then that is fine, but a lot of the newer methods of coding Javascript, etc does not work on IE. IE has had it's day and I wanted to code the app using some of these newer methods.
 
 ## Errors and Issues Found
 (only includes main errors/issues rather than easy to solve coding, typos, alignment, etc which caused only minor errors)
 
 1. **Uploaded images on Heroku**
-As far as user images on this project, I did not realise that we could just use a link rather than getting the users to actaully upload images. So I did go down the route of image uploads, cropping, resizing, etc.  This all worked well while testing on GitPod, however when I deployed the site to Heroku the images no longer appeared. Other than the tutor led course material I had never used Heroku before, so was a little puzzled but after some Googling I realised that while the image is actually uploaded to Heroku it doesn't actually store the image for very long.  I had a decision to make, undo all the effort and coding I had done for the images or spend time to find a solution. After further investigation I discovered AWS S3 Bucket was a place for my app to upload the images to and serve them back to the users.  This took more time than I thought, but I feel it was well worth it in the end.
+As far as user images on this project, I did not realise that we could just use a link rather than getting the users to actaully upload images. So I did go down the route of image uploads, cropping, resizing, etc.  This all worked well while testing on GitPod, however when I deployed the app to Heroku the images no longer appeared. Other than the tutor led course material I had never used Heroku before, so was a little puzzled but after some Googling I realised that while the image is actually uploaded to Heroku it doesn't actually store the image for very long.  I had a decision to make, undo all the effort and coding I had done for the images or spend time to find a solution. After further investigation I discovered AWS S3 Bucket was a place for my app to upload the images to and serve them back to the users.  This took more time than I thought, but I feel it was well worth it in the end.
