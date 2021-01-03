@@ -18,8 +18,7 @@ The live deployed site can be accessed using the following link: [Things To Do P
 - [Surface](#surface)
 - [Technologies Used](#technologies-used)
 - [Features](#features)
-  * [Pages / screens](#pages---screens)
-- [Future Features/Changes](#future-features-changes)
+- [Future Features](#future-features)
 - [Testing](#testing)
 - [Running Locally and Deployment](#running-locally-and-deployment)
 - [Additional Notes](#additional-notes)
@@ -27,7 +26,6 @@ The live deployed site can be accessed using the following link: [Things To Do P
   * [Text content](#text-content)
   * [Logo](#logo)
   * [Photos](#photos)
-  * [Audio](#audio)
   * [Code](#code)
 - [Acknowledgments](#acknowledgments)
 - [Disclaimer](#disclaimer)
@@ -118,7 +116,7 @@ The 'Things To Do Places To Go' database has 2 collections: activities and users
 | | postcode | String | property of the venue object for the postcode |
 | | email | String | property of the venue object for email address |
 | | website | String | property of the venue object for the website URL |
-| Keywords | keywords | string | comma seperated list of keywords associated with the activity |
+| Keywords | keywords | string | comma separated list of keywords associated with the activity |
 | URL for extra information | additionalURL | String | optional field for extra url for youtube demo, etc |
 | Featured Activity | featured | Boolean | is this a featured activity |
 | Submitted by User ID | userId | ObjectId | the ObjectId of the user who created the activity |
@@ -137,7 +135,7 @@ The 'Things To Do Places To Go' database has 2 collections: activities and users
 | Town | town | String | users home town to help match local results |
 | County | county | String | users county to help match local results |
 | Level | level | int32 | (0) for 'user', (1) for 'moderator', (7) for 'admin' |
-| Favourite Activities | favourites | array | array of ObjectIds of favourited activities |
+| Favourite Activities | favourites | array | array of ObjectIds of favourite activities |
 | Password | password | Date | users encrypted password |
 
 
@@ -270,7 +268,8 @@ The user can use this option to logout of the website.
 Once logged out they are re-directed to the Home page.
 
 
-## Future Features/Changes
+## Future features
+These are list in no particular order.
 - Pagination for activity search results as the database grows.
 - User reviews for activities.
 - Display keywords when viewing the activity with links to find other.
@@ -278,8 +277,8 @@ Once logged out they are re-directed to the Home page.
 - Admin/Moderator option to toggle featured activities on/off.
 - Admin/Moderator option to approve or disapprove activities.
 - Integrate Google Map view into the site rather than a link.
-- Use of latitude and longitude to provide activities near me search
-- Ability for users to reset thier password if forgotten.
+- Use of postcode, town or county to provide activities near me searches.
+- Ability for users to reset their password if forgotten.
 - Return the user back to their original URL if the system has asked.
   them to login for whatever reason.
 - Admin/Moderator tools for user maintenance.
@@ -297,17 +296,18 @@ URL link until I was way down the path of users uploading and resizing images.
 ## Credits
 
 ### Text content
-Some text has been written by R.Thompson and other activity titles and descriptions
-have been copied from their respective websites.(if this was not an educational project, permission would have been sought before using their exact text)
+Some text has been written by R.Thompson and other activity titles and descriptions have been copied from their respective websites.(if this was not an educational project, permission would have been sought before using their exact text).   
 Any character names mentioned in any activities remain the property of their respective copyright owners.
 
 ### Logo
 The logo image was created from scratch using Adobe Photoshop.
+  
 (the style is based on the film 'Raiders of the Lost Ark'
 
 ### Photos
-Hero image photo by Robert Collins on Unsplash
-Activity photos have been either downloaded from Unsplash, Google images or the venue/activity webiste. These images remain the property of their respective copyright owners. (if this was not an educational project, permission would have been sought before using any unlicensed images)
+Hero image photo by Robert Collins on Unsplash.  
+
+Activity photos have been either downloaded from Unsplash, Google images or the venue/activity website. These images remain the property of their respective copyright owners. (if this was not an educational project, permission would have been sought before using any unlicensed images)
 
 ### Code
 Thanks to the Stackoverflow and other communities & blogs for helping solve some issues/problems, some specific ones are listed below:
@@ -326,7 +326,7 @@ activity ideas for the family.
 
 A big thank you to my mentor, the Slack community and many great reference sites out there including Stackoverflow and W3Schools, as well as the online documentation for Python, Flask, MongoDB, Amazon S3, Heroku, Bootstrap, etc
 
-Other helpfull tutorials accessed:
+Other helpful tutorials accessed:
 - [User Login System tutorial](https://www.youtube.com/watch?v=w1STSSumoVk)
 - [Alternate User Login System tutorial](https://www.youtube.com/watch?v=vVx1737auSE)
 - [Image upload tutorial](https://www.youtube.com/watch?v=6WruncSoCdI)
