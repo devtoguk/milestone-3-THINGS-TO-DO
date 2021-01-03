@@ -2,7 +2,7 @@
     {"icon":"fa-instagram","urlLink": "https://www.instagram.com/"},
     {"icon":"fa-facebook-square","urlLink": "https://www.facebook.com/"},
     {"icon":"fa-twitter-square","urlLink": "https://twitter.com/"},
-    {"icon":"fa-youtube","urlLink": "https://www.youtube.com/"}
+    {"icon":"fa-youtube-square","urlLink": "https://www.youtube.com/"}
     ) %}
 
 <!DOCTYPE html>
@@ -123,7 +123,7 @@
         </p>
         <ul class="float-sm-left float-lg-right pl-0 pr-0">
         {% for item in social_links%}
-            <li class=" footer__icon">
+            <li class="social__icon">
                 <a class="social" href="{{ item['urlLink'] }}" target="_blank">
                 <i class="fab {{ item['icon'] }}"></i>
                 </a>

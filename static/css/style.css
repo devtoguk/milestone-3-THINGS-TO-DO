@@ -184,7 +184,7 @@ body {
     font-family: 'Raleway', sans-serif;
 }
 
-.footer__icon {
+.social__icon {
     display: inline-block;
     margin-right: 0.5em;
     font-size: 2em;
@@ -192,11 +192,14 @@ body {
 
 a.social:link, a.social:visited {
     color: var(--themeTreeBrown);
-    transition: 0.45s;
+    text-shadow: 1px 1px var(--themeSuperLightGreen);
+    transition: 0.35s;
 }
 
 a.social:hover, a.social:active {
-    color: #fff;
+    /* color: #fff; */
+    text-shadow: none;
+
 }
 
 
