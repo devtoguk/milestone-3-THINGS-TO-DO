@@ -205,7 +205,7 @@ a.social:hover, a.social:active {
 
 
 /* Forms */
-.login__form-width, .register__form-width {
+.login__form-width, .register__form-width, .activity__form-width {
     width: 94%;
 }
 
@@ -249,6 +249,10 @@ a.social:hover, a.social:active {
 
 .form__image-height {
     height: 12.5em;
+}
+
+.form__bm {
+    margin-bottom: 5em;
 }
 
 a.action:link, a.action:visited {
