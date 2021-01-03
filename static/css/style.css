@@ -57,6 +57,10 @@ body {
 }
 
 /* Helpers */
+.wrapper {
+    min-height: 100vh;
+}
+
 .border__highlight {
     border: 1px solid var(--themeSuperLightGreen)
 }
@@ -171,6 +175,30 @@ body {
     font-family: 'Raleway', sans-serif;
     font-size: 1.2em;
 }
+
+/* Footer */
+.footer__container {
+    padding: 1.25em;
+    background: var(--themeGreen);
+    color: #fff;
+    font-family: 'Raleway', sans-serif;
+}
+
+.footer__icon {
+    display: inline-block;
+    margin-right: 0.5em;
+    font-size: 2em;
+}
+
+a.social:link, a.social:visited {
+    color: var(--themeTreeBrown);
+    transition: 0.45s;
+}
+
+a.social:hover, a.social:active {
+    color: #fff;
+}
+
 
 /* Forms */
 .login__form-width, .register__form-width {
