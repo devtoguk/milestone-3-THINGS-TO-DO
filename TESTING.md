@@ -80,11 +80,8 @@
 8. How do I keep a list of my favourite activities.
 
     1. To keep track of your favourite activities a user must be logged-in.
-    2. When viewing the full details of an activity the user can use the 'heart-icon'
-    in the top-right of the activity view to either add or remove the activity from their
-    'Favourite Activities' list.
-    3. To view your Favourite Activity list a user can select 'My Favourites' option from
-    the profile menu. The list will be displayed as activity cards which the user can click on to see further details about the activity.
+    2. When viewing the full details of an activity the user can use the 'heart-icon' in the top-right of the activity view to either add or remove the activity from their 'Favourite Activities' list.
+    3. To view your Favourite Activity list a user can select 'My Favourites' option from the profile menu. The list will be displayed as activity cards which the user can click on to see further details about the activity.
 
 ## Testing elements and functionality of the project
 (manually tests)
@@ -127,8 +124,8 @@
 1. Check that the results are displayed in the correct format depending on the screen size.
 2. Has the correct flash message been displayed.
 3. Ensure that the image and [i More Details] button link to the full activity view.
-4. Check that the [Edit] button only displays if the user originally submitted the
-activity or the current user is an admin/moderator.
+4. Check that the [Edit] button only displays if the user originally submitted the activity or the current user is an admin/moderator.
+5. Confirm that the correct data has been displayed.
 
 ### Activity View
 1. Check that the results are displayed in the correct format depending on the screen size.
@@ -136,19 +133,15 @@ activity or the current user is an admin/moderator.
 3. Check the alt/title text changes on the heart-icon.
 4. Ensure activity links work and only appear if the data is present.
 5. Check the 'creator' info at the bottom of the view.
+6. Confirm that the correct data has been displayed.
 
 ## Additional Testing
 1. Asked friends and family to use the application on their phone, tablets and desktops where possible and let me know any issues. Got good feedback, with no real issues.
 2. I have tested the site on a desktop using the following modern browsers: Chrome, Firefox and Edge. As well as testing on Android phone/tablet and Apple iPhone.
-3. The application has not been written to work on Internet Explorer. In the real World if a client wanted an application to work on IE then that is fine, but a lot of
-the newer methods of coding Javascript, etc does not work on IE. IE has had it's day and I wanted to code the app using some of these newer methods.
+3. The application has not been written to work on Internet Explorer. In the real World if a client wanted an application to work on IE then that is fine, but a lot of the newer methods of coding Javascript, etc does not work on IE. IE has had it's day and I wanted to code the app using some of these newer methods.
 
 ## Errors and Issues Found
 (only includes main errors/issues rather than easy to solve coding, typos, alignment, etc which caused only minor errors)
 
 1. **Uploaded images on Heroku**
-As far as user images on this project, I did not realise that we could just use a link
-rather than getting the users to actaully upload images. So I did go down the route
-of image uploads, cropping, resizing, etc.  This all worked well while testing on GitPod, however when I deployed the site to Heroku the images no longer appeared.
-Other than the tutor led course material I had never used Heroku before, so was a
-little puzzled but after some Googling I realised that while the image is actually uploaded to Heroku it doesn't actually store the image for very long.  I had a decision to make, undo all the effort and coding I had done for the images or spend time to find a solution. After further investigation I discovered AWS S3 Bucket was a place for my app to upload the images to and serve them back to the users.  This took more time than I thought, but I feel it was well worth it in the end.
+As far as user images on this project, I did not realise that we could just use a link rather than getting the users to actaully upload images. So I did go down the route of image uploads, cropping, resizing, etc.  This all worked well while testing on GitPod, however when I deployed the site to Heroku the images no longer appeared. Other than the tutor led course material I had never used Heroku before, so was a little puzzled but after some Googling I realised that while the image is actually uploaded to Heroku it doesn't actually store the image for very long.  I had a decision to make, undo all the effort and coding I had done for the images or spend time to find a solution. After further investigation I discovered AWS S3 Bucket was a place for my app to upload the images to and serve them back to the users.  This took more time than I thought, but I feel it was well worth it in the end.
