@@ -96,6 +96,8 @@ def about():
     """
     Render About Us page
     """
+    total_activities = mongo.db.activities.count()
+    total_users = mongo.db.users.count()
     return render_template(
         'about.html',
         page_title='About Things to Do and Places to Go',
@@ -103,6 +105,8 @@ def about():
                           'activity website, Things to Do and '
                           'Places to Go.'),
         nav_link='About',
+        total_activities=total_activities,
+        total_users=total_users,
         categories=CATEGORIES)
 
 
