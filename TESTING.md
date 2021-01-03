@@ -9,7 +9,7 @@
 - [User story testing](#user-story-testing)
 - [Testing elements and functionality of the project](#testing-elements-and-functionality-of-the-project)
 - [Additional Testing](#additional-testing)
-- [Errors / Issues Found](#errors---issues-found)
+- [Errors and Issues Found](#errors-and-issues-found)
 
 
 ## Software Tools
@@ -22,7 +22,7 @@
 - [Chrome Developer Tools](https://developers.google.com/web/tools/chrome-devtools) - used to help check the responsiveness of the site and also use of Audits to test for performance, accessibility, best practices & SEO
 
 ## User story testing
-Based on the UX section of README.md
+(based on the UX section of README.md)
 ### Customer
 1. How do I search for activities using a word or phrase?
 
@@ -143,7 +143,7 @@ activity or the current user is an admin/moderator.
 3. The application has not been written to work on Internet Explorer. In the real World if a client wanted an application to work on IE then that is fine, but a lot of
 the newer methods of coding Javascript, etc does not work on IE. IE has had it's day and I wanted to code the app using some of these newer methods.
 
-## Errors/Issues Found
+## Errors and Issues Found
 (only includes main errors/issues rather than easy to solve coding, typos, alignment, etc which caused only minor errors)
 
 1. **Uploaded images on Heroku**
