@@ -6,10 +6,10 @@
 
 ## Table of Contents
 - [Software Tools](#software-tools)
-- [User story testing (UX section of README.md)](#user-story-testing--ux-section-of-readmemd-)
-- [Testing elements and functionality of the project (manually tested)](#testing-elements-and-functionality-of-the-project--manually-tested-)
+- [User story testing](#user-story-testing)
+- [Testing elements and functionality of the project](#testing-elements-and-functionality-of-the-project)
 - [Additional Testing](#additional-testing)
-- [Errors/Issues Found](#errors-issues-found)
+- [Errors / Issues Found](#errors---issues-found)
 
 
 ## Software Tools
@@ -21,7 +21,8 @@
 - [Flake8 within GitPod]() - used to check Python code base against coding style (PEP8)
 - [Chrome Developer Tools](https://developers.google.com/web/tools/chrome-devtools) - used to help check the responsiveness of the site and also use of Audits to test for performance, accessibility, best practices & SEO
 
-## User story testing (UX section of README.md)
+## User story testing
+Based on the UX section of README.md
 ### Customer
 1. How do I search for activities using a word or phrase?
 
@@ -85,7 +86,8 @@
     3. To view your Favourite Activity list a user can select 'My Favourites' option from
     the profile menu. The list will be displayed as activity cards which the user can click on to see further details about the activity.
 
-## Testing elements and functionality of the project (manually tested)
+## Testing elements and functionality of the project
+(manually tests)
 
 ### General
 - Make sure that all app pages display as they should.
