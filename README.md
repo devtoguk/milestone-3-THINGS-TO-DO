@@ -7,13 +7,13 @@ The live deployed site can be accessed using the following link: [Things To Do P
 - [Summary](#summary)
 - [Business Goals](#business-goals)
 - [Customer Goals](#customer-goals)
-- [Advertise Goals](#advertise-goals)
+- [Advertise Goals](#advertise-goals-(future))
 - [UX](#ux)
   * [Ideal Customer:](#ideal-customer-)
   * [Ideal Advertiser:](#ideal-advertiser-)
 - [User Stories](#user-stories)
   * [Customer](#customer)
-  * [Advertiser](#advertiser)
+  * [Advertiser](#advertiser-(future))
 - [Wireframe Designs](#wireframe-designs)
 - [Surface](#surface)
 - [Technologies Used](#technologies-used)
@@ -21,8 +21,8 @@ The live deployed site can be accessed using the following link: [Things To Do P
   * [Pages / screens](#pages---screens)
 - [Future Features/Changes](#future-features-changes)
 - [Testing](#testing)
-- [Additional Notes](#additional-notes)
 - [Running Locally and Deployment](#running-locally-and-deployment)
+- [Additional Notes](#additional-notes)
 - [Credits](#credits)
   * [Text content](#text-content)
   * [Logo](#logo)
@@ -161,8 +161,9 @@ The google fonts chosen were 'Raleway' and 'Oswald' which I think match the webs
 - JavaScript
 - Python v3.8.6
 - Flask - micro web framework
-- Bootstrap
-- Fontawesome
+- Jinja - template language
+- Bootstrap v4.5
+- Fontawesome - free icons
 - [Google Fonts](https://fonts.google.com/) - for website fonts 'Oswald' & 'Raleway'.
 - [Autoprefixer](https://autoprefixer.github.io/) - used to ensure the CSS code was valid for browsers which match (last 2 versions, > 5%)
 - [Optimizilla](https://imagecompressor.com/) - used to compress JPEG/PNG content.
@@ -171,7 +172,7 @@ The google fonts chosen were 'Raleway' and 'Oswald' which I think match the webs
 All the site pages have a responsive navigation bar with site logo on left, clicking the logo will take the user to the Home page. The nav-bar is sticky and remains at
 the top of all pages, so basic navigation is always at hand.
 
-The play activity hero-image is displayed on all pages.
+The activity hero-image is displayed on all pages.
 
 At the bottom of all site pages is the footer which gives the social
 media links to get in touch.
@@ -280,16 +281,15 @@ Once logged out they are re-directed to the Home page.
   them to login for whatever reason.
 - Admin/Moderator tools for user maintenance.
 
-
 ## Testing
 For testing information please use the following link [TESTING.md](/TESTING.md)
+
+## Running Locally and Deployment
+For local running and deployment information please use the following link [DEPLOYMENT.md](/DEPLOYMENT.md)
 
 ## Additional Notes
 Here about image storage issues on Heroku, etc not realising we could just have
 URL link until I was way down the path of users uploading and resizing images.
-
-## Running Locally and Deployment
-For local running and deployment information please use the following link [DEPLOYMENT.md](/DEPLOYMENT.md)
 
 ## Credits
 

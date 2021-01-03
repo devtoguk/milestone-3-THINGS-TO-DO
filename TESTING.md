@@ -140,12 +140,14 @@
 - Ensure that the logo and navigation display correctly on different device screen sizes.
 - Check that the alt/title text appears on the logo image.
 - Ensure that font sizes are readable on different devices.
+- check that footer social links are working.
 
 ### Home page
 1. Check the search text input works and the [Search] button functions.
 
 ### About page
 1. Check that the text displays correctly
+2. Ensure that the DB stats are correct.
 
 ### Activities (menu)
 1. Check that the menu displays as it should on all devices.
@@ -188,7 +190,7 @@ activity or the current user is an admin/moderator.
 the newer methods of coding Javascript, etc does not work on IE. IE has had it's day and I wanted to code the app using some of these newer methods.
 
 ## Errors/Issues Found
-(only includes main errors rather than small typos/alignment which caused only minor errors)
+(only includes main errors/issues rather than easy to solve coding, typos, alignment, etc which caused only minor errors)
 
 1. **Uploaded images on Heroku**
 As far as user images on this project, I did not realise that we could just use a link

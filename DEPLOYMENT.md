@@ -1,3 +1,9 @@
+# Things To Do Places To Go - Testing Information
+
+[Website deployed on Heroku](https://things-to-do-project.herokuapp.com/)
+
+[Back to main README.md file](/README.md)
+
 ## Running Locally and Deployment
 This app has been built using the GitPod IDE and GitHub for version control.
 
