@@ -1,22 +1,25 @@
-# Things To Do Places To Go - Testing Information
+# Things To Do Places To Go - Deployment Information
 
 [Website deployed on Heroku](https://things-to-do-project.herokuapp.com/)
 
 [Back to main README.md file](/README.md)
 
-## Running Locally and Deployment
+## Table of Contents
+- [Running this project locally](#running-this-project-locally)
+- [Deploying to Heroku](#deploying-to-heroku)
+
+
+## Running this project locally
 This app has been built using the GitPod IDE and GitHub for version control.
 
-### Running this project locally
-The following is required:
-
+### The following is required:
 - Github account
 - Python (version 3.8)
 - [MongoDB](https://account.mongodb.com/account/login) account
 - [Amazon S3 Bucket](https://aws.amazon.com/s3/) account - for image storage and access
 - [Heroku](https://signup.heroku.com/) account (only for deployment)
 
-Clone the repository
+### Clone the repository
 1. Login to GitHub.
 2. Navigate to the projects repository “milestone-3-THINGS-TO-DO”
 3. Click Clone or Download under the repository name.
@@ -30,19 +33,19 @@ Clone the repository
 8. Press Enter. Your clone will now be created.
 -  For more information and troubleshooting on cloning a repository from GitHub click [here](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository).
 
-Install the Requirements
+### Install the Requirements
 1. Go to the workspace for your local copy.
 2. In a terminal window enter
   ```
     pip3 install -r requirements.txt
   ```
 
-Create the required MongoDB collections.
+### Create the required MongoDB collections.
 1. Login to your MongoDB account
 2. Create a cluster and then a database.
 3. Create 2 collections in the database: users and activities
 
-Create AWS S3 Image Bucket
+### Create AWS S3 Image Bucket
 1. Login to AWS S3 and create a new S3 bucket for image storage.
 2. Navigate to your AWS S3 service.
 3. Select 'Buckets'.
@@ -100,7 +103,7 @@ Create AWS S3 Image Bucket
 
 - For more information and troubleshooting on creating an AWS S3 Bucket click [here](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/create-bucket.html)
 
-Environment Variables
+### Environment Variables
 1. Add env.py to your .gitignore file
 2. Create the env.py and add in the following replacing the <> entries with
 your own values:
@@ -132,14 +135,14 @@ Run the App
   python3 app.py
   ```
 
-### Deploying to Heroku
+## Deploying to Heroku
 Use the steps below to deploy this app on Heroku:
 
-Setup Heroku
+### Setup Heroku
 1. Create a Heroku account
 2. Create a new app and select your region
 
-Local files required by Heroku
+### Local files required by Heroku
 1. Create/update the requirements.txt file, in a terminal window type:
   ```
   pip3 freeze --local > requirements.txt
@@ -149,7 +152,7 @@ Local files required by Heroku
     echo web: python run.py > Procfile
   ```
 
-Push files to Heroku
+### Push files to Heroku
 1. Login to Heroku, in terminal window type in the following and enter your user name and password:
   ```
     heroku login -i
@@ -161,7 +164,7 @@ Push files to Heroku
   ```
 - If the push/build fails, investigate the errors and retry from step 2.
 
-Heroku Config Variables
+### Heroku Config Variables
 1. Go to your Heroku account and select the App.
 2. From the app menu select 'Settings'.
 3. Click [Reveal Config Vars] to show the keys and the values.
@@ -182,5 +185,5 @@ Heroku Config Variables
   | AWS_S3_SIGNATURE_VERSION | s3v4 |
 <br>
 
-Open the Heroku App
+### Open the Heroku App
   1. At the top-right of the Heroku account window, click [Open app], the application will open in a new tab. The live URL for the app can be copied from the address bar e.g. https://things-to-do-project.herokuapp.com/
