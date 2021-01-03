@@ -4,7 +4,15 @@
 
 [Back to main README.md file](/README.md)
 
-## Testing
+## Table of Contents
+- [Software Tools](#software-tools)
+- [User story testing (UX section of README.md)](#user-story-testing--ux-section-of-readmemd-)
+- [Testing elements and functionality of the project (manually tested)](#testing-elements-and-functionality-of-the-project--manually-tested-)
+- [Additional Testing](#additional-testing)
+- [Errors/Issues Found](#errors-issues-found)
+
+
+## Software Tools
 - [JSHint - Code Analysis Tool](https://jshint.com/) - used to help detect errors and potential problems in JavaScript code.
 - [W3C - Markup Validation Service](https://validator.w3.org/) - used to check the markup validity of the HTML documents.  However some errors were shown due to the presence of the Jinja template language.
 - [W3C - CSS Validation Service](https://jigsaw.w3.org/css-validator/) - used to check the validity of the Cascading Style Sheets (CSS).
@@ -76,62 +84,6 @@
     'Favourite Activities' list.
     3. To view your Favourite Activity list a user can select 'My Favourites' option from
     the profile menu. The list will be displayed as activity cards which the user can click on to see further details about the activity.
-
-## User story testing (UX section of README.md)
-1. How do I play the game?
-
-    1. To find out how to play the game the user clicks the [INSERT COIN] button on the welcome screen and the
-    'How to Play' instructions are displayed on the game setup screen.
-
-2. I need to set the game options for skill and select a puzzle image.
-
-    1. After clicking the [INSERT COIN] button on the welcome screen the user can set the game options.
-        1. Use the difficulty slider to set how difficult the puzzle will be to solve.
-        2. Use the arrows <> next to the puzzle image to select the required image.
-
-3. I want to play the game.
-
-    1. To play the game the user clicks the [INSERT COIN] button on the welcome screen
-    2. Sets the game options for difficulty and puzzle image.
-    3. Clicks the [PLAY GAME] button.
-
-4. I need to be able to see in-game information about how I’m doing.
-
-    1. In-game information is displayed at the top or left of the screen depending on your device.
-    2. There you can see the difficulty level, puzzle preview, count-down timer and moves made.
-
-5. How do I complete the puzzle.
-
-    1. To complete the game the user needs to move the tiles until they are all in their original positions.
-    2. Tile moves are done by either clicking or swiping a tile that can move into the blank space.
-
-6. If I get stuck I would like to reset the game.
-
-    1. If the user gets stuck in an existing game they can reset the puzzle by clicking the green [RESET] button.
-    2. The puzzle image, count-down timer and moves will all reset and then the game will begin again.
-
-7. I want to end my current game and change the game setup.
-
-    1. To end the current game the user can simply click the red [QUIT] button.
-    2. Then to change the setup the user would click the [INSERT COIN] button on the welcome screen.
-
-8. I want to use an image on my device as the puzzle image.
-
-    1. To play the game using an image from their device the user would click the [INSERT COIN] button to get to the
-    game options screen.
-    2. Use the image select arrows <> to select the last image (image 16 of 16).
-    3. Click on the image and then select a JPG image from your device to use as the puzzle image.
-    4. The image will be resized, horizontally centered and squared for use as the puzzle image.
-
-9. I want to view the hi-scores table.
-
-    1. To view the hi-scores table click the [HI SCORES] button on the welcome screen.
-    2. To exit the hi-scores table the user would wait for the timeout or click the [BACK] button.
-
-10. How do I get on the hi-scores table.
-
-    1. To get on the hi-scores table you need to get a score higher than the lowest displayed in the hi-scores table.
-    2. A users score is based on time taken to complete, number of moves and difficulty level.
 
 ## Testing elements and functionality of the project (manually tested)
 
