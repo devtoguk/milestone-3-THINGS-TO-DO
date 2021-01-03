@@ -14,6 +14,7 @@ The live deployed site can be accessed using the following link: [Things To Do P
 - [User Stories](#user-stories)
   * [Customer](#customer-stories)
   * [Advertiser](#advertiser-stories)
+- [Information Architecture](#information-architecture)
 - [Wireframe Designs](#wireframe-designs)
 - [Surface](#surface)
 - [Technologies Used](#technologies-used)
