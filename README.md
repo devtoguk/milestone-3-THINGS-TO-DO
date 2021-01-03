@@ -22,7 +22,6 @@ The live deployed site can be accessed using the following link: [Things To Do P
 - [Future Features](#future-features)
 - [Testing](#testing)
 - [Running Locally and Deployment](#running-locally-and-deployment)
-- [Additional Notes](#additional-notes)
 - [Credits](#credits)
   * [Text content](#text-content)
   * [Logo](#logo)
@@ -39,8 +38,7 @@ their banners.
 
 ## Business Goals
 
-- Create an easy to use website which will keep users coming back time-after-time
-with a growing database of activities.
+- Create an easy to use website which will keep users coming back time-after-time with a growing database of activities.
 - Allow users to submit their own activity ideas.
 - Allow advertisers to have banners on the website to help generate revenue.
 
@@ -270,7 +268,7 @@ Once logged out they are re-directed to the Home page.
 
 
 ## Future features
-These are list in no particular order.
+These are list in no particular order:
 - Pagination for activity search results as the database grows.
 - User reviews for activities.
 - Display keywords when viewing the activity with links to find other.
@@ -289,10 +287,6 @@ For testing information please use the following link [TESTING.md](/TESTING.md)
 
 ## Running Locally and Deployment
 For local running and deployment information please use the following link [DEPLOYMENT.md](/DEPLOYMENT.md)
-
-## Additional Notes
-Here about image storage issues on Heroku, etc not realising we could just have
-URL link until I was way down the path of users uploading and resizing images.
 
 ## Credits
 
