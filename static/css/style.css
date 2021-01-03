@@ -150,17 +150,18 @@ body {
 }
 
 .about__container h1 {
-    font-size: 2em;;
     color: var(--themeRed);
+    font-size: 2em;;
 }
 
 .about__container h3 {
-    font-size: 1.8em;;
+    padding: 0 1.4em;
     color: var(--themeGreen);
+    font-size: 1.8em;
+    font-style: italic;
 }
 
 .about__container p {
-    /* color: #212529; */
     font-family: 'Raleway', sans-serif;
     font-size: 1.2em;
 }
@@ -463,18 +464,6 @@ a.favourites__remove:hover, a.favourites__remove:active {
         height: 2.5em;
     }
 
-    .about__container {
-        width: 65%;
-    }
-
-    .about__container h1 {
-        font-size: 2.4em;;
-    }
-
-    .about__container h3 {
-        font-size: 2.2em;;
-    }
-
 }
 
 /* Large devices (desktops, 992px and up) */
@@ -520,6 +509,18 @@ a.favourites__remove:hover, a.favourites__remove:active {
 
     .flash__message {
         font-size: 1.4em;
+    }
+
+    .about__container {
+        width: 65%;
+    }
+
+    .about__container h1 {
+        font-size: 2.4em;;
+    }
+
+    .about__container h3 {
+        font-size: 2.2em;;
     }
 
 }
