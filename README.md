@@ -12,8 +12,8 @@ The live deployed site can be accessed using the following link: [Things To Do P
   * [Ideal Customer:](#ideal-customer)
   * [Ideal Advertiser:](#ideal-future)
 - [User Stories](#user-stories)
-  * [Customer](#customer)
-  * [Advertiser](#advertiser-future)
+  * [Customer](#customer-stories)
+  * [Advertiser](#advertiser-stories)
 - [Wireframe Designs](#wireframe-designs)
 - [Surface](#surface)
 - [Technologies Used](#technologies-used)
@@ -51,7 +51,8 @@ with a growing database of activities.
 - Have the ability to submit an activity idea for the website.
 - Be able to keep a list of their favourite activities.
 
-## Advertiser Goals (future)
+## Advertiser Goals
+- (this is part of our future development, as the app gets more popular)
 - The ability to have a banner on the website to attract potential customers to
 their website.
 - Access information about how many clicks my banner has received
@@ -64,12 +65,13 @@ their website.
 - Wanting to share an activity they have seen or done.
 
 ### Ideal Advertiser:
+- (this is part of our future development, as the app gets more popular)
 - English speaking (UK & Ireland based)
 - Wants to advertise their service/product on an activity based website.
 
 ## User Stories
 
-### Customer
+### Customer Stories
 1. How do I search for activities using a word or phrase?
 2. How do I find activities by category.
 3. How can I submit my own idea for an activity to the database.
@@ -79,9 +81,10 @@ their website.
 7. How do I find newly added activities.
 8. How do I keep a list of my favourite activities.
 
-### Advertiser (future)
-1. How do I get my banner on the website?
-2. How can I find out how many clicks my banner has received.
+### Advertiser Stories
+-  (this is part of our future development, as the app gets more popular)
+2. How do I get my banner on the website?
+3. How can I find out how many clicks my banner has received.
 
 ## Information Architecture
 ### Database Choice
