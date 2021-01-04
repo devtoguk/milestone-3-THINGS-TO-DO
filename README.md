@@ -151,7 +151,7 @@ The colors for the app were chosen based on this image, keeping with the fresh g
 
 The google fonts chosen were 'Raleway' and 'Oswald' which I think match the layout and style of the app.
 
-##Code File Structure
+## Code File Structure
 I have attempted to break down the file structure to ensure each .py file serves a purpose. I did whoever run into some cyclic import issues, so it is not quite as modular as I wanted it to be but further learning will I'm sure help with this.
 
 - app.py - contains the app config and all the routes for dealing with users, activities, error-handlers, etc
@@ -309,7 +309,7 @@ The user can use this option to logout of the app. Once logged out they are re-d
   them to login for whatever reason.
 - Admin/Moderator tools for user maintenance.
 
-##Defensive design
+## Defensive design
 If the user attempts to access an unknown page/route then a page will be displayed to help them.
 I have used both client & server side form validation not only from a security benefit but also to help the user fill out the activity form correctly.
 I have also added a handler to show a message if the submitted activity form is too large, as occasionally this seemed to slip through.
