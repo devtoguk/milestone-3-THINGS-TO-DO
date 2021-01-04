@@ -4,16 +4,13 @@
     --themeGreen: rgb(119, 172, 3);
     --themeShadeGreen: rgb(108, 160, 15);
     --themeSuperLightGreen: rgb(220, 240, 179);
-    --themeRed: rgb(240,10,10);
     --themeTransRed: rgb(240, 10, 10, 0.4);
     --themeSeaGreen: rgb(180, 201, 144);
     --themeTranSeaGreen: rgb(180, 201, 144, 0.5);
     --themeTreeBrown: rgb(71, 79, 67);
     --themeTransTreeBrown: rgb(71, 79, 67, 0.8);
-    --themeDarkGreen: rgb(29, 62, 4);
     --themeHeartRed: rgb(248, 79, 98);
     --themeHeartGrey: rgb(152, 152, 152);
-    --themeAquaGreen: rgb(20, 185, 130);
 }
 
 body {
@@ -151,7 +148,7 @@ body {
 }
 
 .about__container h1 {
-    color: var(--themeRed);
+    color: var(--themeHeartRed);
     font-size: 2em;;
 }
 
@@ -213,7 +210,7 @@ a.social:hover, a.social:active {
 
 .form__error {
     margin: 0;
-    color: var(--themeRed);
+    color: var(--themeHeartRed);
     font-size: 16px;
     line-height: 26px;
     text-align: center;
@@ -272,7 +269,7 @@ a.action:hover, a.action:active {
 }
 
 .profile__label {
-    color: var(--themeDarkGreen);
+    color: var(--themeTreeBrown);
 }
 
 /* Tool tips */
