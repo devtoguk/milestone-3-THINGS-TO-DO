@@ -152,7 +152,7 @@ The colors for the app were chosen based on this image, keeping with the fresh g
 The google fonts chosen were 'Raleway' and 'Oswald' which I think match the layout and style of the app.
 
 ## Code File Structure
-I have attempted to break down the file structure to ensure each .py file serves a purpose. I did whoever run into some cyclic import issues, so it is not quite as modular as I wanted it to be but further learning will I'm sure help with this.
+I have attempted to break down the file structure to ensure each .py file serves a purpose. I did however run into some cyclic import issues, so it is not quite as modular as I wanted, but further learning will I'm sure help with this.
 
 - app.py - contains the app config and all the routes for dealing with users, activities, error-handlers, etc
 - models.py - contains the Classes and functions for dealing with MongoDB for Users and Activities.
@@ -310,16 +310,16 @@ The user can use this option to logout of the app. Once logged out they are re-d
 - Admin/Moderator tools for user maintenance.
 
 ## Defensive design
-If the user attempts to access an unknown page/route then a page will be displayed to help them.
-I have used both client & server side form validation not only from a security benefit but also to help the user fill out the activity form correctly.
-I have also added a handler to show a message if the submitted activity form is too large, as occasionally this seemed to slip through.
-Where possible I have coded the app to prevent unauthorized editing via the URL when trying to:
-- Edit an activity that does not belong to you.
-- Edit an activity if you are not logged-in.
-- Edit an unknown or invalid activity via the URL.
-- Add to favourites when not logged-in.
-- Add an activity which does not exist to your favourites.
-- Add an invalid activity to your favourites..
+- If the user attempts to access an unknown page/route then a page will be displayed to help them.
+- I have used both client & server side form validation not only from a security benefit but also to help the user fill out the activity form correctly.
+- I have also added a handler to show a message if the submitted activity form is too large, as occasionally this seemed to slip through.
+- Where possible I have coded the app to prevent unauthorized editing via the URL when trying to:
+    - Edit an activity that does not belong to you.
+    - Edit an activity if you are not logged-in.
+    - Edit an unknown or invalid activity via the URL.
+    - Add to favourites when not logged-in.
+    - Add an activity which does not exist to your favourites.
+    - Add an invalid activity to your favourites..
 
 ## Testing
 For testing information please use the following link [TESTING.md](/TESTING.md)
