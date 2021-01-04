@@ -204,7 +204,7 @@ On desktops these results display in three columns, tablets(portrait) two column
 
 This will show the full details about an activity, including venue address and contact information if available. If venue address is shown then a [Show on Map] button will be displayed which opens a blank window and loads Google Maps using the venue postcode.  If an addition URL is available then that will also be displayed.  
 At the foot of the activity is information about who and when the activity was created by, the 'who' takes a users screen name if present otherwise it uses their full name.  
-In the top-right corner is a 'herat-icon' this can be clicked on by the user to either add or remove this activity from their 'Activity Favourites' list (the user must be logged-in to use this, or they are re-directed to the Logi page). An empty grey heart indicates it is not in their list, and a solid red heart indicates it is in their list.
+In the top-right corner is a 'herat-icon' this can be clicked on by the user to either add or remove this activity from their 'Activity Favourites' list (the user must be logged-in to use this, or they are re-directed to the Login page). An empty grey heart indicates it is not in their list, and a solid red heart indicates it is in their list.
 
 On desktops these results layout using two columns, tablets(portrait) and mobiles use one column.
 
