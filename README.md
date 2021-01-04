@@ -31,7 +31,7 @@ The live deployed app can be accessed using the following link: [Things To Do Pl
 - [Disclaimer](#disclaimer)
 
 ## Summary
-The purpose of the ‘Things To Do Places To Go’ project is to create an app which will allow people to find activities to do. From small adventures in the garden, to big adventures on days out.  Eventually advertisers will be able to use the app to display their banners.
+The purpose of the ‘Things To Do Places To Go’ project is to create an app which will allow people to find activities to do. From small adventures in the garden, to big adventures on days out.  As the app gets more popular, eventually advertisers will be able to use the app to display their banners.
 
 ## Business Goals
 
@@ -68,7 +68,7 @@ their website.
 ### Customer Stories
 1. How do I search for activities using a word or phrase?
 2. How do I find activities by category.
-3. How can I submit my own idea for an activity to the database.
+3. How can I submit my own idea for an activity.
 4. How can I see all the activities I have submitted.
 5. How can I edit an activity I have submitted.
 6. How do I find featured activities.
@@ -87,9 +87,8 @@ This choice was based on the ability of each document to only have to store
 the fields for data we have, but to have the flexibility to easily add new
 fields at any time. ie. Not all activities have Venue data to store.
 
-
 ### Database Schema
-The 'Things To Do Places To Go' database has 2 collections: activities and users.
+The 'Things To Do Places To Go' database has two collections: activities and users.
 
 <br>
 
@@ -146,11 +145,9 @@ After the initial thought of doing an activity app I had a browse on
 [Unsplash](https://unsplash.com/photos/tvc5imO5pXk) and found the image below:
 ![Things To Do Places To Go - background idea](docs/background.jpg)
 
-The colors for the app were chosen based on this image, keeping with the fresh greens, and using other colours from the image for logo,
-buttons, etc
+The colors for the app were chosen based on this image, keeping with the fresh greens, and using other colours from the image for logo, buttons, etc
 
-The google fonts chosen were 'Raleway' and 'Oswald' which I think match the app layout.
-
+The google fonts chosen were 'Raleway' and 'Oswald' which I think match the layout and style of the app.
 
 ## Technologies Used
 - HTML
@@ -166,13 +163,11 @@ The google fonts chosen were 'Raleway' and 'Oswald' which I think match the app 
 - [Optimizilla](https://imagecompressor.com/) - used to compress JPEG/PNG content.
 
 ## Features
-All the app pages have a responsive navigation bar with logo top-left, clicking the logo will take the user to the Home page. The nav-bar is sticky and remains at
-the top of all pages, so basic navigation is always at hand.
+All the app pages have a responsive navigation bar with logo top-left, clicking the logo will take the user to the Home page. The nav-bar is sticky and remains at the top of all pages, so basic navigation is always at hand.
 
 The activity hero-image is displayed on all pages.
 
-At the bottom of all app pages is the footer which gives the social
-media links to get in touch.
+At the bottom of all app pages is the footer which gives the social media links to get in touch.
 
 [Home](https://things-to-do-project.herokuapp.com/)
 
@@ -182,7 +177,7 @@ Desktops, tablets and mobiles all display in the same format.
 
 [About](https://things-to-do-project.herokuapp.com/about/)
 
-This page simple shows the about us text of the app.
+This page shows the about us text for the app plus at the base of the text are database stats which show the number of activities in the database and how many registered users there are.
 
 Desktops, tablets and mobiles all display in the same format.
 
@@ -201,18 +196,23 @@ The Activities menu option displays a sub-menu of the following:
 - [Sport and Leisure](https://things-to-do-project.herokuapp.com/category/Sport%20and%20Leisure/)
 
 Selecting one of these options from the 'Activities' menu will display a message
-to the user about what is being displayed followed by the matching activity results
-from the database.
+to the user about what is being displayed followed by the matching activity results from the database.  The user can then click on any of these results via the image or the [More] button to view further details about that activity.
 
-On desktops these results display in three columns, tablets(portrait) two columns
-and one column on mobiles.
+On desktops these results display in three columns, tablets(portrait) two columns and one column on mobiles.
+
+[View Activity Details](https://things-to-do-project.herokuapp.com/activity/view/5fb936c672b346642f5c0e6c/)
+
+This will show the full details about an activity, including venue address and contact information if available. If venue address is shown then a [Show on Map] button will be displayed which opens a blank window and loads Google Maps using the venue postcode.  If an addition URL is available then that will also be displayed.  
+At the foot of the activity is information about who and when the activity was created by, the 'who' takes a users screen name if present otherwise it uses their full name.  
+In the top-right corner is a 'herat-icon' this can be clicked on by the user to either add or remove this activity from their 'Activity Favourites' list (the user must be logged-in to use this, or they are re-directed to the Logi page). An empty grey heart indicates it is not in their list, and a solid red heart indicates it is in their list.
+
+On desktops these results layout using two columns, tablets(portrait) and mobiles use one column.
 
 [Submit an Activity](https://things-to-do-project.herokuapp.com/activity/submit/)
 
 You must be logged-in to do this action, otherwise a message is displayed and
-the user is re-directed back to the Home page.
-If logged-in the form allowing a user to submit a new activity is displayed, with
-an [Add Activity] button at the bottom of the form.
+the user is re-directed back to the Login page.
+If logged-in the form allowing a user to submit a new activity is displayed, with an [Add Activity] button at the bottom of the form.
 
 Desktops, tablets and mobiles all display the submit form slightly differently
 due to the screen width available.
@@ -226,8 +226,7 @@ Below this is a note to the user if they do not have a login followed by the
 Desktops, tablets and mobiles all display the login/register forms the same or
  slightly differently due to the screen width available.
 
-Note: If a user is already logged-in the 'Login/Register' is replaced by a profile icon
-with a drop-down menu.
+Note: If a user is already logged-in the 'Login/Register' menu option is replaced by a profile icon with a drop-down menu.
 
 [Profile icon menu](#)
 
@@ -246,8 +245,7 @@ This option will flash a message to the user about what is being displayed
 followed by the results showing any activities which are in their
 'Activity Favourites' list.
 
-On desktops these results display in three columns, tablets(portrait) two columns
-and one column on mobiles.
+On desktops these results display in three columns, tablets(portrait) two columns and one column on mobiles.
 
 [Submitted by Me](https://things-to-do-project.herokuapp.com/category/Submitted/)
 
@@ -255,27 +253,23 @@ This option will flash a message to the user about what is being displayed
 followed by the results showing any activities which the user has submitted to
 the database.
 
-On desktops these results display in three columns, tablets(portrait) two columns
-and one column on mobiles.
+On desktops these results display in three columns, tablets(portrait) two columns and one column on mobiles.
 
 [Logout](https://things-to-do-project.herokuapp.com/user/logout/)
 
-The user can use this option to logout of the app.
-Once logged out they are re-directed to the Home page.
-
+The user can use this option to logout of the app. Once logged out they are re-directed to the Home page.
 
 ## Future features
-These are list in no particular order:
+- Return the user back to their original URL if the app had re-directed them to the Login page.
 - Pagination for activity search results as the database grows.
 - User reviews for activities.
 - Display keywords when viewing the activity with links to find other.
   activities with the same keywords.
+- Ability for users to reset their password if forgotten.
 - Admin/Moderator option to toggle featured activities on/off.
 - Admin/Moderator option to approve or disapprove activities.
 - Integrate Google Map view into the app rather than a link.
 - Use of postcode, town or county to provide activities near me searches.
-- Ability for users to reset their password if forgotten.
-- Return the user back to their original URL if the system has asked.
   them to login for whatever reason.
 - Admin/Moderator tools for user maintenance.
 
@@ -283,13 +277,11 @@ These are list in no particular order:
 For testing information please use the following link [TESTING.md](/TESTING.md)
 
 ## Running Locally and Deployment
-For local running and deployment information please use the following link [DEPLOYMENT.md](/DEPLOYMENT.md)
+For running locally and deployment information please use the following link [DEPLOYMENT.md](/DEPLOYMENT.md)
 
 ## Credits
-
 ### Text content
-Some text has been written by R.Thompson and other activity titles and descriptions have been copied from their respective websites.(if this was not an educational project, permission would have been sought before using their exact text).   
-Any character names mentioned in any activities remain the property of their respective copyright owners.
+Some text has been written by R.Thompson and other activity titles and descriptions have been copied from their respective websites.(if this was not an educational project, permission would have been sought before using their exact text).  Any character names mentioned in any activities remain the property of their respective copyright owners.
 
 ### Logo
 The logo image was created from scratch using Adobe Photoshop.
@@ -313,7 +305,7 @@ Thanks to the Stackoverflow and other communities & blogs for helping solve some
 
 
 ## Acknowledgments
-The idea for this project came from the fact that we to are always looking for
+The idea for this project came from the fact that we too are always looking for
 activity ideas for the family.
 
 A big thank you to my mentor, the Slack community and many great reference sites out there including Stackoverflow and W3Schools, as well as the online documentation for Python, Flask, MongoDB, Amazon S3, Heroku, Bootstrap, etc

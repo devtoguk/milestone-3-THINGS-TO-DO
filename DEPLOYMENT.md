@@ -31,7 +31,8 @@ This app has been built using the GitPod IDE and GitHub for version control.
       git clone https://github.com/username/repository
   ```
 8. Press Enter. Your clone will now be created.
--  For more information and troubleshooting on cloning a repository from GitHub click [here](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository).
+
+For more information and troubleshooting on cloning a repository from GitHub click [here](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository).
 
 ### Install the Requirements
 1. Go to the workspace for your local copy.
@@ -43,7 +44,7 @@ This app has been built using the GitPod IDE and GitHub for version control.
 ### Create the required MongoDB collections.
 1. Login to your MongoDB account
 2. Create a cluster and then a database.
-3. Create 2 collections in the database: users and activities
+3. Create two collections in the database: users and activities
 
 ### Create AWS S3 Image Bucket
 1. Login to AWS S3 and create a new S3 bucket for image storage.
@@ -101,7 +102,7 @@ This app has been built using the GitPod IDE and GitHub for version control.
     ]
 ```
 
-- For more information and troubleshooting on creating an AWS S3 Bucket click [here](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/create-bucket.html)
+For more information and troubleshooting on creating an AWS S3 Bucket click [here](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/create-bucket.html)
 
 ### Environment Variables
 1. Add env.py to your .gitignore file
@@ -122,7 +123,8 @@ your own values:
   os.environ.setdefault('AWS_DEFAULT_REGION', '<your_aws_region_here>')
   os.environ.setdefault('S3_BUCKET_NAME', '<your_s3_bucket_name_here>')
 ```
-- NOTE for MONGO_URI: Before entering your info for this copy your connection string from MongoDB
+
+NOTE for MONGO_URI: Before entering your info for this copy your connection string from MongoDB
   - In MongoDB while on your cluster.
   - Choose 'Command Line Tools' on the cluster menu.
   - Now select [Connect Instructions] - [Connect your application]
@@ -165,7 +167,7 @@ Use the steps below to deploy this app on Heroku:
 - If the push/build fails, investigate the errors and retry from step 2.
 
 ### Heroku Config Variables
-1. Go to your Heroku account and select the App.
+1. Go to your Heroku account and select your app.
 2. From the app menu select 'Settings'.
 3. Click [Reveal Config Vars] to show the keys and the values.
 4. Set the keys and values as below, replacing the <> entries with your values:
