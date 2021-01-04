@@ -18,7 +18,7 @@
                 {{ form.csrf_token }}
                 <!-- Title -->
                 <div class="form-group col-md-6">
-                    {{ form.title.label(class="") }}
+                    {{ form.title.label }}
                     <i data-toggle="tooltip" data-placement="right" title="max 50 characters" class="far fa-question-circle tooltip-inner"></i>
                     {% set error_visible = 'd-none' %}
                     {% if form.title.errors %}
@@ -35,7 +35,7 @@
                 </div>
                 <!-- Short description -->
                 <div class="form-group col-md-6">
-                    {{ form.shortDescr.label(class="") }}
+                    {{ form.shortDescr.label }}
                     <i data-toggle="tooltip" data-placement="right" title="max 60 characters" class="far fa-question-circle tooltip-inner"></i>
                     {% if form.shortDescr.errors %}
                         {{ form.shortDescr(class="form-control is-invalid") }}
@@ -55,7 +55,7 @@
                     <div class="form-row">
                         <!-- Long description -->
                         <div class="form-group col-12">
-                            {{ form.longDescr.label(class="") }}
+                            {{ form.longDescr.label }}
                             <i data-toggle="tooltip" data-placement="right" title="at least 400 characters" class="far fa-question-circle tooltip-inner"></i>
                             {% if form.longDescr.errors %}
                                 {{ form.longDescr(rows="4", class="form-control is-invalid") }}
@@ -71,7 +71,7 @@
                         </div>
                         <!-- Image -->
                         <div class="form-group col-12">
-                            {{ form.image.label(class="") }}
+                            {{ form.image.label }}
                             {% if form.image.errors %}
                                 {{ form.image(class="form-control is-invalid") }}
                                 {% set error_visible = 'd-block' %}
@@ -106,7 +106,7 @@
             <div class="form-row">
                 <!-- Location -->
                 <div class="form-group col-md-6 col-lg-3">
-                    {{ form.location.label(class="") }}
+                    {{ form.location.label }}
                     {% if form.location.errors %}
                         {{ form.location(class="form-control is-invalid") }}
                         {% set error_visible = 'd-block' %}
@@ -121,7 +121,8 @@
                 </div>
                 <!-- Age Range -->
                 <div class="form-group col-md-6 col-lg-3">
-                    {{ form.ageRange.label(class="") }}
+                    {{ form.ageRange.label }}
+                    <i data-toggle="tooltip" data-placement="right" title="age from-age to  i.e. 16-99" class="far fa-question-circle tooltip-inner"></i>
                     {% if form.ageRange.errors %}
                         {{ form.ageRange(class="form-control is-invalid") }}
                         {% set error_visible = 'd-block' %}
@@ -136,7 +137,7 @@
                 </div>
                 <!-- Online only -->
                 <div class="form-group col-md-6 col-lg-3">
-                    {{ form.online.label(class="") }}
+                    {{ form.online.label }}
                     {% if form.online.errors %}
                         {{ form.online(class="form-control is-invalid") }}
                         {% set error_visible = 'd-block' %}
@@ -151,7 +152,7 @@
                 </div>
                 <!-- Free todo -->
                 <div class="form-group col-md-6 col-lg-3">
-                    {{ form.freeTodo.label(class="") }}
+                    {{ form.freeTodo.label }}
                     {% if form.freeTodo.errors %}
                         {{ form.freeTodo(class="form-control is-invalid") }}
                         {% set error_visible = 'd-block' %}
@@ -178,7 +179,7 @@
                 <div class="form-row">
                     <!-- Venue name -->
                     <div class="form-group col-md-8 col-lg-6">
-                        {{ form.venue['name'].label(class="") }}
+                        {{ form.venue['name'].label }}
                         {% if form.venue['name'].errors %}
                             {{ form.venue['name'](class="form-control is-invalid") }}
                             <div class="invalid-feedback">
@@ -192,7 +193,7 @@
                     </div>
                     <!-- Venue postcode -->
                     <div class="form-group col-md-4 col-lg-6">
-                        {{ form.venue['postcode'].label(class="") }}
+                        {{ form.venue['postcode'].label }}
                         {% if form.venue['postcode'].errors %}
                             {{ form.venue['postcode'](class="form-control is-invalid") }}
                             <div class="invalid-feedback">
@@ -213,7 +214,7 @@
                 <div class="form-row">
                     <!-- Venue address -->
                     <div class="form-group col-lg-6">
-                        {{ form.venue['address'].label(class="") }}
+                        {{ form.venue['address'].label }}
                         {% if form.venue['address'].errors %}
                             {{ form.venue['address'](class="form-control is-invalid") }}
                             <div class="invalid-feedback">
@@ -230,7 +231,7 @@
                         <div class="form-row">
                             <!-- Email -->
                             <div class="form-group col-12">
-                                {{ form.venue['email'].label(class="") }}
+                                {{ form.venue['email'].label }}
                                 {% if form.venue['email'].errors %}
                                     {{ form.venue['email'](class="form-control is-invalid") }}
                                     <div class="invalid-feedback">
@@ -246,7 +247,7 @@
                         <div class="form-row">
                             <!-- Website -->
                             <div class="form-group col-12">
-                                {{ form.venue['website'].label(class="") }}
+                                {{ form.venue['website'].label }}
                                 {% if form.venue['website'].errors %}
                                     {{ form.venue['website'](class="form-control is-invalid") }}
                                     <div class="invalid-feedback">
@@ -267,7 +268,7 @@
             <div class="form-row">
                 <!-- Category -->
                 <div class="form-group col-md-3">
-                    {{ form.category.label(class="") }}
+                    {{ form.category.label }}
                     <i data-toggle="tooltip" data-placement="right" title="select all that apply" class="far fa-question-circle tooltip-inner"></i>
                     {% if form.category.errors %}
                         {{ form.category(class="form-control is-invalid") }}
@@ -283,7 +284,7 @@
                 </div>
                 <!-- When todo -->
                 <div class="form-group col-md-3">
-                    {{ form.whenTodo.label(class="") }}
+                    {{ form.whenTodo.label }}
                     <i data-toggle="tooltip" data-placement="right" title="select all that apply" class="far fa-question-circle tooltip-inner"></i>
                     {% if form.whenTodo.errors %}
                         {{ form.whenTodo(class="form-control is-invalid") }}
@@ -302,7 +303,7 @@
                     <div class="form-row">
                         <!-- Additional URL -->
                         <div class="form-group col-12">
-                            {{ form.additionalURL.label(class="") }}
+                            {{ form.additionalURL.label }}
                             {% if form.additionalURL.errors %}
                                 {{ form.additionalURL(class="form-control is-invalid") }}
                                 <div class="invalid-feedback">
@@ -318,7 +319,7 @@
                     <div class="form-row">
                         <!-- Keywords -->
                         <div class="form-group col-12">
-                            {{ form.keywords.label(class="") }}
+                            {{ form.keywords.label }}
                             {% if form.keywords.errors %}
                                 {{ form.keywords(class="form-control is-invalid") }}
                                 <div class="invalid-feedback">

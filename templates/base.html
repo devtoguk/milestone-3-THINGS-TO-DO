@@ -1,9 +1,13 @@
 {% set social_links = (
-    {"icon":"fa-instagram","urlLink": "https://www.instagram.com/"},
-    {"icon":"fa-facebook-square","urlLink": "https://www.facebook.com/"},
-    {"icon":"fa-twitter-square","urlLink": "https://twitter.com/"},
-    {"icon":"fa-youtube-square","urlLink": "https://www.youtube.com/"}
-    ) %}
+    {"name":"Instagram", "icon":"fa-instagram-square", 
+     "urlLink": "https://www.instagram.com/"},
+    {"name":"Facebook", "icon":"fa-facebook-square", 
+     "urlLink": "https://www.facebook.com/"},
+    {"name":"Twitter", "icon":"fa-twitter-square", 
+     "urlLink": "https://twitter.com/"},
+    {"name":"Youtube", "icon":"fa-youtube-square", 
+     "urlLink": "https://www.youtube.com/"}
+) %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -124,7 +128,7 @@
         <ul class="float-sm-left float-lg-right pl-0 pr-0">
         {% for item in social_links%}
             <li class="social__icon">
-                <a class="social" href="{{ item['urlLink'] }}" target="_blank">
+                <a class="social" href="{{ item['urlLink'] }}" target="_blank" rel="noreferrer noopener" alt="Visit our {{ item['name'] }} page" title="Visit our {{ item['name'] }} page">
                 <i class="fab {{ item['icon'] }}"></i>
                 </a>
             </li>
