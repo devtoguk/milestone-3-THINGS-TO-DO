@@ -275,17 +275,23 @@ a.action:hover, a.action:active {
 
 /* Tool tips */
 .tooltip-inner {
-    color: #fff;
-    background-color: var(--themeTreeBrown);
+    margin: 0;
+    padding: 0;
+    padding: 5px;
+    color: #326b9c;
+    background: #dbe0d6;
+    font-size: 1em;
     text-align: left;
 }
 
 .tooltip.bs-tooltip-right .arrow:before {
-    border-right-color: var(--themeTreeBrown) !important;
+    border-right-color: var(--themeGreen) !important;
+    border-right: 0;
 }
 
 .tooltip.bs-tooltip-bottom .arrow:before {
-    border-bottom-color: var(--themeTreeBrown) !important;
+    border-bottom-color: var(--themeGreen) !important;
+    border-right: 0;
 }
 
 /* Cards */
@@ -384,6 +390,16 @@ a.action:hover, a.action:active {
 
 .activity-view__created {
     font-size: 0.8em;
+}
+
+.activity-view__when {
+    padding: 0 3px;
+    font-weight: bold;
+}
+
+.activity-view__flag i {
+    color: var(--themeDarkGreen);
+    font-size: 2em;
 }
 
 a.info:link, a.info:visited {

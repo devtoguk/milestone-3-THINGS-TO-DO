@@ -44,6 +44,71 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <!-- Activity flags -->
+        <div class="col-lg-6">
+            <div class="row">
+                <!-- At home or Out and About -->
+                <div class="col-3 activity-view__flag">
+                    {% if activity.location == 1 %}
+                        <p class="text-center mb-0">
+                            <i class="fas fa-home"></i>
+                        </p>
+                        <p class="text-center">
+                            <small>At Home</small>
+                        </p>
+                    {% elif activity.location == 2 %}
+                        <p class="text-center mb-0">
+                            <i class="fas fa-map-signs"></i>
+                        </p>
+                        <p class="text-center">
+                            <small>Out & About</small>
+                        </p>
+                    {% endif %}
+                </div>
+                <!-- Free todo -->
+                <div class="col-3 activity-view__flag">
+                    {% if activity.location == 1 %}
+                        <p class="text-center mb-0">
+                            <i class="fas fa-feather-alt"></i>
+                        </p>
+                        <p class="text-center">
+                            <small>Free todo</small>
+                        </p>
+                    {% elif activity.location == 2 %}
+                        <p class="text-center mb-0">
+                            <i class="fas fa-pound-sign"></i>
+                        </p>
+                        <p class="text-center">
+                            <small>Not free</small>
+                        </p>
+                    {% endif %}
+                </div>
+                <!-- Online only -->
+                <div class="col-3 activity-view__flag">
+                    {% if activity.online == 2 %}
+                        <p class="text-center mb-0">
+                            <i class="fas fa-globe"></i>
+                        </p>
+                        <p class="text-center">
+                            <small>Online</small>
+                        </p>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+        <!-- Best time todo -->
+        <div class="col-lg-6 mt-2 mb-2">
+            <p class="activity-view__text-box">
+                The best time(s) of year for this activity:
+                <span class="d-xl-none"><br></span>
+                {% for entry in activity.whenTodo %}
+                    <span class="activity-view__when">{{ entry }}</span>
+                {% endfor %}
+            </p>
+        </div>
+    </div>
     {% if activity.venue %}
         <!-- Show venue information if available-->
         <div class="row">
