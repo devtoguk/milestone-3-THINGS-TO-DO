@@ -316,10 +316,10 @@ The user can use this option to logout of the app. Once logged out they are re-d
 - Where possible I have coded the app to prevent unauthorized editing via the URL when trying to:
     - Edit an activity that does not belong to you.
     - Edit an activity if you are not logged-in.
-    - Edit an unknown or invalid activity via the URL.
+    - Edit an unknown or invalid activity.
     - Add to favourites when not logged-in.
-    - Add an activity which does not exist to your favourites.
-    - Add an invalid activity to your favourites..
+    - Add an activity which does not exist into your favourites.
+    - Add an invalid activity into your favourites.
 
 ## Testing
 For testing information please use the following link [TESTING.md](/TESTING.md)
