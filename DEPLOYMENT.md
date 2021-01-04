@@ -41,10 +41,24 @@ For more information and troubleshooting on cloning a repository from GitHub cli
     pip3 install -r requirements.txt
   ```
 
-### Create the required MongoDB collections.
+### Create the required MongoDB collections and index
 1. Login to your MongoDB account
 2. Create a cluster and then a database.
-3. Create two collections in the database: users and activities
+3. Create two collections in the database: users and activities.
+4. Add a text index to the activities collection.
+    1. From your cluster select your your database
+    2. Select the activities collection
+    3. In the right-hand panel choose 'Indexes' & click [Create Index] button
+    4. In the fields section enter the following:
+        ```
+        {
+        "title": "text",
+        "shortDescr": "text"
+        "longDescr": "text"
+        "keywords": "text"
+        }
+        ```
+    5. Click [Review], check your index then click [Confirm]
 
 ### Create AWS S3 Image Bucket
 1. Login to AWS S3 and create a new S3 bucket for image storage.
