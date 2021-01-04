@@ -1,16 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Raleway:ital,wght@0,400;0,500;0,600;1,400;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Raleway:wght@400;500;700&display=swap');
 
 :root {
     --themeGreen: rgb(119, 172, 3);
     --themeShadeGreen: rgb(108, 160, 15);
     --themeSuperLightGreen: rgb(220, 240, 179);
-    --themeRed: rgb(240,10,10);
     --themeTransRed: rgb(240, 10, 10, 0.4);
     --themeSeaGreen: rgb(180, 201, 144);
     --themeTranSeaGreen: rgb(180, 201, 144, 0.5);
     --themeTreeBrown: rgb(71, 79, 67);
     --themeTransTreeBrown: rgb(71, 79, 67, 0.8);
-    --themeDarkGreen: rgb(29, 62, 4);
     --themeHeartRed: rgb(248, 79, 98);
     --themeHeartGrey: rgb(152, 152, 152);
 }
@@ -150,7 +148,7 @@ body {
 }
 
 .about__container h1 {
-    color: var(--themeRed);
+    color: var(--themeHeartRed);
     font-size: 2em;;
 }
 
@@ -212,7 +210,7 @@ a.social:hover, a.social:active {
 
 .form__error {
     margin: 0;
-    color: var(--themeRed);
+    color: var(--themeHeartRed);
     font-size: 16px;
     line-height: 26px;
     text-align: center;
@@ -271,7 +269,7 @@ a.action:hover, a.action:active {
 }
 
 .profile__label {
-    color: var(--themeDarkGreen);
+    color: var(--themeTreeBrown);
 }
 
 /* Tool tips */
@@ -403,13 +401,14 @@ a.action:hover, a.action:active {
 }
 
 .activity-view__flag i {
-    color: var(--themeDarkGreen);
+    color: var(--themeHeartRed);
     font-size: 2em;
 }
 
 .activity-view__flag-icon {
     margin-bottom: .25em;
     text-align: center;
+    text-shadow: 0px 1px var(--themeTreeBrown);
 }
 
 a.info:link, a.info:visited {

@@ -17,9 +17,11 @@ The live deployed app can be accessed using the following link: [Things To Do Pl
 - [Information Architecture](#information-architecture)
 - [Wireframe Designs](#wireframe-designs)
 - [Surface](#surface)
+- [Code File Structure](#code-file-structure)
 - [Technologies Used](#technologies-used)
 - [Features](#features)
 - [Future Features](#future-features)
+- [Defensive design](#defensive-design)
 - [Testing](#testing)
 - [Running Locally and Deployment](#running-locally-and-deployment)
 - [Credits](#credits)
@@ -149,6 +151,16 @@ The colors for the app were chosen based on this image, keeping with the fresh g
 
 The google fonts chosen were 'Raleway' and 'Oswald' which I think match the layout and style of the app.
 
+## Code File Structure
+I have attempted to break down the file structure to ensure each .py file serves a purpose. I did however run into some cyclic import issues, so it is not quite as modular as I wanted, but further learning will I'm sure help with this.
+
+- app.py - contains the app config and all the routes for dealing with users, activities, error-handlers, etc
+- models.py - contains the Classes and functions for dealing with MongoDB for Users and Activities.
+- consts.py - contains two list variables with will very rarely change.
+- forms.py - contains the Flask-wtf form definitions for the Activity Form.
+- functions.py - contains functions for dealing with the S3 Bucket plus an ObjectId checker.
+- image.py - contains the function for dealing with image resizing.
+
 ## Technologies Used
 - HTML
 - CSS
@@ -196,15 +208,24 @@ The Activities menu option displays a sub-menu of the following:
 - [Sport and Leisure](https://things-to-do-project.herokuapp.com/category/Sport%20and%20Leisure/)
 
 Selecting one of these options from the 'Activities' menu will display a message
-to the user about what is being displayed followed by the matching activity results from the database.  The user can then click on any of these results via the image or the [More] button to view further details about that activity.
+to the user about what is being displayed followed by the matching activity results from the database.  The user can then click on any of these results via the 'activity image' or the [More] button, to view further details about that activity.
+If the user has access to edit the activity then an [Edit] button is displayed, clicking this button will allow the user to view the 'Edit activity form.
 
 On desktops these results display in three columns, tablets(portrait) two columns and one column on mobiles.
 
 [View Activity Details](https://things-to-do-project.herokuapp.com/activity/view/5fb936c672b346642f5c0e6c/)
 
-This will show the full details about an activity, including venue address and contact information if available. If venue address is shown then a [Show on Map] button will be displayed which opens a blank window and loads Google Maps using the venue postcode.  If an addition URL is available then that will also be displayed.  
+This will show the full details about an activity, full image, short description and long description.
+
+Below this are the activity flags which indicate the best location to do the activity, online-only, free todo and then there is the 'Best time todo' text. 
+
+Following this if available is the venue address and contact information if available. If venue address is shown then a [Show on Map] button will be displayed which opens a blank window and loads Google Maps using the venue postcode.  
+
+If an addition URL is available then that will also be displayed.  
+
 At the foot of the activity is information about who and when the activity was created by, the 'who' takes a users screen name if present otherwise it uses their full name.  
-In the top-right corner is a 'herat-icon' this can be clicked on by the user to either add or remove this activity from their 'Activity Favourites' list (the user must be logged-in to use this, or they are re-directed to the Login page). An empty grey heart indicates it is not in their list, and a solid red heart indicates it is in their list.
+
+In the top-right corner is a 'heart-icon' this can be clicked on by the user to either add or remove this activity from their 'Activity Favourites' list (the user must be logged-in to use this, or they are re-directed to the Login page). An empty grey heart indicates it is not in their list, and a solid red heart indicates it is in their list.
 
 On desktops these results layout using two columns, tablets(portrait) and mobiles use one column.
 
@@ -213,6 +234,17 @@ On desktops these results layout using two columns, tablets(portrait) and mobile
 You must be logged-in to do this action, otherwise a message is displayed and
 the user is re-directed back to the Login page.
 If logged-in the form allowing a user to submit a new activity is displayed, with an [Add Activity] button at the bottom of the form.
+In the top-right corner is an [X] button which will cancel the add and return the user to the Home page.
+
+Desktops, tablets and mobiles all display the submit form slightly differently
+due to the screen width available.
+
+[Edit an Activity](#)
+
+You must be logged-in to do this action, otherwise a message is displayed and
+the user is re-directed back to the Home page.
+If logged-in the form allowing a user to edit an activity is displayed, with an [Update Activity] button at the bottom of the form.
+In the top-right corner is an [X] button which will cancel the edit and return the user to the Home page.
 
 Desktops, tablets and mobiles all display the submit form slightly differently
 due to the screen width available.
@@ -222,6 +254,9 @@ due to the screen width available.
 This page will show the user login form, and the [Login] button.
 Below this is a note to the user if they do not have a login followed by the
 [Register] button.
+Clicking the [Register] button will display the 'User Registration' form, allowing them to register.
+
+In the top-right corner is an [X] button which will cancel the login/register and return the user to the Home page.
 
 Desktops, tablets and mobiles all display the login/register forms the same or
  slightly differently due to the screen width available.
@@ -235,6 +270,7 @@ The Profile icon menu option displays a sub-menu of the following:
 [View Profile](https://things-to-do-project.herokuapp.com/user/profile/)
 
 Shows the users profile information.
+In the top-right corner is an [X] button which will return the user to the Home page.
 
 Desktops, tablets and mobiles all display the profile info slightly differently
 due to the screen width available.
@@ -272,6 +308,18 @@ The user can use this option to logout of the app. Once logged out they are re-d
 - Use of postcode, town or county to provide activities near me searches.
   them to login for whatever reason.
 - Admin/Moderator tools for user maintenance.
+
+## Defensive design
+- If the user attempts to access an unknown page/route then a page will be displayed to help them.
+- I have used both client & server side form validation not only from a security benefit but also to help the user fill out the activity form correctly.
+- I have also added a handler to show a message if the submitted activity form is too large, as occasionally this seemed to slip through.
+- Where possible I have coded the app to prevent unauthorized editing via the URL when trying to:
+    - Edit an activity that does not belong to you.
+    - Edit an activity if you are not logged-in.
+    - Edit an unknown or invalid activity.
+    - Add to favourites when not logged-in.
+    - Add an activity which does not exist into your favourites.
+    - Add an invalid activity into your favourites.
 
 ## Testing
 For testing information please use the following link [TESTING.md](/TESTING.md)

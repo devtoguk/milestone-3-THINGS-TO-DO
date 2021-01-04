@@ -76,6 +76,16 @@ def too_large(e):
         error_code=e)
 
 
+@app.errorhandler(500)
+def service_error(e):
+    return render_template(
+        'error.html',
+        error_message=('There was a service error, please retry the '
+                       'operation. If the error persist please '
+                       'contact tech support.'),
+        error_code=e)
+
+
 @app.route('/')
 def index():
     """
