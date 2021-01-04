@@ -386,6 +386,16 @@ a.action:hover, a.action:active {
     font-size: 0.8em;
 }
 
+.activity-view__when {
+    padding: 0 3px;
+    font-weight: bold;
+}
+
+.activity-view__flag i {
+    color: var(--themeDarkGreen);
+    font-size: 2em;
+}
+
 a.info:link, a.info:visited {
     display: inline-block;
     padding: 6px 12px;
