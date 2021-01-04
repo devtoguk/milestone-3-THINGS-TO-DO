@@ -13,6 +13,7 @@
     --themeDarkGreen: rgb(29, 62, 4);
     --themeHeartRed: rgb(248, 79, 98);
     --themeHeartGrey: rgb(152, 152, 152);
+    --themeAquaGreen: rgb(20, 185, 130);
 }
 
 body {
@@ -403,14 +404,14 @@ a.action:hover, a.action:active {
 }
 
 .activity-view__flag i {
-    color: var(--themeDarkGreen);
+    color: var(--themeHeartRed);
     font-size: 2em;
 }
 
 .activity-view__flag-icon {
     margin-bottom: .25em;
     text-align: center;
-    text-shadow: 0px 1px aquamarine;
+    text-shadow: 0px 1px var(--themeTreeBrown);
 }
 
 a.info:link, a.info:visited {
