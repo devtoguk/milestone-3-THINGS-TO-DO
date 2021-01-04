@@ -209,16 +209,23 @@ The Activities menu option displays a sub-menu of the following:
 
 Selecting one of these options from the 'Activities' menu will display a message
 to the user about what is being displayed followed by the matching activity results from the database.  The user can then click on any of these results via the 'activity image' or the [More] button, to view further details about that activity.
-If the user has access to edit the activity then an [Edit] button is displayed, clicking this button will allow the user to [Edit] the activity.
+If the user has access to edit the activity then an [Edit] button is displayed, clicking this button will allow the user to view the 'Edit activity form.
 
 On desktops these results display in three columns, tablets(portrait) two columns and one column on mobiles.
 
 [View Activity Details](https://things-to-do-project.herokuapp.com/activity/view/5fb936c672b346642f5c0e6c/)
 
 This will show the full details about an activity, full image, short description and long description.
-Below this are the activity flags which indicate the best location to do the activity, online-only, free todo and then there is the 'Best time todo' text. Following this if available is the venue address and contact information if available. If venue address is shown then a [Show on Map] button will be displayed which opens a blank window and loads Google Maps using the venue postcode.  If an addition URL is available then that will also be displayed.  
+
+Below this are the activity flags which indicate the best location to do the activity, online-only, free todo and then there is the 'Best time todo' text. 
+
+Following this if available is the venue address and contact information if available. If venue address is shown then a [Show on Map] button will be displayed which opens a blank window and loads Google Maps using the venue postcode.  
+
+If an addition URL is available then that will also be displayed.  
+
 At the foot of the activity is information about who and when the activity was created by, the 'who' takes a users screen name if present otherwise it uses their full name.  
-In the top-right corner is a 'herat-icon' this can be clicked on by the user to either add or remove this activity from their 'Activity Favourites' list (the user must be logged-in to use this, or they are re-directed to the Login page). An empty grey heart indicates it is not in their list, and a solid red heart indicates it is in their list.
+
+In the top-right corner is a 'heart-icon' this can be clicked on by the user to either add or remove this activity from their 'Activity Favourites' list (the user must be logged-in to use this, or they are re-directed to the Login page). An empty grey heart indicates it is not in their list, and a solid red heart indicates it is in their list.
 
 On desktops these results layout using two columns, tablets(portrait) and mobiles use one column.
 
