@@ -19,6 +19,7 @@
                 <!-- Title -->
                 <div class="form-group col-md-6">
                     {{ form.title.label(class="") }}
+                    <i data-toggle="tooltip" data-placement="right" title="max 50 characters" class="far fa-question-circle tooltip-inner"></i>
                     {% set error_visible = 'd-none' %}
                     {% if form.title.errors %}
                         {{ form.title(class="form-control is-invalid") }}
@@ -35,6 +36,7 @@
                 <!-- Short description -->
                 <div class="form-group col-md-6">
                     {{ form.shortDescr.label(class="") }}
+                    <i data-toggle="tooltip" data-placement="right" title="max 60 characters" class="far fa-question-circle tooltip-inner"></i>
                     {% if form.shortDescr.errors %}
                         {{ form.shortDescr(class="form-control is-invalid") }}
                         {% set error_visible = 'd-block' %}
@@ -54,6 +56,7 @@
                         <!-- Long description -->
                         <div class="form-group col-12">
                             {{ form.longDescr.label(class="") }}
+                            <i data-toggle="tooltip" data-placement="right" title="at least 400 characters" class="far fa-question-circle tooltip-inner"></i>
                             {% if form.longDescr.errors %}
                                 {{ form.longDescr(rows="4", class="form-control is-invalid") }}
                                 {% set error_visible = 'd-block' %}
@@ -265,6 +268,7 @@
                 <!-- Category -->
                 <div class="form-group col-md-3">
                     {{ form.category.label(class="") }}
+                    <i data-toggle="tooltip" data-placement="right" title="select all that apply" class="far fa-question-circle tooltip-inner"></i>
                     {% if form.category.errors %}
                         {{ form.category(class="form-control is-invalid") }}
                         {% set error_visible = 'd-block' %}
@@ -280,6 +284,7 @@
                 <!-- When todo -->
                 <div class="form-group col-md-3">
                     {{ form.whenTodo.label(class="") }}
+                    <i data-toggle="tooltip" data-placement="right" title="select all that apply" class="far fa-question-circle tooltip-inner"></i>
                     {% if form.whenTodo.errors %}
                         {{ form.whenTodo(class="form-control is-invalid") }}
                         {% set error_visible = 'd-block' %}
