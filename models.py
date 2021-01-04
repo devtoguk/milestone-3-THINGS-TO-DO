@@ -88,7 +88,7 @@ class Activity:
 
         :return: activity object
         """
-        user_session = session.get("user")
+        user_session = session.get('user')
         activity = {
             'title': request.form.get('title').lower(),
             'shortDescr': request.form.get('shortDescr'),
@@ -200,8 +200,8 @@ class Activity:
         del activity['featured']
 
         # Update activity in the database and return the activity object
-        if mongo.db.activities.update_one({"_id": ObjectId(activity_id)},
-                                          {"$set": activity}):
+        if mongo.db.activities.update_one({'_id': ObjectId(activity_id)},
+                                          {'$set': activity}):
             flash(f'"{ activity["title"] }" updated.', 'info')
             return jsonify({'success': 'Activity updated'}), 200
 

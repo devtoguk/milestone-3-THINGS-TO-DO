@@ -30,7 +30,7 @@ def s3_image_exists(file_name):
     try:
         s3.Object(bucket_name, file_name).load()
     except ClientError as e:
-        if e.response['Error']['Code'] == "404":
+        if e.response['Error']['Code'] == '404':
             return False
         else:
             # Something else has gone wrong.

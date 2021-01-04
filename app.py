@@ -19,9 +19,9 @@ if os.path.exists('env.py'):
 app = Flask(__name__)
 
 
-@app.route("/robots.txt")
+@app.route('/robots.txt')
 def robots():
-    return send_from_directory("static", "robots.txt")
+    return send_from_directory('static', 'robots.txt')
 
 
 app.config['MONGO_DBNAME'] = os.environ.get('MONGO_DBNAME')
@@ -115,7 +115,7 @@ def search():
     """
     Render text search results
     """
-    if request.method == "POST":
+    if request.method == 'POST':
         search_text = request.form.get('search_text')
         activities = list(mongo.db.activities.find(
                           {'$text':
@@ -127,7 +127,7 @@ def search():
 
             # Set image URLs either no_image_yet or S3 bucket image
             for act in activities:
-                act['imageURL'] = set_imageURL(act["_id"])
+                act['imageURL'] = set_imageURL(act['_id'])
 
             return render_template(
                 'results.html',
@@ -151,7 +151,7 @@ def category(category):
     # Set default results flash message
     message = f'{category} Activities'
 
-    if request.method == "GET":
+    if request.method == 'GET':
         if category == 'All':
             activities = list(mongo.db.activities.find())
         elif category == 'Featured':
@@ -204,7 +204,7 @@ def category(category):
 
         # Set image URLs either no_image_yet or S3 bucket image
         for act in activities:
-            act['imageURL'] = set_imageURL(act["_id"])
+            act['imageURL'] = set_imageURL(act['_id'])
 
         return render_template(
             'results.html',
@@ -269,7 +269,7 @@ def edit_activity(activity_id):
         flash('You must be logged-in to edit an Activity', 'error')
         return redirect(url_for('login'))
     else:
-        user_session = session.get("user")
+        user_session = session.get('user')
 
     if check_activity_id(activity_id):
         activity_data = Activity().get_activity(activity_id)
@@ -403,7 +403,7 @@ def favourite_activity(activity_id, action):
 
             # Add / Remove activity_id from users favourites
             if mongo.db.users.update_one(
-                {"_id": ObjectId(userid)},
+                {'_id': ObjectId(userid)},
                     {mongo_operator: {'favourites': ObjectId(activity_id)}}):
                 flash(f'Activity {message} your Activity Favourites', 'info')
                 return redirect(url_for(
