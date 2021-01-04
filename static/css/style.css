@@ -179,6 +179,7 @@ body {
 
 /* Footer */
 .footer__container {
+    margin-top: 6em;
     padding: 1.25em;
     background: var(--themeGreen);
     color: #fff;
@@ -397,7 +398,6 @@ a.action:hover, a.action:active {
     font-weight: bold;
 }
 
-
 .activity-view__flag {
     line-height: 1;
 }
@@ -405,6 +405,11 @@ a.action:hover, a.action:active {
 .activity-view__flag i {
     color: var(--themeDarkGreen);
     font-size: 2em;
+}
+
+.activity-view__flag-icon {
+    margin-bottom: .25em;
+    text-align: center;
 }
 
 a.info:link, a.info:visited {
