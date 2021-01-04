@@ -397,6 +397,11 @@ a.action:hover, a.action:active {
     font-weight: bold;
 }
 
+
+.activity-view__flag {
+    line-height: 1;
+}
+
 .activity-view__flag i {
     color: var(--themeDarkGreen);
     font-size: 2em;
