@@ -11,7 +11,6 @@
 - [Additional Testing](#additional-testing)
 - [Errors and Issues Found](#errors-and-issues-found)
 
-
 ## Software Tools
 - [JSHint - Code Analysis Tool](https://jshint.com/) - used to help detect errors and potential problems in JavaScript code.
 - [W3C - Markup Validation Service](https://validator.w3.org/) - used to check the markup validity of the HTML documents.  However some errors were shown due to the presence of the Jinja template language.
@@ -80,6 +79,17 @@
     2. When viewing the full details of an activity the user can use the 'heart-icon' in the top-right of the activity view to either add or remove the activity from their 'Favourite Activities' list.
     3. To view your Favourite Activity list a user can select 'My Favourites' option from the profile menu. The list will be displayed as activity cards which the user can click on to see further details about the activity.
 
+### Administrator
+1. How do I approve or disapprove user submitted activities.
+    1. Due to time constraints only the visible menu option for this function exists in the user 'Profile' menu, it is only visible when logged-in as an 'admin'.
+2. How do I maintain existing users.
+    1. Due to time constraints only the visible menu option for this function exists in the user 'Profile' menu, it is only visible when logged-in as an 'admin'.
+3. Ability to edit any activity record.
+    1. To edit an activity the 'admin' user must be logged-in.
+    2. On an activity card, the 'admin' user should click on the [Edit] button.
+    3. The 'Edit Activity' form is displayed and the 'admin' user can now edit the required fields and then click [Update Activity].
+    4. If there are any validation errors the 'admin' user should correct these and click [Update Activity].
+
 ## Testing elements and functionality of the project
 (manual tests)
 
@@ -105,8 +115,8 @@
 
 ### Submit/Edit an Activity
 1. Confirm all the input fields work as expected and the [Add Activity] button functions and displays processing indicator.
-2. Check client-side form validation is working as expected.
-3. Check server-side form validation is working as expected.
+2. Confirm that an 'admin' user can edit any activity.
+3. Check client and server side form validation is working as expected.
 4. Check [x] link in the top-right allows the user to abort the submit/edit.
 
 ### Login/Register
