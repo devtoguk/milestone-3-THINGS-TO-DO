@@ -20,6 +20,7 @@ The live deployed app can be accessed using the following link: [Things To Do Pl
 - [Code File Structure](#code-file-structure)
 - [Technologies Used](#technologies-used)
 - [Features](#features)
+- [Incomplete Features](#incomplete-features)
 - [Future Features](#future-features)
 - [Defensive design](#defensive-design)
 - [Testing](#testing)
@@ -47,6 +48,10 @@ The purpose of the ‘Things To Do Places To Go’ project is to create an app w
 - Have the ability to submit an activity idea for the app.
 - Be able to keep a list of their favourite activities.
 
+## Administrator Goals
+- Ability to approve or disapprove submitted activities.
+- User maintenance to change user security level.
+
 ## Advertiser Goals
 - (this is part of our future development, as the app gets more popular)
 - The ability to have a banner on the app to attract potential customers to
@@ -59,6 +64,10 @@ their website.
 - English speaking (UK & Ireland based/visiting)
 - Looking for an activity for themselves or the family.
 - Wanting to share an activity they have seen or done.
+
+### Ideal Administrator
+- Responsible member of the business or a user.
+- English speaking (UK & Ireland based)
 
 ### Ideal Advertiser:
 - (this is part of our future development, as the app gets more popular)
@@ -76,6 +85,11 @@ their website.
 6. How do I find featured activities.
 7. How do I find newly added activities.
 8. How do I keep a list of my favourite activities.
+
+### Administrator Stories
+1. How do I approve or disapprove user submitted activities.
+2. How do I maintain existing users.
+3. Ability to edit any activity record.
 
 ### Advertiser Stories
 1. (this is part of our future development, as the app gets more popular)
@@ -209,7 +223,7 @@ The Activities menu option displays a sub-menu of the following:
 
 Selecting one of these options from the 'Activities' menu will display a message
 to the user about what is being displayed followed by the matching activity results from the database.  The user can then click on any of these results via the 'activity image' or the [More] button, to view further details about that activity.
-If the user has access to edit the activity then an [Edit] button is displayed, clicking this button will allow the user to view the 'Edit activity form.
+If the user created the activity or has 'admin' access then an [Edit] button is displayed, clicking this button will allow the user to view the 'Edit activity form.
 
 On desktops these results display in three columns, tablets(portrait) two columns and one column on mobiles.
 
@@ -217,13 +231,13 @@ On desktops these results display in three columns, tablets(portrait) two column
 
 This will show the full details about an activity, full image, short description and long description.
 
-Below this are the activity flags which indicate the best location to do the activity, online-only, free todo and then there is the 'Best time todo' text. 
+Below this are the activity flags which indicate the best location to do the activity, online-only, free todo and then there is the 'Best time todo' text.
 
-Following this if available is the venue address and contact information if available. If venue address is shown then a [Show on Map] button will be displayed which opens a blank window and loads Google Maps using the venue postcode.  
+Following this if available is the venue address and contact information if available. If venue address is shown then a [Show on Map] button will be displayed which opens a blank window and loads Google Maps using the venue postcode.
 
-If an addition URL is available then that will also be displayed.  
+If an addition URL is available then that will also be displayed.
 
-At the foot of the activity is information about who and when the activity was created by, the 'who' takes a users screen name if present otherwise it uses their full name.  
+At the foot of the activity is information about who and when the activity was created by, the 'who' takes a users screen name if present otherwise it uses their full name.
 
 In the top-right corner is a 'heart-icon' this can be clicked on by the user to either add or remove this activity from their 'Activity Favourites' list (the user must be logged-in to use this, or they are re-directed to the Login page). An empty grey heart indicates it is not in their list, and a solid red heart indicates it is in their list.
 
@@ -295,7 +309,12 @@ On desktops these results display in three columns, tablets(portrait) two column
 
 The user can use this option to logout of the app. Once logged out they are re-directed to the Home page.
 
-## Future features
+## Incomplete Features
+Due to time constraints the following Admin features which I had planned to have finished are not complete.
+- User maintenance
+- Approve or disapprove submitted activities.
+
+## Future Features
 - Return the user back to their original URL if the app had re-directed them to the Login page.
 - Pagination for activity search results as the database grows.
 - User reviews for activities.
@@ -303,13 +322,13 @@ The user can use this option to logout of the app. Once logged out they are re-d
   activities with the same keywords.
 - Ability for users to reset their password if forgotten.
 - Admin/Moderator option to toggle featured activities on/off.
-- Admin/Moderator option to approve or disapprove activities.
+- Admin/Moderator option to approve or disapprove submitted activities.
+- Admin/Moderator tools for user maintenance.
 - Integrate Google Map view into the app rather than a link.
 - Use of postcode, town or county to provide activities near me searches.
   them to login for whatever reason.
-- Admin/Moderator tools for user maintenance.
 
-## Defensive design
+## Defensive Design
 - If the user attempts to access an unknown page/route then a page will be displayed to help them.
 - I have used both client & server side form validation not only from a security benefit but also to help the user fill out the activity form correctly.
 - I have also added a handler to show a message if the submitted activity form is too large, as occasionally this seemed to slip through.
@@ -333,11 +352,11 @@ Some text has been written by R.Thompson and other activity titles and descripti
 
 ### Logo
 The logo image was created from scratch using Adobe Photoshop.
-  
+
 (the style is based on the film 'Raiders of the Lost Ark'
 
 ### Photos
-Hero image photo by Robert Collins on Unsplash.  
+Hero image photo by Robert Collins on Unsplash.
 
 Activity photos have been either downloaded from Unsplash, Google images or the venue/activity website. These images remain the property of their respective copyright owners. (if this was not an educational project, permission would have been sought before using any unlicensed images)
 

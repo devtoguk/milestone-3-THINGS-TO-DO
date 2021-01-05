@@ -8,7 +8,6 @@
 - [Running this project locally](#running-this-project-locally)
 - [Deploying to Heroku](#deploying-to-heroku)
 
-
 ## Running this project locally
 This app has been built using the GitPod IDE and GitHub for version control.
 
