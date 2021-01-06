@@ -67,7 +67,7 @@ class VenueForm(Form):
 
     website = StringField('Website',
                           validators=[Optional(), URL(),
-                                      Length(min=0, max=120)])
+                                      Length(min=0, max=180)])
 
     location = IntegerField(widget=HiddenInput(),
                             validators=[DataRequired(), NumberRange(1, 3)])
