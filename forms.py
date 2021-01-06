@@ -70,7 +70,7 @@ class VenueForm(Form):
                                       Length(min=0, max=120)])
 
     location = IntegerField(widget=HiddenInput(),
-                            validators=[DataRequired(), NumberRange(1, 2)])
+                            validators=[DataRequired(), NumberRange(1, 3)])
 
 
 def make_a_choice(form, field):
@@ -108,7 +108,8 @@ class ActivityForm(FlaskForm):
                            validators=[InputRequired(), make_a_choice],
                            choices=[(0, '--choose option--'),
                                     (1, 'Home'),
-                                    (2, 'Out & About')], coerce=int)
+                                    (2, 'At a Venue'),
+                                    (3, 'Out & About')], coerce=int)
 
     ageRange = StringField('Age Range',
                            validators=[DataRequired(),
