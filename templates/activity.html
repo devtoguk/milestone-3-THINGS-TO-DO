@@ -144,8 +144,13 @@
                 {% endif %}
                 {% if activity.venue.website %}
                     <p class="activity-view__link">
+                        {% if activity.venue.website|length > 34 %}
+                            {% set addition_URL = activity.venue.website[0:34] + '...'%}
+                        {% else %}
+                            {% set addition_URL = activity.venue.website %}
+                        {% endif %}
                         <a class="info" href="{{ activity.venue.website }}" target="_blank" rel="noopener noreferrer">
-                        <i aria-hidden="true" class="fas fa-globe" title="Venue web address"></i> {{ activity.venue.website }}</a>
+                        <i aria-hidden="true" class="fas fa-globe" title="Venue web address"></i> {{ addition_URL }}</a>
                     </p>
                 {% endif %}
                 {% if not activity.venue.email and not activity.venue.website %}
@@ -161,7 +166,12 @@
             <div class="col-12">
                 <p class="activity-view__label">Additional subject information, etc</p>
                 <p class="activity-view__link">
-                    <a class="info" href="{{ activity.additionalURL }}" target="_blank" rel="noopener noreferrer"><i aria-hidden="true" class="fas fa-info-circle" title="Venue web address"></i> {{ activity.additionalURL }}</a>                    
+                    {% if activity.additionalURL|length > 34 %}
+                        {% set addition_URL = activity.additionalURL[0:34] + '...'%}
+                    {% else %}
+                        {% set addition_URL = activity.additionalURL %}
+                    {% endif %}
+                    <a class="info" href="{{ activity.additionalURL }}" target="_blank" rel="noopener noreferrer"><i aria-hidden="true" class="fas fa-info-circle" title="Venue web address"></i> {{ addition_URL }}</a>                    
                 </p>
             </div>
         </div>

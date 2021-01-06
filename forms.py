@@ -138,7 +138,7 @@ class ActivityForm(FlaskForm):
 
     additionalURL = StringField('Additional URL',
                                 validators=[Optional(), URL(),
-                                            Length(min=0, max=120)])
+                                            Length(min=0, max=180)])
 
     keywords = StringField('Keywords',
                            validators=[Optional(), Length(min=0, max=60)])
