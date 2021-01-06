@@ -48,7 +48,7 @@
         <!-- Activity flags -->
         <div class="col-lg-6">
             <div class="row">
-                <!-- At home or Out and About -->
+                <!-- At home, At venue or Out and About -->
                 <div class="col-3 activity-view__flag">
                     {% if activity.location == 1 %}
                         <p class="activity-view__flag-icon">
@@ -59,6 +59,13 @@
                         </p>
                     {% elif activity.location == 2 %}
                         <p class="activity-view__flag-icon">
+                            <i class="fas fa-landmark"></i>
+                        </p>
+                        <p class="text-center">
+                            <small>At a Venue</small>
+                        </p>
+                    {% elif activity.location == 3 %}
+                        <p class="activity-view__flag-icon">
                             <i class="fas fa-map-signs"></i>
                         </p>
                         <p class="text-center">
@@ -68,19 +75,19 @@
                 </div>
                 <!-- Free todo -->
                 <div class="col-3 activity-view__flag">
-                    {% if activity.location == 1 %}
-                        <p class="activity-view__flag-icon">
-                            <i class="fas fa-feather-alt"></i>
-                        </p>
-                        <p class="text-center">
-                            <small>Free todo</small>
-                        </p>
-                    {% elif activity.location == 2 %}
+                    {% if activity.freeTodo == 1 %}
                         <p class="activity-view__flag-icon">
                             <i class="fas fa-pound-sign"></i>
                         </p>
                         <p class="text-center">
                             <small>Not free</small>
+                        </p>
+                    {% elif activity.freeTodo == 2 %}
+                        <p class="activity-view__flag-icon">
+                            <i class="fas fa-feather-alt"></i>
+                        </p>
+                        <p class="text-center">
+                            <small>Free todo</small>
                         </p>
                     {% endif %}
                 </div>
@@ -137,8 +144,13 @@
                 {% endif %}
                 {% if activity.venue.website %}
                     <p class="activity-view__link">
+                        {% if activity.venue.website|length > 34 %}
+                            {% set addition_URL = activity.venue.website[0:34] + '...'%}
+                        {% else %}
+                            {% set addition_URL = activity.venue.website %}
+                        {% endif %}
                         <a class="info" href="{{ activity.venue.website }}" target="_blank" rel="noopener noreferrer">
-                        <i aria-hidden="true" class="fas fa-globe" title="Venue web address"></i> {{ activity.venue.website }}</a>
+                        <i aria-hidden="true" class="fas fa-globe" title="Venue web address"></i> {{ addition_URL }}</a>
                     </p>
                 {% endif %}
                 {% if not activity.venue.email and not activity.venue.website %}
@@ -154,7 +166,12 @@
             <div class="col-12">
                 <p class="activity-view__label">Additional subject information, etc</p>
                 <p class="activity-view__link">
-                    <a class="info" href="{{ activity.additionalURL }}" target="_blank" rel="noopener noreferrer"><i aria-hidden="true" class="fas fa-info-circle" title="Venue web address"></i> {{ activity.additionalURL }}</a>                    
+                    {% if activity.additionalURL|length > 34 %}
+                        {% set addition_URL = activity.additionalURL[0:34] + '...'%}
+                    {% else %}
+                        {% set addition_URL = activity.additionalURL %}
+                    {% endif %}
+                    <a class="info" href="{{ activity.additionalURL }}" target="_blank" rel="noopener noreferrer"><i aria-hidden="true" class="fas fa-info-circle" title="Venue web address"></i> {{ addition_URL }}</a>                    
                 </p>
             </div>
         </div>

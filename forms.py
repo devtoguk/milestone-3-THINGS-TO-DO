@@ -67,10 +67,10 @@ class VenueForm(Form):
 
     website = StringField('Website',
                           validators=[Optional(), URL(),
-                                      Length(min=0, max=120)])
+                                      Length(min=0, max=180)])
 
     location = IntegerField(widget=HiddenInput(),
-                            validators=[DataRequired(), NumberRange(1, 2)])
+                            validators=[DataRequired(), NumberRange(1, 3)])
 
 
 def make_a_choice(form, field):
@@ -108,7 +108,8 @@ class ActivityForm(FlaskForm):
                            validators=[InputRequired(), make_a_choice],
                            choices=[(0, '--choose option--'),
                                     (1, 'Home'),
-                                    (2, 'Out & About')], coerce=int)
+                                    (2, 'At a Venue'),
+                                    (3, 'Out & About')], coerce=int)
 
     ageRange = StringField('Age Range',
                            validators=[DataRequired(),
@@ -137,7 +138,7 @@ class ActivityForm(FlaskForm):
 
     additionalURL = StringField('Additional URL',
                                 validators=[Optional(), URL(),
-                                            Length(min=0, max=120)])
+                                            Length(min=0, max=180)])
 
     keywords = StringField('Keywords',
                            validators=[Optional(), Length(min=0, max=60)])
