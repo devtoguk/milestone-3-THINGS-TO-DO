@@ -226,7 +226,7 @@ def category(category):
     return redirect(url_for('index'))
 
 
-@app.route('/activity/submit/', methods=['GET', 'POST'])
+@app.route('/submit/', methods=['GET', 'POST'])
 def submit_activity():
     """
     Submit activity
@@ -264,7 +264,7 @@ def submit_activity():
         categories=CATEGORIES)
 
 
-@app.route('/activity/edit/<string:activity_id>/', methods=['GET', 'POST'])
+@app.route('/edit/<string:activity_id>/', methods=['GET', 'POST'])
 def edit_activity(activity_id):
     """
     Edit activity
@@ -333,7 +333,7 @@ def edit_activity(activity_id):
         return redirect(url_for('index'))
 
 
-@app.route('/activity/view/<string:activity_id>/')
+@app.route('/view/<string:activity_id>/')
 def view_activity(activity_id):
     """
     View activity
@@ -381,7 +381,7 @@ def view_activity(activity_id):
         return redirect(url_for('index'))
 
 
-@app.route('/activity/favourite/<string:activity_id>/<string:action>/')
+@app.route('/favourite/<string:activity_id>/<string:action>/')
 def favourite_activity(activity_id, action):
     """
     Add or remove activity from users Activity Favourites
