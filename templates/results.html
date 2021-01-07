@@ -8,7 +8,7 @@
             <div class="col-md-6 col-lg-4 mb-5">
                 <div class="card mx-auto results__width">
                     <div class="results__image">
-                        <a href="/view/{{activity._id}}">
+                        <a href="/activity/view/{{activity._id}}">
                             <img src="{{ activity.imageURL }}" class="card-img-top" alt="{{ activity.title|title }}" title="{{ activity.title|title }}">
                         </a>
                     </div>
@@ -22,13 +22,13 @@
                                 {{ activity.shortDescr }}
                             {% endif %}
                         </p>
-                        <a href="/view/{{activity._id}}" class="btn btn-primary mt-1 mt-md-3 results__btn">
+                        <a href="/activity/view/{{activity._id}}" class="btn btn-primary mt-1 mt-md-3 results__btn">
                         <i class="fas fa-info-circle"></i>
                         <span class="d-none d-md-inline">More details</span>
                         </a>
                         {% if session['user'] is defined %}
                             {% if activity.userid|string() == session['user']['_id']['$oid'] or session['user']['level'] == 1 or session['user']['level'] == 7%}
-                            <a href="/edit/{{activity._id}}" class="btn btn-success mt-1 mt-md-3 results__btn float-right">
+                            <a href="/activity/edit/{{activity._id}}" class="btn btn-success mt-1 mt-md-3 results__btn float-right">
                                 <span class="d-none d-md-inline">Edit</span>
                                 <i class="fas fa-edit"></i>
                             </a>
