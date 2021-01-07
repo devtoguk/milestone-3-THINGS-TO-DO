@@ -107,6 +107,7 @@
                 <!-- Location -->
                 <div class="form-group col-md-6 col-lg-3">
                     {{ form.location.label }}
+                    <i data-toggle="tooltip" data-placement="right" title="select 'At a Venue' if you need to enter a location address" class="far fa-question-circle tooltip-inner"></i>
                     {% if form.location.errors %}
                         {{ form.location(class="form-control is-invalid") }}
                         {% set error_visible = 'd-block' %}
