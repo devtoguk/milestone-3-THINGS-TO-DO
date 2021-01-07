@@ -36,7 +36,7 @@ The live deployed app can be accessed using the following link: [Things To Do Pl
 - [Disclaimer](#disclaimer)
 
 ## Summary
-The purpose of the ‘Things To Do Places To Go’ project is to create an app which will allow people to find activities to do. From small adventures in the garden, to big adventures on days out.  As the app gets more popular, eventually advertisers will be able to use the app to display their banners.
+The purpose of the ‘Things To Do Places To Go’ project is to create an app which will allow users to find activities to do. From small adventures in the garden, to big adventures on days out, from fossil hunting on the beach to summer games in the park.  As the app gets more popular and the database grows, eventually advertisers will be able to use the app to display their banners.
 
 ## Business Goals
 
@@ -47,7 +47,7 @@ The purpose of the ‘Things To Do Places To Go’ project is to create an app w
 ## Customer Goals
 - Search for an activity to do.
 - Easy to find the information so they can make an informed decision.
-- Have the ability to submit an activity idea for the app.
+- Have the ability to submit an activity idea for the app to share with the other users.
 - Be able to keep a list of their favourite activities.
 
 ## Administrator Goals
