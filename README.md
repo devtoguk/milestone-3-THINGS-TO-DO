@@ -10,9 +10,11 @@ The live deployed app can be accessed using the following link: [Things To Do Pl
 - [Advertiser Goals](#advertiser-goals)
 - [UX](#ux)
   * [Ideal Customer:](#ideal-customer)
+  * [Ideal Administrator:](#ideal-administrator)
   * [Ideal Advertiser:](#ideal-advertiser)
 - [User Stories](#user-stories)
   * [Customer](#customer-stories)
+  * [Administrator](#administrator-stories)
   * [Advertiser](#advertiser-stories)
 - [Information Architecture](#information-architecture)
 - [Wireframe Designs](#wireframe-designs)
@@ -92,9 +94,8 @@ their website.
 3. Ability to edit any activity record.
 
 ### Advertiser Stories
-1. (this is part of our future development, as the app gets more popular)
-2. How do I get my banner on the app?
-3. How can I find out how many clicks my banner has received.
+1. How do I get my banner on the app?
+2. How can I find out how many clicks my banner has received.
 
 ## Information Architecture
 ### Database Choice
@@ -314,19 +315,21 @@ Due to time constraints the following Admin features which I had planned to have
 - User maintenance
 - Approve or disapprove submitted activities.
 
-## Future Features
+## Future Features/Fixes
+- Admin/Moderator option to approve or disapprove submitted/edited activities.  Users could only see approved activities.
 - Return the user back to their original URL if the app had re-directed them to the Login page.
 - Pagination for activity search results as the database grows.
 - User reviews for activities.
+- Add unique check on screen name.
 - Display keywords when viewing the activity with links to find other.
   activities with the same keywords.
 - Ability for users to reset their password if forgotten.
 - Admin/Moderator option to toggle featured activities on/off.
-- Admin/Moderator option to approve or disapprove submitted activities.
 - Admin/Moderator tools for user maintenance.
 - Integrate Google Map view into the app rather than a link.
 - Use of postcode, town or county to provide activities near me searches.
   them to login for whatever reason.
+- Use Google Adsense to help provide advertiser banners. 
 
 ## Defensive Design
 - If the user attempts to access an unknown page/route then a page will be displayed to help them.
@@ -348,7 +351,7 @@ For running locally and deployment information please use the following link [DE
 
 ## Credits
 ### Text content
-Some text has been written by R.Thompson and other activity titles and descriptions have been copied from their respective websites.(if this was not an educational project, permission would have been sought before using their exact text).  Any character names mentioned in any activities remain the property of their respective copyright owners.
+Some text has been written by R.Thompson and other activity titles and descriptions have been copied from their respective websites.(if this was not an educational project, permission would have been sought before using their exact text).  Any text used from other websites remains the property of it's respective copyright owner. 
 
 ### Logo
 The logo image was created from scratch using Adobe Photoshop.

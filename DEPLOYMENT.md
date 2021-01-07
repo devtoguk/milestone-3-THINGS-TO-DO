@@ -60,9 +60,9 @@ For more information and troubleshooting on cloning a repository from GitHub cli
     5. Click [Review], check your index then click [Confirm]
 
 ### Create AWS S3 Image Bucket
-1. Login to AWS S3 and create a new S3 bucket for image storage.
-2. Navigate to your AWS S3 service.
-3. Select 'Buckets'.
+1. Login to your AWS Console.
+2. From 'All services' select 'Storage' then 'S3'.
+3. Create a new S3 bucket for image storage.
 4. Click the bucket you created.
 5. Click the [Permissions] tab.
 6. Ensure 'Block all public access' is set to ON, as well as the 4 sub-options below also set to ON.

@@ -21,7 +21,7 @@
 - [Chrome Developer Tools](https://developers.google.com/web/tools/chrome-devtools) - used to help check the responsiveness of the app and also use of Audits to test for performance, accessibility, best practices & SEO
 
 ## User story testing
-(based on the UX section of README.md)
+
 ### Customer
 1. How do I search for activities using a word or phrase?
 
@@ -80,15 +80,22 @@
     3. To view your Favourite Activity list a user can select 'My Favourites' option from the profile menu. The list will be displayed as activity cards which the user can click on to see further details about the activity.
 
 ### Administrator
+( to test use login: adrian@ttdaptg.com !!-print(Check)! )
 1. How do I approve or disapprove user submitted activities.
     1. Due to time constraints only the visible menu option for this function exists in the user 'Profile' menu, it is only visible when logged-in as an 'admin'.
 2. How do I maintain existing users.
     1. Due to time constraints only the visible menu option for this function exists in the user 'Profile' menu, it is only visible when logged-in as an 'admin'.
 3. Ability to edit any activity record.
-    1. To edit an activity the 'admin' user must be logged-in.
-    2. On an activity card, the 'admin' user should click on the [Edit] button.
+    1. To edit any activity the 'admin' user must be logged-in.
+    2. On any activity card, the 'admin' user should see and be able to click on the [Edit] button.
     3. The 'Edit Activity' form is displayed and the 'admin' user can now edit the required fields and then click [Update Activity].
     4. If there are any validation errors the 'admin' user should correct these and click [Update Activity].
+
+### Advertiser
+1. How do I get my banner on the app?
+    1. Due to time constraints this will now be part of our future development, as the app gets more popular.
+2. How can I find out how many clicks my banner has received.
+    1. Due to time constraints this will now be part of our future development, as the app gets more popular.
 
 ## Testing elements and functionality of the project
 (manual tests)
@@ -142,8 +149,9 @@
 2. Ensure that the 'Add to Activity Favourites' heart-icon works as expected.
 3. Check the alt/title text changes on the heart-icon.
 4. Ensure activity links work and only appear if the data is present.
-5. Check the 'creator' info at the bottom of the view.
-6. Confirm that the correct data has been displayed.
+5. Are the activity flag-icons correct.
+6. Check the 'creator' info at the bottom of the view.
+7. Confirm that the correct data has been displayed.
 
 ## Additional Testing
 1. Asked friends and family to use the application on their phone, tablets and desktops where possible and let me know any issues. Got good feedback, with no real issues.
@@ -155,3 +163,9 @@
 
 1. **Uploaded images on Heroku**
 As far as user images on this project, I did not realise that we could just use a link rather than getting the users to actually upload images. So I did go down the route of image uploads, cropping, resizing, etc.  This all worked well while testing on GitPod, however when I deployed the app to Heroku the images no longer appeared. Other than the tutor led course material I had never used Heroku before, so was a little puzzled but after some research I realized that while the image is actually uploaded to Heroku it doesn't actually store the image for very long.  I had a decision to make, undo all the effort and coding I had done for the images or spend time to find a solution. After further investigation I discovered AWS S3 Bucket was a place for my app to upload the images to and serve them back to the users.  This took more time than I thought, but I feel it was well worth it in the end.
+
+2. **Image cropping/resizing**
+When resizing images occasionally a landscape image being resized/cropped ends up with black bars either side of the image.  Due to time constraints I have not yet had time to solve this issue.
+
+3. **Additional location value**
+During testing and data entry it became obvious that we really needed an additional value for the 'location' field to deal with activities which were 'Out & About' but did not have a specific venue.  So, 'At a Venue' was added for activities with a specific address.

@@ -40,7 +40,11 @@
         </div>
         <div class="col-lg-6 pl-lg-0 mb-3">
             <div class="activity-view__long-descr">
-                {{ activity.longDescr }}
+                {% set long_descr = activity.longDescr.split('\n') %}
+                {% for line in long_descr %}
+                    <p>{{ line }}</p>
+                {% endfor %}
+                <!-- {{ activity.longDescr }} -->
             </div>
         </div>
     </div>
