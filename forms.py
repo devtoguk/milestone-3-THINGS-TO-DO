@@ -97,7 +97,7 @@ class ActivityForm(FlaskForm):
 
     longDescr = TextAreaField(u'Long Description',
                               validators=[DataRequired(),
-                                          Length(min=4, max=1000)])
+                                          Length(min=200, max=1000)])
 
     image = FileField('Change Activity Image (jpg)',
                       validators=[FileAllowed(

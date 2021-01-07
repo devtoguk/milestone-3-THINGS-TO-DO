@@ -9,7 +9,7 @@ const activityForm = {
     checkFieldsEmpty: [
         {id: 'title', error: 'Field must be at least 4 characters long.'},
         {id: 'shortDescr', error: 'Field must be at least 4 characters long.'},
-        {id: 'longDescr', error: 'Field must be at least 4 characters long.'},
+        {id: 'longDescr', error: 'Field must be at least 200 characters long.'},
         {id: 'location', error: 'Please select an option.'},
         {id: 'ageRange', error: 'Enter age range ie. 3-99  10-14  etc'},
         {id: 'online', error: 'Please select an option.'},
