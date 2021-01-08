@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
+<!-- User registration -->
 <div class="card register__form-width mb-5 mx-auto">
 	<div class="card-header">
         <div class="form__header-title">
@@ -10,10 +11,9 @@
             <a class="action" href="{{ url_for('cancel_form', message='User Registration') }}"><i class="far fa-window-close"></i></a>
         </div>
 	</div>
-    <!-- User registration form -->
 	<div class="card-body shadow">
         <form name="register_form">
-            <!-- User name -->
+            <!-- User name / screen name-->
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="name">Name</label>

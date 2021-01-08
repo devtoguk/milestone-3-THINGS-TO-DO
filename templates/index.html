@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
+<!-- Word / phrase search -->
 <div class="jumbotron search__bg border__highlight mx-auto text-center">
     <h1 class="">Find something to do or a place to go</h1>
     <form name="search_form" class="" method="POST" action="{{ url_for('search') }}">

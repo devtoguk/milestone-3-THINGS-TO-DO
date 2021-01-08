@@ -33,7 +33,6 @@ def s3_image_exists(file_name):
         if e.response['Error']['Code'] == '404':
             return False
         else:
-            # Something else has gone wrong.
             return False
     else:
         return True

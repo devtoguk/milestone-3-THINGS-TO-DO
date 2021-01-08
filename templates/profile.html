@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
+<!-- User profile details -->
 <div class="card register__form-width mb-5 mx-auto">
 	<div class="card-header">
         <div class="form__header-title">
@@ -10,7 +11,6 @@
             <a class="action" href="{{ url_for('cancel_form', message='None') }}"><i class="far fa-window-close"></i></a>
         </div>
 	</div>
-    <!-- User profile details -->
 	<div class="card-body shadow">
         <!-- Email -->
         <div class="form-group">
@@ -19,7 +19,7 @@
                 {{ session['user']['email'] }}
             </p>
         </div>
-        <!-- User name -->
+        <!-- User name / screen name-->
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="name">Name</label>

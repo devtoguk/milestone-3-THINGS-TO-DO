@@ -111,7 +111,7 @@ class Activity:
         if len(request.form.get('additionalURL')) > 0:
             activity['additionalURL'] = request.form.get('additionalURL')
 
-        # If location is 'Out & About' then add venue data
+        # If location is 2 'At a Venue' then add venue data
         if int(request.form.get('location')) == 2:
             activity['venue'] = {
                 'name': request.form.get('venue-name'),

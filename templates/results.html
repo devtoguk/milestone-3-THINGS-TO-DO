@@ -1,17 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
 
+<!-- Query results -->
 <div class="container">
     <div class="row">
         <!-- Loop through activities and display in cards -->
         {% for activity in activities %}
             <div class="col-md-6 col-lg-4 mb-5">
                 <div class="card mx-auto results__width">
+                    <!-- Image -->
                     <div class="results__image">
                         <a href="/activity/view/{{activity._id}}">
                             <img src="{{ activity.imageURL }}" class="card-img-top" alt="{{ activity.title|title }}" title="{{ activity.title|title }}">
                         </a>
                     </div>
+                    <!-- Title / Short description / buttons -->
                     <div class="card-body">
                         <h5 class="card-title">{{ activity.title|upper }}</h5>
                         
@@ -26,6 +29,7 @@
                         <i class="fas fa-info-circle"></i>
                         <span class="d-none d-md-inline">More details</span>
                         </a>
+                        <!-- Display [Edit] button or not -->
                         {% if session['user'] is defined %}
                             {% if activity.userid|string() == session['user']['_id']['$oid'] or session['user']['level'] == 1 or session['user']['level'] == 7%}
                             <a href="/activity/edit/{{activity._id}}" class="btn btn-success mt-1 mt-md-3 results__btn float-right">

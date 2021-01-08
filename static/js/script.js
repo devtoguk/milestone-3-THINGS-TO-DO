@@ -159,7 +159,6 @@ function activityFormEventListeners() {
     /* Detect form submit to change activity button contents and
     perform basic front-end validation. */
     $('#btn--form-update').click(function(e) {
-        // image = $('#image').val();
         $('#btn--form-update').html('Processing <i class="fas fa-spinner fa-spin"></i>');
         activityForm.checkForm();
     });

@@ -86,7 +86,7 @@ body {
     width: 229px;
 }
 
-/* Errors Handlers */
+/* Error Handlers */
 .error__handler {
     position: fixed;
     top: 0;
@@ -197,11 +197,8 @@ a.social:link, a.social:visited {
 }
 
 a.social:hover, a.social:active {
-    /* color: #fff; */
     text-shadow: none;
-
 }
-
 
 /* Forms */
 .login__form-width, .register__form-width, .activity__form-width {

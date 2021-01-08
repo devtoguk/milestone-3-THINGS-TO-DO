@@ -30,6 +30,7 @@
 <body>
     <div class="wrapper">
         <div class="hero__image"></div>
+        <!-- Navigation -->
         <nav class="navbar navbar-expand-lg sticky-top navbar-dark navbar__custom">
             <a class="navbar-brand" href="{{ url_for('index') }}">
                 <img class="site__logo" src="{{ url_for('static',filename='images/things_to_do_logo.png') }}" alt="Things to Do and Places to Go" title="Things to Do and Places to Go">
@@ -111,20 +112,24 @@
                 </ul>
             </div>
         </nav>
+        <!-- Flash messages -->
         <section id="flash--message" class="flash__message text-center">
             {% for category, message in get_flashed_messages(with_categories=True) %}
                 <div class="flash__message-{{category}}">{{ message }}</div>
             {% endfor %}
         </section>
+        <!-- Main content -->
         <main class="container">
             {% block content %}
             {% endblock %}
         </main>
     </div>
+    <!-- Footer -->
     <footer class="footer__container">
         <p class="text-sm-left text-lg-right">
             Please use any of our social media accounts to get in touch.  Thank you.
         </p>
+        <!-- Social links -->
         <ul class="float-sm-left float-lg-right pl-0 pr-0">
         {% for item in social_links%}
             <li class="social__icon">
