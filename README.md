@@ -331,7 +331,7 @@ Due to time constraints the following features which I had planned to have finis
 - Use of postcode, town or county to provide activities near me searches.
   them to login for whatever reason.
 - Ability for an activity to have several images.
-- Use Google Adsense to help provide advertiser banners. 
+- Use Google AdSense to help provide advertiser banners. 
 
 ## Defensive Design
 - If the user attempts to access an unknown page/route then a page will be displayed to help them.
