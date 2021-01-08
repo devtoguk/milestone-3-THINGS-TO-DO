@@ -59,6 +59,10 @@ body {
     min-height: 100vh;
 }
 
+.main__container {
+    padding: 0;
+}
+
 .border__highlight {
     border: 1px solid var(--themeSuperLightGreen)
 }
@@ -82,8 +86,8 @@ body {
 }
 
 .site__logo {
-    height: 60px;
-    width: 229px;
+    height: 54px;
+    width: 206px;
 }
 
 /* Error Handlers */
@@ -249,6 +253,14 @@ a.social:hover, a.social:active {
 
 .form__bm {
     margin-bottom: 5em;
+}
+
+input[type=file] {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 3px;
 }
 
 a.action:link, a.action:visited {
