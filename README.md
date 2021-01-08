@@ -311,16 +311,17 @@ On desktops these results display in three columns, tablets(portrait) two column
 The user can use this option to logout of the app. Once logged out they are re-directed to the Home page.
 
 ## Incomplete Features
-Due to time constraints the following Admin features which I had planned to have finished are not complete.
+Due to time constraints the following features which I had planned to have finished are not complete.
 - User maintenance
 - Approve or disapprove submitted activities.
+- Make use of 'Age Range' for display and in queries.
 
-## Future Features/Fixes
+## Future Features
 - Admin/Moderator option to approve or disapprove submitted/edited activities.  Users could only see approved activities.
 - Return the user back to their original URL if the app had re-directed them to the Login page.
 - Pagination for activity search results as the database grows.
 - User reviews for activities.
-- Add unique check on screen name.
+- Add unique check on 'screen name'.
 - Display keywords when viewing the activity with links to find other.
   activities with the same keywords.
 - Ability for users to reset their password if forgotten.
