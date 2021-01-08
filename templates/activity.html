@@ -147,8 +147,8 @@
                 {% endif %}
                 {% if activity.venue.website %}
                     <p class="activity-view__link">
-                        {% if activity.venue.website|length > 34 %}
-                            {% set addition_URL = activity.venue.website[0:34] + '...'%}
+                        {% if activity.venue.website|length > 28 %}
+                            {% set addition_URL = activity.venue.website[0:28] + '...'%}
                         {% else %}
                             {% set addition_URL = activity.venue.website %}
                         {% endif %}
@@ -167,10 +167,12 @@
         <!-- Show additional URL if available -->
         <div class="row">
             <div class="col-12">
-                <p class="activity-view__label">Additional subject information, etc</p>
+                <p class="activity-view__label">
+                    Additional subject information
+                </p>
                 <p class="activity-view__link">
-                    {% if activity.additionalURL|length > 34 %}
-                        {% set addition_URL = activity.additionalURL[0:34] + '...'%}
+                    {% if activity.additionalURL|length > 28 %}
+                        {% set addition_URL = activity.additionalURL[0:28] + '...'%}
                     {% else %}
                         {% set addition_URL = activity.additionalURL %}
                     {% endif %}
