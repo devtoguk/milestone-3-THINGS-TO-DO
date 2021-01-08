@@ -170,7 +170,10 @@ When resizing images occasionally a landscape image being resized/cropped ends u
 3. **Additional location value**
 During testing and data entry it became obvious that we really needed an additional value for the 'location' field to deal with activities which were 'Out & About' but did not have a specific venue.  So, 'At a Venue' was added for activities with a specific address.
 
-4. **https://**
+4. **https:// changing to http://**
 While testing on Heroku I have noticed that while the site starts off on a  secure 'https://' url, as soon as you do an activity/view it changes to a 'http://' url. Even though at the base of the browser window it clearly says it is linking to a 'https://' url.  In 'heroku logs --tail' you can see the protocol change to 'http'.
 Due to time constraints I have not had the time to investigate this further yet, but think this issue could be related to the fact that I haven't specifically added an SSL certificate to my Heroku Dyno or the fact that I am not using a paid Dyno.
 Either way this issue would need to be solved before going fully live.
+
+5. **Image file-input field**
+On an actual Android mobile and tablet the 'file-input' filename still overflowed, but in Google Dev Tools it does not. Performed an update for Chrome on both devices and now it works as expected on the tablet but the mobile still has the issue, further investigation is required.
